@@ -1,6 +1,7 @@
 package unicam.piattaforma_filiera_agricola;
 
 public abstract class UtenteLoggato {
+
     private int id;
     private String nome;
     private String email;

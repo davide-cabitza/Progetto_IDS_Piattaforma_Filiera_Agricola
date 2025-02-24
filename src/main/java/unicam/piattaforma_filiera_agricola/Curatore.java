@@ -1,4 +1,4 @@
 package unicam.piattaforma_filiera_agricola;
 
-public class Curatore {
+public class Curatore extends UtenteLoggato {
 }
