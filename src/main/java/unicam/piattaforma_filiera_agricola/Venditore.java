@@ -1,4 +1,7 @@
 package unicam.piattaforma_filiera_agricola;
 
-public class Venditore {
+public abstract class Venditore {
+
+
+
 }
