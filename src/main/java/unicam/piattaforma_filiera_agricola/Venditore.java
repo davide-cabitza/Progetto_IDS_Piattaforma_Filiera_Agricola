@@ -1,8 +1,9 @@
 package unicam.piattaforma_filiera_agricola;
 
+import java.util.Date;
 import java.util.List;
 
-public abstract class Venditore extends UtenteLoggato {
+public abstract class Venditore extends UtenteLoggato implements Ivenditore {
 
 protected String partitaIva;
 protected List<Prodotto> listaProdotti;
@@ -10,7 +11,7 @@ protected Enum certificatiProdotto;
 protected String certificatiAzienda;
 
 
-public Venditore(String partitaIva) {
+public Venditore(String partitaIva)  {
 this.partitaIva=partitaIva;
 }
     @Override
@@ -56,13 +57,6 @@ this.partitaIva=partitaIva;
     this.listaProdotti=listaProdotti;
     }
 
-    public Enum getCertificatiProdotto() {
-        return certificatiProdotto;
-    }
-
-    public void setCertificatiProdotto(Enum certificatiProdotto) {
-    this.certificatiProdotto=certificatiProdotto;
-    }
 
     public String getCertificatiAzienda() {
         return certificatiAzienda;
@@ -70,5 +64,12 @@ this.partitaIva=partitaIva;
 
     public void setCertificatiAzienda(String certificatiAzienda) {
         this.certificatiAzienda=certificatiAzienda;
+    }
+
+    public abstract Prodotto creaProdotto(String id, String nome, String descrizione, Float costo, int quantitativo, Date data, CategoriaProdotto categoriaProdotto, Certificati certificatiProdotto);
+
+    @Override
+    public void caricaPrdotto(String id, String nome, String descrizione, Float costo, int quantitativo, Date data, CategoriaProdotto categoriaProdotto, Certificati certificatiProdotto) {
+        Prodotto prodotto = creaProdotto(id,nome,descrizione,costo,quantitativo,data,categoriaProdotto,certificatiProdotto);
     }
 }
