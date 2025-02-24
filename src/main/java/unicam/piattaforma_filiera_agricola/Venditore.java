@@ -5,15 +5,16 @@ import java.util.List;
 
 public abstract class Venditore extends UtenteLoggato implements Ivenditore {
 
-protected String partitaIva;
-protected List<Prodotto> listaProdotti;
-protected Enum certificatiProdotto;
-protected String certificatiAzienda;
+    protected String partitaIva;
+    protected List<Prodotto> listaProdotti;
+    protected Enum certificatiProdotto;
+    protected String certificatiAzienda;
 
 
-public Venditore(String partitaIva)  {
-this.partitaIva=partitaIva;
-}
+    public Venditore(String partitaIva)  {
+        this.partitaIva=partitaIva;
+    }
+
     @Override
     public int getId() {
         return super.getId();
