@@ -26,7 +26,7 @@ public Venditore(int id,String nome,String email, int numeroTelefono,
                 categoriaProdotto, idVenditore, dataInserimento);
     }
 
-    
+
     public abstract Prodotto creaProdotto(int id, String nome, String descrizione,
                                           String certificatiProdotto, Float costo, int quantitativo,
                                           String categoriaProdotto, int idVenditore, Date dataInserimento);
