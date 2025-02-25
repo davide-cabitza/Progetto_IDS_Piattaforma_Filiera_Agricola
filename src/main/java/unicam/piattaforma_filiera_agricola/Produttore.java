@@ -1,13 +1,16 @@
 package unicam.piattaforma_filiera_agricola;
 
 import java.util.Date;
+import java.util.List;
 
-public class Produttore extends Venditore {
+public class Produttore extends Venditore implements ISeller{
 
     public String processoColtivazione;
 
-    public Produttore(int id, String nome, String email, int numeroTelefono, String indirizzo, String NomeUtente, String partitaIva, String processoColtivazione) {
-        super(id, nome, email, numeroTelefono, indirizzo, NomeUtente, partitaIva);
+    public Produttore(int id, String nome, String email, int numeroTelefono, String indirizzo, String NomeUtente, String partitaIva,
+                      List<Prodotto> listaProdotti, String certificatiProdotto, String certificatiAzienda, String processoColtivazione) {
+
+        super(id, nome, email, numeroTelefono, indirizzo, NomeUtente, partitaIva, listaProdotti, certificatiProdotto, certificatiAzienda);
         this.processoColtivazione = processoColtivazione;
     }
 
@@ -22,6 +25,16 @@ public class Produttore extends Venditore {
     @Override
     public Prodotto creaProdotto(int id, String nome, String descrizione, String certificatiProdotto, Float costo, int quantitativo, String categoriaProdotto, int idVenditore, Date dataInserimento) {
         return null;
+    }
+
+    @Override
+    public void caricaProdotto(Prodotto p) {
+
+    }
+
+    @Override
+    public void modifyProdotto(Prodotto p) {
+
     }
 }
 
