@@ -2,7 +2,7 @@ package unicam.piattaforma_filiera_agricola;
 
 import java.util.Date;
 
-public class Prodotto  {
+public class Prodotto {
     private int id;
     private String nomeProdotto;
     private String descrizione;

@@ -5,16 +5,19 @@ import java.util.List;
 
 public abstract class Venditore extends UtenteLoggato {
 
-protected String partitaIva;
-protected List<Prodotto> listaProdotti;
-protected Enum certificatiProdotto;
-protected String certificatiAzienda;
+    protected String partitaIva;
+    protected List<Prodotto> listaProdotti;
+    protected String certificatiProdotto;
+    protected String certificatiAzienda;
 
 
-public Venditore(int id,String nome,String email, int numeroTelefono,
-                 String indirizzo,String NomeUtente, String partitaIva)  {
-    super(id,nome,email,numeroTelefono,indirizzo,NomeUtente);
-    this.partitaIva=partitaIva;
+    public Venditore(int id, String nome, String email, int numeroTelefono,
+                 String indirizzo, String NomeUtente, String partitaIva, List<Prodotto> listaProdotti, String certificatiProdotto, String certificatiAzienda)  {
+        super(id,nome,email,numeroTelefono,indirizzo,NomeUtente);
+        this.partitaIva=partitaIva;
+        this.listaProdotti=listaProdotti;
+        this.certificatiProdotto=certificatiProdotto;
+        this.certificatiAzienda=certificatiAzienda;
     }
 
 
@@ -77,5 +80,13 @@ public Venditore(int id,String nome,String email, int numeroTelefono,
 
     public void setCertificatiAzienda(String certificatiAzienda) {
         this.certificatiAzienda=certificatiAzienda;
+    }
+
+    public String getCertificatiProdotto() {
+        return certificatiProdotto;
+    }
+
+    public void setCertificatiProdotto(String certificatiProdotto) {
+        this.certificatiProdotto = certificatiProdotto;
     }
 }
