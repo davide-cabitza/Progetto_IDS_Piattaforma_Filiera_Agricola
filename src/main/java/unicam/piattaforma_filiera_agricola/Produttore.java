@@ -5,9 +5,12 @@ import java.util.List;
 
 public class Produttore extends Venditore {
 
+<<<<<<< Updated upstream
 
     public Produttore(int id, String nome, String email, int numeroTelefono, String indirizzo, String NomeUtente, String password,String partitaIva) {
 
+=======
+>>>>>>> Stashed changes
     public String processoColtivazione;
 
 
