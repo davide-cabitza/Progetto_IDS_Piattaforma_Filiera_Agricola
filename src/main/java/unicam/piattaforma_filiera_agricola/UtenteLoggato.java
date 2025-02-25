@@ -4,7 +4,7 @@ public abstract class UtenteLoggato {
 
     private int id;
     private String nome;
-    private String email;
+    private String email; 
     private int numeroTelefono;
     private String indirizzo;
     private String NomeUtente;
