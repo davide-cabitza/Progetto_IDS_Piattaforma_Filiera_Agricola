@@ -3,7 +3,7 @@ package unicam.piattaforma_filiera_agricola;
 import java.util.Date;
 import java.util.List;
 
-public abstract class Venditore extends UtenteLoggato implements Ivenditore {
+public abstract class Venditore extends UtenteLoggato implements ISeller {
 
 protected String partitaIva;
 protected List<Prodotto> listaProdotti;
@@ -15,6 +15,42 @@ public Venditore(int id,String nome,String email, int numeroTelefono,String indi
     super(id,nome,email,numeroTelefono,indirizzo,NomeUtente,password);
     this.partitaIva=partitaIva;
 }
+
+
+    public List<Prodotto> getListaProdotti() {
+        return listaProdotti;
+    }
+
+    public void setListaProdotti(List<Prodotto> listaProdotti) {
+    this.listaProdotti=listaProdotti;
+    }
+
+
+    public String getCertificatiAzienda() {
+        return certificatiAzienda;
+    }
+
+    public void setCertificatiAzienda(String certificatiAzienda) {
+        this.certificatiAzienda=certificatiAzienda;
+    }
+
+    public abstract Prodotto creaProdotto(String id, String nome, String descrizione, Float costo, int quantitativo, Date data, CategoriaProdotto categoriaProdotto, Certificati certificatiProdotto);
+
+    @Override
+    public void caricaProdotto(Prodotto p) {
+        }
+
+    @Override
+    public void modifyProdotto(Prodotto p) {
+    }
+    
+
+
+
+
+    /* Getter and Setter
+     */
+
     @Override
     public int getId() {
         return super.getId();
@@ -48,29 +84,5 @@ public Venditore(int id,String nome,String email, int numeroTelefono,String indi
     @Override
     public String getPassword() {
         return super.getPassword();
-    }
-
-    public List<Prodotto> getListaProdotti() {
-        return listaProdotti;
-    }
-
-    public void setListaProdotti(List<Prodotto> listaProdotti) {
-    this.listaProdotti=listaProdotti;
-    }
-
-
-    public String getCertificatiAzienda() {
-        return certificatiAzienda;
-    }
-
-    public void setCertificatiAzienda(String certificatiAzienda) {
-        this.certificatiAzienda=certificatiAzienda;
-    }
-
-    public abstract Prodotto creaProdotto(String id, String nome, String descrizione, Float costo, int quantitativo, Date data, CategoriaProdotto categoriaProdotto, Certificati certificatiProdotto);
-
-    @Override
-    public void caricaPrdotto(String id, String nome, String descrizione, Float costo, int quantitativo, Date data, CategoriaProdotto categoriaProdotto, Certificati certificatiProdotto) {
-        Prodotto prodotto = creaProdotto(id,nome,descrizione,costo,quantitativo,data,categoriaProdotto,certificatiProdotto);
     }
 }
