@@ -1,19 +1,19 @@
 package unicam.piattaforma_filiera_agricola;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class PacchettoProdotti extends Prodotto{
 
 
     private List<Prodotto> listaProdotti;
-    private float prezzoBase;
+
 
     // Costruttore
-    public PacchettoProdotti(int id, String nomeProdotto, String descrizione, String certificati, double costo, int quantitativo, String categoria, int id_venditore, long dataInserimento, List<Prodotto> prodotti) {
+    public PacchettoProdotti(int id, String nomeProdotto, String descrizione, String certificati, double costo, int quantitativo, String categoria, int id_venditore, Date dataInserimento, List<Prodotto> prodotti) {
         super(id, nomeProdotto, descrizione, certificati, costo, quantitativo, categoria, id_venditore, dataInserimento);
         this.listaProdotti = prodotti;
-        this.prezzoBase = prezzoBase;
     }
 
     // Metodo per aggiungere un prodotto al pacchetto
@@ -28,7 +28,7 @@ public class PacchettoProdotti extends Prodotto{
 
     // Metodo per calcolare il prezzo totale del pacchetto
     public float calcolaPrezzoTotale() {
-        float totale = prezzoBase;
+        float totale = 0;
         for (Prodotto p : listaProdotti) {
             totale += p.getCosto();
         }
@@ -41,12 +41,4 @@ public class PacchettoProdotti extends Prodotto{
         return listaProdotti;
     }
 
-    public float getPrezzoBase() {
-        return prezzoBase;
-    }
-
-    // Setter
-    public void setPrezzoBase(float prezzoBase) {
-        this.prezzoBase = prezzoBase;
-    }
 }

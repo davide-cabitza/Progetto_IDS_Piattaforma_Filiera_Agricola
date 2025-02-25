@@ -65,7 +65,7 @@ public Venditore(int id,String nome,String email, int numeroTelefono,
     public String getNomeUtente() {
         return super.getNomeUtente();
     }
-    
+
 
     public List<Prodotto> getListaProdotti() {
         return listaProdotti;

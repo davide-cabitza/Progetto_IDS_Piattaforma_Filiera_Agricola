@@ -8,8 +8,8 @@ public class Distributore extends Venditore{
     private List<PacchettoProdotti> pacchetti;
 
 
-    public Distributore(int id, String nome, String email, int numeroTelefono, String indirizzo, String NomeUtente, String password, String partitaIva) {
-        super(id, nome, email, numeroTelefono, indirizzo, NomeUtente, password, partitaIva);
+    public Distributore(int id, String nome, String email, int numeroTelefono, String indirizzo, String NomeUtente, String partitaIva) {
+        super(id, nome, email, numeroTelefono, indirizzo, NomeUtente, partitaIva);
     }
 
 
@@ -18,8 +18,8 @@ public class Distributore extends Venditore{
         return null;
     }
 
-    public PacchettoProdotti creaPacchetto(String nomePacchetto, float prezzoBase) {
-        PacchettoProdotti nuovoPacchetto = new PacchettoProdotti(nomePacchetto, prezzoBase);
+    public PacchettoProdotti creaPacchetto(int id, String nome, String descrizione, String certificatiProdotto, Float costo, int quantitativo, String categoriaProdotto, int idVenditore, Date dataInserimento, List<Prodotto> prodotti) {
+        PacchettoProdotti nuovoPacchetto = new PacchettoProdotti(id, nome, descrizione, certificatiProdotto, costo, quantitativo, categoriaProdotto, idVenditore, dataInserimento, prodotti);
         pacchetti.add(nuovoPacchetto);
         return nuovoPacchetto;
     }
