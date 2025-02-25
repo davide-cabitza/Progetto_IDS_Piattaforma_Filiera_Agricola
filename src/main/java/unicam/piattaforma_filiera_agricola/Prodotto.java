@@ -1,5 +1,7 @@
 package unicam.piattaforma_filiera_agricola;
 
+import java.util.Date;
+
 public class Prodotto  {
     private int id;
     private String nomeProdotto;
@@ -9,9 +11,9 @@ public class Prodotto  {
     private int quantitativo;
     private String categoria;
     private int id_venditore;
-    private long dataInserimento;
+    private Date dataInserimento;
 
-    public Prodotto(int id, String nomeProdotto, String descrizione, String certificati, double costo, int quantitativo, String categoria, int id_venditore, long dataInserimento) {
+    public Prodotto(int id, String nomeProdotto, String descrizione, String certificati, double costo, int quantitativo, String categoria, int id_venditore, Date dataInserimento) {
         this.id = id;
         this.nomeProdotto = nomeProdotto;
         this.descrizione = descrizione;
@@ -87,11 +89,11 @@ public class Prodotto  {
         this.id_venditore = id_venditore;
     }
 
-    public long getDataInserimento() {
+    public Date getDataInserimento() {
         return dataInserimento;
     }
 
-    public void setDataInserimento(long dataInserimento) {
+    public void setDataInserimento(Date dataInserimento) {
         this.dataInserimento = dataInserimento;
     }
 

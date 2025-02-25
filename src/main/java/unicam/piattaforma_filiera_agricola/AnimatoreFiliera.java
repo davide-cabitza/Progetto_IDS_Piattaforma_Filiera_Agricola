@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AnimatoreFiliera extends UtenteLoggato {
+<<<<<<< HEAD
 
     private List<Venditore> venditoriGestiti;
     private List<Evento> eventiOrganizzati;
@@ -12,6 +13,10 @@ public class AnimatoreFiliera extends UtenteLoggato {
         super(id, nome, email, numeroTelefono, indirizzo, NomeUtente);
         this.venditoriGestiti = new ArrayList<>();
         this.eventiOrganizzati = new ArrayList<>();
+=======
+    public AnimatoreFiliera(int id, String nome, String email, int numeroTelefono, String indirizzo, String NomeUtente) {
+        super(id, nome, email, numeroTelefono, indirizzo, NomeUtente);
+>>>>>>> 5bb57980caaa1e13574ded6bc1ae56be712c27e5
     }
 
     public void aggiungiVenditore(Venditore venditore) {
