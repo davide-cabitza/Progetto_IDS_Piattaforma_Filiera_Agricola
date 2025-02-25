@@ -66,11 +66,10 @@ public Venditore(int id,String nome,String email, int numeroTelefono,String indi
     public void setCertificatiAzienda(String certificatiAzienda) {
         this.certificatiAzienda=certificatiAzienda;
     }
-
-    public abstract Prodotto creaProdotto(String id, String nome, String descrizione, Float costo, int quantitativo, Date data, CategoriaProdotto categoriaProdotto, Certificati certificatiProdotto);
-
-    @Override
-    public void caricaPrdotto(String id, String nome, String descrizione, Float costo, int quantitativo, Date data, CategoriaProdotto categoriaProdotto, Certificati certificatiProdotto) {
-        Prodotto prodotto = creaProdotto(id,nome,descrizione,costo,quantitativo,data,categoriaProdotto,certificatiProdotto);
+    
+    public void caricaProdotto(int id, String nome, String descrizione, String certificatiProdotto, Float costo, int quantitativo, String categoriaProdotto, int idVenditore, Date dataInserimento) {
+        Prodotto prodotto = creaProdotto(id, nome, descrizione, certificatiProdotto, costo, quantitativo, categoriaProdotto, idVenditore, dataInserimento);
     }
+
+    public abstract Prodotto creaProdotto(int id, String nome, String descrizione, String certificatiProdotto, Float costo, int quantitativo, String categoriaProdotto, int idVenditore, Date dataInserimento);
 }

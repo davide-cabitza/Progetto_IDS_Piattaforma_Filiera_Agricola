@@ -1,5 +1,7 @@
 package unicam.piattaforma_filiera_agricola;
 
+import java.util.Date;
+
 public abstract class UtenteLoggato {
 
     private int id;
@@ -47,4 +49,5 @@ public abstract class UtenteLoggato {
     public String getPassword() {
         return password;
     }
+
 }
