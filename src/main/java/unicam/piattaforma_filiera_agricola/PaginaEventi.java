@@ -21,13 +21,20 @@ public class PaginaEventi {
         }
         return risultati.getFirst();
     }
-    
+
     public List<Evento> getListaEventi() {
         return listaEventi;
     }
 
-    public void setListaEventi(List<Evento> listaE) {
+    private void setListaEventi(List<Evento> listaE) {
         this.listaEventi = listaE;
     }
 
+    public boolean isStato() {
+        return stato;
+    }
+
+    private void setStato(boolean stato) {
+        this.stato = stato;
+    }
 }

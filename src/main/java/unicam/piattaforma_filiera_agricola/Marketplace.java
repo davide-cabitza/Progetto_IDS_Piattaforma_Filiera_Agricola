@@ -4,23 +4,37 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Marketplace {
-    String stato;
-    Prodotto[] prodotto;
+    List<Prodotto> listaProdotti;
+    boolean stato;
 
-    public Marketplace(Prodotto[] prodotto, String stato) {
-        this.stato = stato;
-        this.prodotto = prodotto;
+    public Marketplace(List<Prodotto> prodotti, boolean state) {
+        this.listaProdotti = prodotti;
+        this.stato = state;
     }
 
-    public Prodotto[] cercaProdotto(String prod) {
+    public Prodotto cercaProdotto(String prod) {
         List<Prodotto> risultati = new ArrayList<>();
-
-        for (Prodotto p : prodotto) {
+        for (Prodotto p : listaProdotti) {
             if (p.getNomeProdotto().equalsIgnoreCase(prod)) { // Confronto case-insensitive
                 risultati.add(p);
             }
         }
+        return risultati.getFirst();
+    }
 
-        return risultati.toArray(new Prodotto[0]);
+    public List<Prodotto> getListaProdotti() {
+        return listaProdotti;
+    }
+
+    private void setListaProdotti(List<Prodotto> listaProdotti) {
+        this.listaProdotti = listaProdotti;
+    }
+
+    public boolean isStato() {
+        return stato;
+    }
+
+    private void setStato(boolean stato) {
+        this.stato = stato;
     }
 }
