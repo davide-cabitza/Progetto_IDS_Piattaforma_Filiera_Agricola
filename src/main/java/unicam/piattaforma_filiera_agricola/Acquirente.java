@@ -11,7 +11,7 @@ public class Acquirente extends UtenteLoggato implements IBuy{
 
     String indirizzoSpedizioni;
     public Acquirente(int id, String nome, String email, int numeroTelefono, String indirizzo, String NomeUtente, String indirizzoSpedizioni) {
-        super(id, nome, email, numeroTelefono, indirizzo, NomeUtente, password);
+        super(id, nome, email, numeroTelefono, indirizzo, NomeUtente);
         this.indirizzoSpedizioni = indirizzoSpedizioni;
         this.carrello = new ArrayList<>();
         this.pacchettiCarrello = new ArrayList<>();
