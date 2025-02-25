@@ -12,8 +12,8 @@ protected String certificatiAzienda;
 
 
 public Venditore(int id,String nome,String email, int numeroTelefono,
-                 String indirizzo,String NomeUtente,String password,String partitaIva)  {
-    super(id,nome,email,numeroTelefono,indirizzo,NomeUtente,password);
+                 String indirizzo,String NomeUtente, String partitaIva)  {
+    super(id,nome,email,numeroTelefono,indirizzo,NomeUtente);
     this.partitaIva=partitaIva;
     }
 
