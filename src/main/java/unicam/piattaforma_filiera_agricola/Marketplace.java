@@ -15,7 +15,7 @@ public class Marketplace {
     public Prodotto cercaProdotto(String prod) {
         List<Prodotto> risultati = new ArrayList<>();
         for (Prodotto p : this.listaProdotti) {
-            if (p.getNomeProdotto().equalsIgnoreCase(prod)) { // Confronto case-insensitive
+            if (p.getNomeProdotto().equalsIgnoreCase(prod)) {
                 risultati.add(p);
             }
         }
