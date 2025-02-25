@@ -3,7 +3,7 @@ package unicam.piattaforma_filiera_agricola;
 import java.util.Date;
 import java.util.List;
 
-public abstract class Venditore extends UtenteLoggato implements ISeller {
+public abstract class Venditore extends UtenteLoggato {
 
 protected String partitaIva;
 protected List<Prodotto> listaProdotti;
@@ -35,17 +35,6 @@ public Venditore(int id,String nome,String email, int numeroTelefono,String indi
     }
 
     public abstract Prodotto creaProdotto(String id, String nome, String descrizione, Float costo, int quantitativo, Date data, CategoriaProdotto categoriaProdotto, Certificati certificatiProdotto);
-
-    @Override
-    public void caricaProdotto(Prodotto p) {
-        }
-
-    @Override
-    public void modifyProdotto(Prodotto p) {
-    }
-    
-
-
 
 
     /* Getter and Setter

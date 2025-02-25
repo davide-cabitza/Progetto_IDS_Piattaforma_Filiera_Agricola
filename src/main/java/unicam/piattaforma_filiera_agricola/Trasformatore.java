@@ -2,7 +2,7 @@ package unicam.piattaforma_filiera_agricola;
 
 import java.util.Date;
 
-public class Trasformatore extends Venditore{
+public class Trasformatore extends Venditore implements ISeller{
 
     public String processoTrasformazione;
 
@@ -16,6 +16,15 @@ public class Trasformatore extends Venditore{
         return null;
     }
 
+    @Override
+    public void caricaProdotto(Prodotto p) {
+
+    }
+
+    @Override
+    public void modifyProdotto(Prodotto p) {
+
+    }
 
     public String getProcessoTrasformazione() {
         return processoTrasformazione;
