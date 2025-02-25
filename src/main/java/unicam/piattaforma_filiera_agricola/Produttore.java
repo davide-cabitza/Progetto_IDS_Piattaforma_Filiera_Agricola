@@ -10,7 +10,7 @@ public class Produttore extends Venditore {
 
     @Override
     public Prodotto creaProdotto(String id, String nome, String descrizione, Float costo, int quantitativo, Date data, CategoriaProdotto categoriaProdotto, Certificati certificatiProdotto) {
-return null;
+        return null;
     }
 
 
