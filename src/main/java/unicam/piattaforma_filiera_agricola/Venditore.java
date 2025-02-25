@@ -3,7 +3,7 @@ package unicam.piattaforma_filiera_agricola;
 import java.util.Date;
 import java.util.List;
 
-public abstract class Venditore extends UtenteLoggato implements Ivenditore {
+public abstract class Venditore extends UtenteLoggato implements ISupervise {
 
 protected String partitaIva;
 protected List<Prodotto> listaProdotti;
