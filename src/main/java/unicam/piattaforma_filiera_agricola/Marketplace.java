@@ -11,16 +11,19 @@ public class Marketplace {
         this.listaProdotti = prodotti;
         this.stato = state;
     }
-
+    /*
     public Prodotto cercaProdotto(String prod) {
         List<Prodotto> risultati = new ArrayList<>();
-        for (Prodotto p : listaProdotti) {
+        for (Prodotto p : this.listaProdotti) {
             if (p.getNomeProdotto().equalsIgnoreCase(prod)) { // Confronto case-insensitive
                 risultati.add(p);
             }
         }
         return risultati.getFirst();
+
     }
+    */
+
 
     public List<Prodotto> getListaProdotti() {
         return listaProdotti;

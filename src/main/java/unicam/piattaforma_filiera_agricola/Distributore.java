@@ -3,7 +3,7 @@ package unicam.piattaforma_filiera_agricola;
 import java.util.Date;
 import java.util.List;
 
-public class Distributore extends Venditore implements ISeller{
+public class Distributore extends Venditore{
 
     private List<PacchettoProdotti> pacchetti;
 
@@ -12,25 +12,11 @@ public class Distributore extends Venditore implements ISeller{
         super(id, nome, email, numeroTelefono, indirizzo, NomeUtente, password, partitaIva);
     }
 
-    /*
     @Override
-    public Prodotto creaProdotto(String id, String nome, String descrizione, Float costo, int quantitativo, Date data, CategoriaProdotto categoriaProdotto, Certificati certificatiProdotto) {
-        Prodotto nuovoProdotto = new Prodotto(id, nome,descrizione,costo,quantitativo,data,categoriaProdotto,certificatiProdotto);
-        listaProdotti.add(nuovoProdotto); // Aggiungiamo il prodotto alla lista del venditore
-        return nuovoProdotto;    }
-
-     */
-
-
-    @Override
-    public void caricaProdotto(Prodotto p) {
-
+    public Prodotto creaProdotto(int id, String nome, String descrizione, String certificatiProdotto, Float costo, int quantitativo, String categoriaProdotto, int idVenditore, Date dataInserimento) {
+        return null;
     }
 
-    @Override
-    public void modifyProdotto(Prodotto p) {
-
-    }
 
     public PacchettoProdotti creaPacchetto(String nomePacchetto, float prezzoBase) {
         PacchettoProdotti nuovoPacchetto = new PacchettoProdotti(nomePacchetto, prezzoBase);
