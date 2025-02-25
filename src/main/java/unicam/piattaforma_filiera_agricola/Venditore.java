@@ -65,11 +65,7 @@ public Venditore(int id,String nome,String email, int numeroTelefono,
     public String getNomeUtente() {
         return super.getNomeUtente();
     }
-
-    @Override
-    public String getPassword() {
-        return super.getPassword();
-    }
+    
 
     public List<Prodotto> getListaProdotti() {
         return listaProdotti;
