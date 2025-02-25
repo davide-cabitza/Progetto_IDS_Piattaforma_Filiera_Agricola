@@ -9,7 +9,7 @@ public class Distributore extends Venditore{
 
 
     public Distributore(int id, String nome, String email, int numeroTelefono, String indirizzo, String NomeUtente, String password, String partitaIva) {
-        super(id, nome, email, numeroTelefono, indirizzo, NomeUtente, password, partitaIva);
+        super(id, nome, email, numeroTelefono, indirizzo, NomeUtente, partitaIva);
     }
 
 
@@ -18,11 +18,11 @@ public class Distributore extends Venditore{
         return null;
     }
 
-    public PacchettoProdotti creaPacchetto(String nomePacchetto, float prezzoBase) {
+  /*  public PacchettoProdotti creaPacchetto(String nomePacchetto, float prezzoBase) {
         PacchettoProdotti nuovoPacchetto = new PacchettoProdotti(nomePacchetto, prezzoBase);
         pacchetti.add(nuovoPacchetto);
         return nuovoPacchetto;
-    }
+    }*/
 
     public void aggiungiProdottoAlPacchetto(PacchettoProdotti pacchetto, Prodotto prodotto) {
         pacchetto.aggiungiProdotto(prodotto);

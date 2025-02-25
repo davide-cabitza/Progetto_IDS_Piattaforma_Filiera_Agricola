@@ -1,15 +1,18 @@
 package unicam.piattaforma_filiera_agricola;
 
 import java.util.Date;
+import java.util.List;
 
 public class Evento {
-    int id;
-    String nomeEvento;
-    String tipologia;
-    String descrizione;
-    Date data;
-    String link;
-    String luogoEvento;
+    private int id;
+    private String nomeEvento;
+    private String tipologia;
+    private String descrizione;
+    private Date data;
+    private String link;
+    private String luogoEvento;
+    private List<Venditore> venditoriInvitati;
+
 
     public Evento(int id, String nomeEvento, String tipologia, String descrizione, Date data, String link, String luogoEvento) {
         this.id = id;
@@ -76,5 +79,18 @@ public class Evento {
 
     public void setLuogoEvento(String luogoEvento) {
         this.luogoEvento = luogoEvento;
+    }
+
+    public List<Venditore> getVenditoriInvitati() {
+        return venditoriInvitati;
+    }
+
+    public void aggiungiInvitato(Venditore venditore) {
+        if (!venditoriInvitati.contains(venditore)) {
+            venditoriInvitati.add(venditore);
+            System.out.println("Venditore " + venditore.getNome() + " invitato all'evento: " + nomeEvento);
+        } else {
+            System.out.println("Il venditore " + venditore.getNome() + " è già stato invitato.");
+        }
     }
 }
