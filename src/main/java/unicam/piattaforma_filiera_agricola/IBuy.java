@@ -1,6 +1,6 @@
 package unicam.piattaforma_filiera_agricola;
 
-public interface BuyLogic {
+public interface IBuy {
 
     public void addToCart(Prodotto p);
 

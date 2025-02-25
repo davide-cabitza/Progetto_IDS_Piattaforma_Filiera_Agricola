@@ -11,6 +11,7 @@ public class Marketplace {
         this.listaProdotti = prodotti;
         this.stato = state;
     }
+
     /*
     public Prodotto cercaProdotto(String prod) {
         List<Prodotto> risultati = new ArrayList<>();

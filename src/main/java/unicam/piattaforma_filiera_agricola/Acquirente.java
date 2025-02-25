@@ -1,6 +1,6 @@
 package unicam.piattaforma_filiera_agricola;
 
-public class Acquirente extends UtenteLoggato {
+public class Acquirente extends UtenteLoggato implements IBuy{
 
     String indirizzoSpedizioni;
     public Acquirente(int id, String nome, String email, int numeroTelefono, String indirizzo, String NomeUtente, String password, String indirizzoSpedizioni) {
@@ -18,5 +18,16 @@ public class Acquirente extends UtenteLoggato {
 
     public void setIndirizzoSpedizioni(String indirizzoSpedizioni) {
         this.indirizzoSpedizioni = indirizzoSpedizioni;
+    }
+
+
+    @Override
+    public void addToCart(Prodotto p) {
+
+    }
+
+    @Override
+    public void acquista(Prodotto p) {
+
     }
 }
