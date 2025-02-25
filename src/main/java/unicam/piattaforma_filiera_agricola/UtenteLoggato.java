@@ -10,8 +10,14 @@ public abstract class UtenteLoggato {
     private String NomeUtente;
     private String password;
 
-    public UtenteLoggato() {
-
+    public UtenteLoggato(int id,String nome,String email, int numeroTelefono,String indirizzo,String NomeUtente,String password) {
+    this.id=id;
+    this.nome=nome;
+    this.email=email;
+    this.numeroTelefono=numeroTelefono;
+    this.indirizzo=indirizzo;
+    this.NomeUtente=NomeUtente;
+    this.password=password;
     }
 
     public int getId() {

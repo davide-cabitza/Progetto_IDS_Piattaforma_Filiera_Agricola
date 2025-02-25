@@ -7,12 +7,12 @@ public abstract class Venditore extends UtenteLoggato implements Ivenditore {
 
 protected String partitaIva;
 protected List<Prodotto> listaProdotti;
-protected Enum certificatiProdotto;
 protected String certificatiAzienda;
 
 
-public Venditore(String partitaIva)  {
-this.partitaIva=partitaIva;
+public Venditore(String partitaIva,int id,String nome,String email, int numeroTelefono,String indirizzo,String NomeUtente,String password)  {
+    super(id,nome,email,numeroTelefono,indirizzo,NomeUtente,password);
+    this.partitaIva=partitaIva;
 }
     @Override
     public int getId() {
