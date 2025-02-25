@@ -6,8 +6,8 @@ public class Trasformatore extends Venditore {
 
     public String processoTrasformazione;
 
-    public Trasformatore(int id, String nome, String email, int numeroTelefono, String indirizzo, String NomeUtente, String password, String partitaIva,String processoTrasformazione) {
-        super(id, nome, email, numeroTelefono, indirizzo, NomeUtente, password, partitaIva);
+    public Trasformatore(int id, String nome, String email, int numeroTelefono, String indirizzo, String NomeUtente, String partitaIva,String processoTrasformazione) {
+        super(id, nome, email, numeroTelefono, indirizzo, NomeUtente, partitaIva);
         this.processoTrasformazione = processoTrasformazione;
     }
 

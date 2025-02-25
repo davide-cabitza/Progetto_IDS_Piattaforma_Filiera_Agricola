@@ -6,9 +6,8 @@ public class Produttore extends Venditore {
 
     public String processoColtivazione;
 
-    public Produttore(int id, String nome, String email, int numeroTelefono, String indirizzo, String NomeUtente, String
-            password, String partitaIva, String processoColtivazione) {
-        super(id, nome, email, numeroTelefono, indirizzo, NomeUtente, password, partitaIva);
+    public Produttore(int id, String nome, String email, int numeroTelefono, String indirizzo, String NomeUtente, String partitaIva, String processoColtivazione) {
+        super(id, nome, email, numeroTelefono, indirizzo, NomeUtente, partitaIva);
         this.processoColtivazione = processoColtivazione;
     }
 
