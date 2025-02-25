@@ -8,11 +8,9 @@ public class Distributore extends Venditore{
     private List<PacchettoProdotti> pacchetti;
 
 
-<<<<<<< HEAD
-    public Distributore(int id, String nome, String email, int numeroTelefono, String indirizzo, String NomeUtente, String password, String partitaIva) {
-=======
+
     public Distributore(int id, String nome, String email, int numeroTelefono, String indirizzo, String NomeUtente, String partitaIva) {
->>>>>>> 5bb57980caaa1e13574ded6bc1ae56be712c27e5
+
         super(id, nome, email, numeroTelefono, indirizzo, NomeUtente, partitaIva);
     }
 
@@ -22,7 +20,6 @@ public class Distributore extends Venditore{
         return null;
     }
 
-<<<<<<< HEAD
   /*  public PacchettoProdotti creaPacchetto(String nomePacchetto, float prezzoBase) {
         PacchettoProdotti nuovoPacchetto = new PacchettoProdotti(nomePacchetto, prezzoBase);
 =======

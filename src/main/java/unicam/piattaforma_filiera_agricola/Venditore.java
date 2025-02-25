@@ -31,11 +31,6 @@ public Venditore(int id,String nome,String email, int numeroTelefono,
                                           String certificatiProdotto, Float costo, int quantitativo,
                                           String categoriaProdotto, int idVenditore, Date dataInserimento);
 
-
-
-
-
-
     @Override
     public int getId() {
         return super.getId();
