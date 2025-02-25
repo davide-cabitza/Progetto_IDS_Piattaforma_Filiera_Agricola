@@ -11,18 +11,17 @@ public class PaginaEventi {
         this.stato = stato;
         this.listaEventi = lista;
     }
-    /*
-    public Evento cercaEvento(String evento) {
+
+    public List<Evento> cercaEvento(String evento) {
         List<Evento> risultati = new ArrayList<>();
         for (Evento e : this.listaEventi) {
-            if (e.getNomeEvento().equalsIgnoreCase(evento)) { // Confronto case-insensitive
+            if (e.getNomeEvento().equalsIgnoreCase(evento)) {
                 risultati.add(e);
             }
         }
-        return risultati.getFirst();
+        return risultati;
     }
 
-     */
 
     public List<Evento> getListaEventi() {
         return listaEventi;
