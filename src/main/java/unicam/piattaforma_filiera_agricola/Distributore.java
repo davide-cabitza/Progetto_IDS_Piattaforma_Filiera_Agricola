@@ -13,10 +13,10 @@ public class Distributore extends Venditore{
     }
 
     @Override
-    public Prodotto creaProdotto(int id, String nome, String descrizione, String certificatiProdotto, Float costo, int quantitativo, String categoriaProdotto, int idVenditore, Date dataInserimento) {
-        return null;
-    }
-
+    /*public Prodotto creaProdotto(String id, String nome, String descrizione, Float costo, int quantitativo, Date data, CategoriaProdotto categoriaProdotto, Certificati certificatiProdotto) {
+        Prodotto nuovoProdotto = new Prodotto(id, nome,descrizione,costo,quantitativo,data,categoriaProdotto,certificatiProdotto);
+        listaProdotti.add(nuovoProdotto); // Aggiungiamo il prodotto alla lista del venditore
+        return nuovoProdotto;    }*/
 
     public PacchettoProdotti creaPacchetto(String nomePacchetto, float prezzoBase) {
         PacchettoProdotti nuovoPacchetto = new PacchettoProdotti(nomePacchetto, prezzoBase);
