@@ -21,7 +21,7 @@ public class PaginaEventi {
         }
         return risultati.getFirst();
     }
-    
+
      */
 
     public List<Evento> getListaEventi() {
