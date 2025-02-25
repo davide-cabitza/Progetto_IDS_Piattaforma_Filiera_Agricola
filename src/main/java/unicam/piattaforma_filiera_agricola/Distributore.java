@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Distributore extends Venditore{
 
-    private ProdottoDistributore creaPacchetto;
+    private List<PacchettoProdotti> pacchetti;
 
 
     public Distributore(int id, String nome, String email, int numeroTelefono, String indirizzo, String NomeUtente, String password, String partitaIva) {
@@ -13,15 +13,25 @@ public class Distributore extends Venditore{
     }
 
     @Override
-    public Prodotto creaProdotto(String id, String nome, String descrizione, Float costo, int quantitativo, Date data, CategoriaProdotto categoriaProdotto, Certificati certificatiProdotto) {
-        return null;
+    /*public Prodotto creaProdotto(String id, String nome, String descrizione, Float costo, int quantitativo, Date data, CategoriaProdotto categoriaProdotto, Certificati certificatiProdotto) {
+        Prodotto nuovoProdotto = new Prodotto(id, nome,descrizione,costo,quantitativo,data,categoriaProdotto,certificatiProdotto);
+        listaProdotti.add(nuovoProdotto); // Aggiungiamo il prodotto alla lista del venditore
+        return nuovoProdotto;    }*/
+
+    public PacchettoProdotti creaPacchetto(String nomePacchetto, float prezzoBase) {
+        PacchettoProdotti nuovoPacchetto = new PacchettoProdotti(nomePacchetto, prezzoBase);
+        pacchetti.add(nuovoPacchetto);
+        return nuovoPacchetto;
     }
 
-    /*public void AggiungiProdotti(Prodotto prodotto){
+    public void aggiungiProdottoAlPacchetto(PacchettoProdotti pacchetto, Prodotto prodotto) {
+        pacchetto.aggiungiProdotto(prodotto);
+    }
 
-    }*/
-
-    public ProdottoDistributore getCreaPacchetto() {return creaPacchetto;}
+    // Metodo per ottenere la lista di pacchetti creati dal distributore
+    public List<PacchettoProdotti> getPacchetti() {
+        return pacchetti;
+    }
 
 
 }

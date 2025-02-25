@@ -1,27 +1,56 @@
 package unicam.piattaforma_filiera_agricola;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PacchettoProdotti {
-    Prodotto[] listaProdotti;
-    float prezzo;
 
-    public PacchettoProdotti(Prodotto[] listaProdotti, float prezzo) {
-        this.listaProdotti = listaProdotti;
-        this.prezzo = prezzo;
+
+    private String nome;
+    private List<Prodotto> prodotti;
+    private float prezzoBase;
+
+    // Costruttore
+    public PacchettoProdotti(String nome, float prezzoBase) {
+        this.nome = nome;
+        this.prezzoBase = prezzoBase;
+        this.prodotti = new ArrayList<>();
     }
 
-    public float getPrezzo() {
-        return prezzo;
+    // Metodo per aggiungere un prodotto al pacchetto
+    public void aggiungiProdotto(Prodotto prodotto) {
+        prodotti.add(prodotto);
     }
 
-    public void setPrezzo(float prezzo) {
-        this.prezzo = prezzo;
+    // Metodo per rimuovere un prodotto dal pacchetto
+    public void rimuoviProdotto(Prodotto prodotto) {
+        prodotti.remove(prodotto);
     }
 
-    public Prodotto[] getListaProdotti() {
-        return listaProdotti;
+    // Metodo per calcolare il prezzo totale del pacchetto
+    public float calcolaPrezzoTotale() {
+        float totale = prezzoBase;
+        for (Prodotto p : prodotti) {
+            totale += p.getCosto();
+        }
+        return totale;
     }
 
-    public void setListaProdotti(Prodotto[] listaProdotti) {
-        this.listaProdotti = listaProdotti;
+    // Getter
+    public String getNome() {
+        return nome;
+    }
+
+    public List<Prodotto> getProdotti() {
+        return prodotti;
+    }
+
+    public float getPrezzoBase() {
+        return prezzoBase;
+    }
+
+    // Setter
+    public void setPrezzoBase(float prezzoBase) {
+        this.prezzoBase = prezzoBase;
     }
 }
