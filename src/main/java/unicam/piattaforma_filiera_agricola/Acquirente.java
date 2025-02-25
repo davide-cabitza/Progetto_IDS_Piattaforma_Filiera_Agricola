@@ -7,11 +7,11 @@ public class Acquirente extends UtenteLoggato implements IBuy{
 
     private List<Prodotto> carrello;
     private List<PacchettoProdotti> pacchettiCarrello;
+    private String indirizzoSpedizioni;
 
 
-    String indirizzoSpedizioni;
     public Acquirente(int id, String nome, String email, int numeroTelefono, String indirizzo, String NomeUtente, String indirizzoSpedizioni) {
-        super(id, nome, email, numeroTelefono, indirizzo, NomeUtente, password);
+        super(id, nome, email, numeroTelefono, indirizzo, NomeUtente);
         this.indirizzoSpedizioni = indirizzoSpedizioni;
         this.carrello = new ArrayList<>();
         this.pacchettiCarrello = new ArrayList<>();
@@ -26,7 +26,7 @@ public class Acquirente extends UtenteLoggato implements IBuy{
     @Override
     public void acquista(Prodotto p) {
         if (carrello.contains(p)) {
-            System.out.println("Acquisto completato per il prodotto: " + p.getNomeProdotto());
+            System.out.println("Acquisto completato: " + p.getNomeProdotto());
             carrello.remove(p);
         } else {
             System.out.println("Il prodotto non è nel carrello.");
@@ -70,8 +70,7 @@ public class Acquirente extends UtenteLoggato implements IBuy{
             System.out.println("Il carrello è vuoto. Aggiungi prodotti prima di acquistare.");
             return;
         }
-
-        System.out.println("Acquisto confermato! Grazie per aver acquistato.");
+        System.out.println("Acquisto confermato!");
         svuotaCarrello();
     }
 
