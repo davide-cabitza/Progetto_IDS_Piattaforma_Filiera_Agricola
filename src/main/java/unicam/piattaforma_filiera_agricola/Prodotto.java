@@ -12,8 +12,9 @@ public class Prodotto {
     private String categoria;
     private int id_venditore;
     private Date dataInserimento;
+    private Acquirente creatore;
 
-    public Prodotto(int id, String nomeProdotto, String descrizione, String certificati, double costo, int quantitativo, String categoria, int id_venditore, Date dataInserimento) {
+    public Prodotto(int id, String nomeProdotto, String descrizione, String certificati, double costo, int quantitativo, String categoria,int id_venditore, Date dataInserimento,Acquirente creatore) {
         this.id = id;
         this.nomeProdotto = nomeProdotto;
         this.descrizione = descrizione;
@@ -23,6 +24,7 @@ public class Prodotto {
         this.categoria = categoria;
         this.id_venditore = id_venditore;
         this.dataInserimento = dataInserimento;
+        this.creatore=creatore;
     }
 
     public int getId() {
@@ -98,4 +100,7 @@ public class Prodotto {
     }
 
 
+    public Acquirente getCreatore() {
+        return creatore;
+    }
 }

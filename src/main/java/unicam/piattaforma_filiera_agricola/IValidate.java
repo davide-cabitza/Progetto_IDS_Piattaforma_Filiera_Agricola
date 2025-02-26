@@ -2,7 +2,11 @@ package unicam.piattaforma_filiera_agricola;
 
 public interface IValidate {
 
-    public void validateProduct(Prodotto p);
+    public void approvaPubblicazioneProdotto(Prodotto p);
 
-    public void validateEvent(Evento e);
+    public void approvaPubblicazioneEvento(Evento e);
+
+    public void rifiutaPubblicazioneProdotto(Prodotto p);
+
+    public void rifiutaPubblicazioneEvento(Evento e);
 }

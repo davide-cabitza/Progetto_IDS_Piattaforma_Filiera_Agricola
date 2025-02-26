@@ -11,10 +11,11 @@ public class Evento {
     private Date data;
     private String link;
     private String luogoEvento;
+    private AnimatoreFiliera creatore;
     private List<Venditore> venditoriInvitati;
 
 
-    public Evento(int id, String nomeEvento, String tipologia, String descrizione, Date data, String link, String luogoEvento) {
+    public Evento(int id, String nomeEvento, String tipologia, String descrizione, Date data, String link, String luogoEvento,AnimatoreFiliera creatore) {
         this.id = id;
         this.nomeEvento = nomeEvento;
         this.tipologia = tipologia;
@@ -22,7 +23,7 @@ public class Evento {
         this.data = data;
         this.link = link;
         this.luogoEvento = luogoEvento;
-
+        this.creatore = creatore;
     }
 
     public int getId() {
@@ -92,5 +93,10 @@ public class Evento {
         } else {
             System.out.println("Il venditore " + venditore.getNome() + " è già stato invitato.");
         }
+    }
+
+
+    public AnimatoreFiliera getCreatore() {
+        return creatore;
     }
 }

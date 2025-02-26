@@ -2,6 +2,7 @@ package unicam.piattaforma_filiera_agricola;
 
 public class HandlerGestioneCarrello {
 
+
     public void aggiungiProdottoAlCarrello(Acquirente acquirente, Prodotto prodotto) {
         acquirente.getCarrello().aggiungiProdotto(prodotto);
         System.out.println("Prodotto aggiunto: " + prodotto.getNomeProdotto());
