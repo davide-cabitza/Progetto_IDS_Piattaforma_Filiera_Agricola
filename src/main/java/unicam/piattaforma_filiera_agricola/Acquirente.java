@@ -5,50 +5,73 @@ import java.util.List;
 
 public class Acquirente extends UtenteLoggato implements IBuy{
 
-    private List<Prodotto> carrello;
     private List<PacchettoProdotti> pacchettiCarrello;
     private String indirizzoSpedizioni;
+    private Carrello carrello;
+    private HandlerGestioneCarrello handlerGestioneCarrelloCarrello;
+
 
 
     public Acquirente(int id, String nome, String email, int numeroTelefono, String indirizzo, String NomeUtente, String indirizzoSpedizioni) {
         super(id, nome, email, numeroTelefono, indirizzo, NomeUtente);
         this.indirizzoSpedizioni = indirizzoSpedizioni;
-        this.carrello = new ArrayList<>();
         this.pacchettiCarrello = new ArrayList<>();
+        this.carrello= new Carrello();
+        this.handlerGestioneCarrelloCarrello = new HandlerGestioneCarrello();
     }
 
-    @Override
-    public void addToCart(Prodotto p) {
-        carrello.add(p);
-        System.out.println("Prodotto aggiunto al carrello: " + p.getNomeProdotto());
-    }
 
     @Override
-    public void acquista(Prodotto p) {
-        if (carrello.contains(p)) {
+    public void acquista(Prodotto p,PacchettoProdotti pa) {
+        if (carrello.getProdotti().contains(p)) {
             System.out.println("Acquisto completato: " + p.getNomeProdotto());
-            carrello.remove(p);
+            carrello.getProdotti().remove(p);
         } else {
             System.out.println("Il prodotto non è nel carrello.");
+        } if (carrello.getPacchetti().contains(pa)){
+            System.out.println("Acquisto completato: " + pa.getNomePacchetto());
+            carrello.getPacchetti().remove(pa);
+        }else {
+            System.out.println("Il pacchetto non è nel carrello.");
         }
     }
 
-    public void rimuoviDalCarrello(Prodotto prodotto) {
-        carrello.remove(prodotto);
+    @Override
+    public void aggiungiProdottoAlCarrello(Prodotto prodotto) {
+        handlerGestioneCarrelloCarrello.aggiungiProdottoAlCarrello(this, prodotto);
     }
 
+    public void rimuoviProdottoDalCarrello(Prodotto prodotto) {
+        handlerGestioneCarrelloCarrello.rimuoviProdottoDalCarrello(this, prodotto);
+    }
+
+    @Override
     public void aggiungiPacchettoAlCarrello(PacchettoProdotti pacchetto) {
-        pacchettiCarrello.add(pacchetto);
+        handlerGestioneCarrelloCarrello.aggiungiPacchettoAlCarrello(this, pacchetto);
     }
 
     public void rimuoviPacchettoDalCarrello(PacchettoProdotti pacchetto) {
-        pacchettiCarrello.remove(pacchetto);
+        handlerGestioneCarrelloCarrello.rimuoviPacchettoDalCarrello(this, pacchetto);
     }
 
     public void visualizzaCarrello() {
         System.out.println("Prodotti nel carrello:");
-        for (Prodotto p : carrello) {
+
+        if (carrello.getProdotti().isEmpty() && carrello.getPacchetti().isEmpty()) {
+            System.out.println("Il carrello è vuoto.");
+            return;
+        }
+
+        for (Prodotto p : carrello.getProdotti()) {
             System.out.println("- " + p.getNomeProdotto() + " | Prezzo: " + p.getCosto() + "€");
+        }
+
+        for (PacchettoProdotti pacchetto : carrello.getPacchetti()) {
+            System.out.println("- Pacchetto con " + pacchetto.getProdotti().size() + " prodotti | Prezzo: " + pacchetto.getCosto() + "€");
+
+            for (Prodotto p : pacchetto.getProdotti()) {
+                System.out.println("  * " + p.getNomeProdotto() + " | Prezzo: " + p.getCosto() + "€");
+            }
         }
     }
 
@@ -61,17 +84,12 @@ public class Acquirente extends UtenteLoggato implements IBuy{
     }
 
     public void svuotaCarrello() {
-        carrello.clear();
-        pacchettiCarrello.clear();
+        carrello.getProdotti().clear();
+        carrello.getPacchetti().clear();
     }
 
-    public void confermaAcquisto() {
-        if (carrello.isEmpty() && pacchettiCarrello.isEmpty()) {
-            System.out.println("Il carrello è vuoto. Aggiungi prodotti prima di acquistare.");
-            return;
-        }
-        System.out.println("Acquisto confermato!");
-        svuotaCarrello();
-    }
+    public Carrello getCarrello() { return carrello; }
+
+
 
 }

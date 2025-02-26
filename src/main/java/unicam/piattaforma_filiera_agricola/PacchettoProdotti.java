@@ -8,12 +8,14 @@ public class PacchettoProdotti extends Prodotto{
 
 
     private List<Prodotto> listaProdotti;
+    private String nomePacchetto;
 
 
     // Costruttore
-    public PacchettoProdotti(int id, String nomeProdotto, String descrizione, String certificati, double costo, int quantitativo, String categoria, int id_venditore, Date dataInserimento, List<Prodotto> prodotti) {
+    public PacchettoProdotti(int id, String nomeProdotto, String descrizione, String certificati, double costo, int quantitativo, String categoria, int id_venditore, Date dataInserimento, List<Prodotto> prodotti,String nomePacchetto) {
         super(id, nomeProdotto, descrizione, certificati, costo, quantitativo, categoria, id_venditore, dataInserimento);
         this.listaProdotti = prodotti;
+        this.nomePacchetto=nomePacchetto;
     }
 
     // Metodo per aggiungere un prodotto al pacchetto
@@ -41,4 +43,7 @@ public class PacchettoProdotti extends Prodotto{
         return listaProdotti;
     }
 
+    public String getNomePacchetto() {
+         return nomePacchetto;
+    }
 }
