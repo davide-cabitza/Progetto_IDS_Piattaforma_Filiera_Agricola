@@ -1,9 +1,12 @@
-package unicam.piattaforma_filiera_agricola;
+package unicam.piattaforma_filiera_agricola.seller;
+
+import unicam.piattaforma_filiera_agricola.product.PacchettoProdotti;
+import unicam.piattaforma_filiera_agricola.product.Prodotto;
 
 import java.util.Date;
 import java.util.List;
 
-public class Distributore extends Venditore implements ISeller{
+public class Distributore extends Venditore implements ISeller {
 
     private List<PacchettoProdotti> listaPacchetti;
 

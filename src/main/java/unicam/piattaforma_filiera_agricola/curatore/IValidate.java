@@ -1,4 +1,7 @@
-package unicam.piattaforma_filiera_agricola;
+package unicam.piattaforma_filiera_agricola.curatore;
+
+import unicam.piattaforma_filiera_agricola.event.Evento;
+import unicam.piattaforma_filiera_agricola.product.Prodotto;
 
 public interface IValidate {
 

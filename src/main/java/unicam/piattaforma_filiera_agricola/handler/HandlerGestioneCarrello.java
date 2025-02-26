@@ -1,4 +1,8 @@
-package unicam.piattaforma_filiera_agricola;
+package unicam.piattaforma_filiera_agricola.handler;
+
+import unicam.piattaforma_filiera_agricola.Acquirente;
+import unicam.piattaforma_filiera_agricola.product.PacchettoProdotti;
+import unicam.piattaforma_filiera_agricola.product.Prodotto;
 
 public class HandlerGestioneCarrello {
 

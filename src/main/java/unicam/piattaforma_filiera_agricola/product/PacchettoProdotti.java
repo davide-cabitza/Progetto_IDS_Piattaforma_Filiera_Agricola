@@ -1,10 +1,9 @@
-package unicam.piattaforma_filiera_agricola;
+package unicam.piattaforma_filiera_agricola.product;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class PacchettoProdotti extends Prodotto{
+public class PacchettoProdotti extends Prodotto {
 
 
     private List<Prodotto> listaProdotti;

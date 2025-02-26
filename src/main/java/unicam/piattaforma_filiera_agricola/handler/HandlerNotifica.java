@@ -1,4 +1,7 @@
-package unicam.piattaforma_filiera_agricola;
+package unicam.piattaforma_filiera_agricola.handler;
+
+import unicam.piattaforma_filiera_agricola.INotfica;
+import unicam.piattaforma_filiera_agricola.UtenteLoggato;
 
 public class HandlerNotifica implements INotfica {
 

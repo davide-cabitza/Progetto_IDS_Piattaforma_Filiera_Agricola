@@ -1,9 +1,11 @@
-package unicam.piattaforma_filiera_agricola;
+package unicam.piattaforma_filiera_agricola.seller;
+
+import unicam.piattaforma_filiera_agricola.product.Prodotto;
 
 import java.util.Date;
 import java.util.List;
 
-public class Produttore extends Venditore implements ISeller{
+public class Produttore extends Venditore implements ISeller {
 
     public String processoColtivazione;
 

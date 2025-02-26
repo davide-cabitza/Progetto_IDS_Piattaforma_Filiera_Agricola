@@ -1,4 +1,6 @@
-package unicam.piattaforma_filiera_agricola;
+package unicam.piattaforma_filiera_agricola.event;
+
+import unicam.piattaforma_filiera_agricola.seller.Venditore;
 
 import java.util.Date;
 import java.util.List;

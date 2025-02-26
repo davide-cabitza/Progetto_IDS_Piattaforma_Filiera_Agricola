@@ -1,9 +1,13 @@
-package unicam.piattaforma_filiera_agricola;
+package unicam.piattaforma_filiera_agricola.handler;
+
+import unicam.piattaforma_filiera_agricola.event.Evento;
+import unicam.piattaforma_filiera_agricola.curatore.IValidate;
+import unicam.piattaforma_filiera_agricola.product.Prodotto;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class HandlerPubblicazione implements IValidate{
+public class HandlerPubblicazione implements IValidate {
 
     private List<Prodotto> prodottiVerificati = new ArrayList<>();
     private List<Evento> eventiVerificati = new ArrayList<>();

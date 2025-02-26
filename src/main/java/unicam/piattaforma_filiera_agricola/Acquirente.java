@@ -1,5 +1,9 @@
 package unicam.piattaforma_filiera_agricola;
 
+import unicam.piattaforma_filiera_agricola.handler.HandlerGestioneCarrello;
+import unicam.piattaforma_filiera_agricola.product.PacchettoProdotti;
+import unicam.piattaforma_filiera_agricola.product.Prodotto;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +26,7 @@ public class Acquirente extends UtenteLoggato implements IBuy{
 
 
     @Override
-    public void acquista(Prodotto p,PacchettoProdotti pa) {
+    public void acquista(Prodotto p, PacchettoProdotti pa) {
         if (carrello.getProdotti().contains(p)) {
             System.out.println("Acquisto completato: " + p.getNomeProdotto());
             carrello.getProdotti().remove(p);

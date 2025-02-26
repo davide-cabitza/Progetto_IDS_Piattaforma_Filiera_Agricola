@@ -1,4 +1,6 @@
-package unicam.piattaforma_filiera_agricola;
+package unicam.piattaforma_filiera_agricola.product;
+
+import unicam.piattaforma_filiera_agricola.Acquirente;
 
 import java.util.Date;
 
