@@ -11,7 +11,7 @@ public class AnimatoreFiliera extends UtenteLoggato implements IPromote{
     private List<Venditore> venditoriGestiti;
     private List<Evento> eventiOrganizzati;
 
-    
+
     public AnimatoreFiliera(int id, String nome, String email, int numeroTelefono, String indirizzo, String NomeUtente) {
         super(id, nome, email, numeroTelefono, indirizzo, NomeUtente);
         this.venditoriGestiti = new ArrayList<>();

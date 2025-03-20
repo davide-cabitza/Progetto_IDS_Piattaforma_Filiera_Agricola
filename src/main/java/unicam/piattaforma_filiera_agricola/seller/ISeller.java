@@ -6,6 +6,6 @@ public interface ISeller {
 
     public void caricaProdotto(Prodotto p);
 
-    public void modifyProdotto(Prodotto p);
+    public void modificaProdotto(Prodotto p);
 
 }

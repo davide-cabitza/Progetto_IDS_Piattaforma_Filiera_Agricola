@@ -36,7 +36,7 @@ public class Trasformatore extends Venditore implements ISeller {
     }
 
     @Override
-    public void modifyProdotto(Prodotto p) {
+    public void modificaProdotto(Prodotto p) {
 
     }
 }
