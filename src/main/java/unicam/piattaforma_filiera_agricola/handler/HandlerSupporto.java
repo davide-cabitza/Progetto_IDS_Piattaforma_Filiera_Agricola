@@ -4,7 +4,7 @@ import unicam.piattaforma_filiera_agricola.Ticket;
 
 public class HandlerSupporto {
 
-    private Ticket[] tickets;
+    private Ticket[] ticketAperti;
 
 
     public void rispondiTicket(Ticket ticket) {}
@@ -17,7 +17,11 @@ public class HandlerSupporto {
 
 
     public Ticket[] getTicketAperti() {
-        return null;
+        return ticketAperti;
+    }
+
+
+    public void setTicketAperti() {
     }
 
 }
