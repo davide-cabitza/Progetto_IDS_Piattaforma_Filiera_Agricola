@@ -1,9 +1,9 @@
-package unicam.piattaforma_filiera_agricola.curatore;
+package unicam.piattaforma_filiera_agricola.model.curatore;
 
-import unicam.piattaforma_filiera_agricola.event.Evento;
+import unicam.piattaforma_filiera_agricola.model.event.Evento;
 import unicam.piattaforma_filiera_agricola.UtenteLoggato;
 import unicam.piattaforma_filiera_agricola.handler.HandlerPubblicazione;
-import unicam.piattaforma_filiera_agricola.product.Prodotto;
+import unicam.piattaforma_filiera_agricola.model.product.Prodotto;
 
 import java.util.ArrayList;
 import java.util.List;

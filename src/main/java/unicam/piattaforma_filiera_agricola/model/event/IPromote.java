@@ -1,8 +1,6 @@
-package unicam.piattaforma_filiera_agricola.event;
+package unicam.piattaforma_filiera_agricola.model.event;
 
-import unicam.piattaforma_filiera_agricola.seller.Venditore;
-
-import java.util.List;
+import unicam.piattaforma_filiera_agricola.model.seller.Venditore;
 
 public interface IPromote {
 

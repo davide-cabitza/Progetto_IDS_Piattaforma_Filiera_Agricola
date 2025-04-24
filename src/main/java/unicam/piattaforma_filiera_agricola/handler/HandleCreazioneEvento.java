@@ -1,6 +1,6 @@
 package unicam.piattaforma_filiera_agricola.handler;
 
-import unicam.piattaforma_filiera_agricola.event.Evento;
+import unicam.piattaforma_filiera_agricola.model.event.Evento;
 
 public class HandleCreazioneEvento {
 

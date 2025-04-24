@@ -1,7 +1,7 @@
 package unicam.piattaforma_filiera_agricola;
 
-import unicam.piattaforma_filiera_agricola.product.PacchettoProdotti;
-import unicam.piattaforma_filiera_agricola.product.Prodotto;
+import unicam.piattaforma_filiera_agricola.model.product.PacchettoProdotti;
+import unicam.piattaforma_filiera_agricola.model.product.Prodotto;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package unicam.piattaforma_filiera_agricola.product;
+package unicam.piattaforma_filiera_agricola.model.product;
 
 import unicam.piattaforma_filiera_agricola.Acquirente;
 
@@ -16,7 +16,7 @@ public class Prodotto {
     private Date dataInserimento;
     private Acquirente creatore;
 
-    public Prodotto(int id, String nomeProdotto, String descrizione, String certificati, double costo, int quantitativo, String categoria,int id_venditore, Date dataInserimento,Acquirente creatore) {
+    public Prodotto(int id, String nomeProdotto, String descrizione, String certificati, double costo, int quantitativo, String categoria,int id_venditore, Date dataInserimento) {
         this.id = id;
         this.nomeProdotto = nomeProdotto;
         this.descrizione = descrizione;
@@ -26,7 +26,6 @@ public class Prodotto {
         this.categoria = categoria;
         this.id_venditore = id_venditore;
         this.dataInserimento = dataInserimento;
-        this.creatore=creatore;
     }
 
     public int getId() {

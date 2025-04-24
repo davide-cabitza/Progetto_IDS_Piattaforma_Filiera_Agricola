@@ -1,4 +1,4 @@
-package unicam.piattaforma_filiera_agricola.event;
+package unicam.piattaforma_filiera_agricola.model.event;
 
 import java.util.ArrayList;
 import java.util.List;
