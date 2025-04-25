@@ -40,13 +40,6 @@ public class AnimatoreFiliera extends UtenteLoggato implements IPromote{
     }
 
 
-    @Override
-    public void rimuoviEvento(Evento evento) {
-        eventiOrganizzati.remove(evento);
-        System.out.println("Evento \"" + evento.getNomeEvento() + "\" rimosso.");
-    }
-
-
     public void visualizzaEventi() {
         System.out.println("Eventi organizzati:");
         for (Evento evento : eventiOrganizzati) {

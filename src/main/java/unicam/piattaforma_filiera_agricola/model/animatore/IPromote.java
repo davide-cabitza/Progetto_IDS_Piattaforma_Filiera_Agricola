@@ -10,6 +10,4 @@ public interface IPromote {
 
     public void organizzaEvento(Evento evento);
 
-    public void rimuoviEvento(Evento evento);
-
 }
