@@ -12,10 +12,10 @@ public class Distributore extends Venditore implements ISeller {
 
 
 
-    public Distributore(int id, String nome, String email, int numeroTelefono, String indirizzo, String NomeUtente, String partitaIva,
-                        List<Prodotto> listaProdotti, String certificatiProdotto, String certificatiAzienda, List<PacchettoProdotti> listaPacchetti) {
+    public Distributore(int id, String nome, String email, String password, int numeroTelefono, String indirizzo, String NomeUtente, String partitaIva,
+                        List<Prodotto> listaProdotti, List<String> certificatiProdotto, List<String> certificatiAzienda, List<PacchettoProdotti> listaPacchetti) {
 
-        super(id, nome, email, numeroTelefono, indirizzo, NomeUtente, partitaIva, listaProdotti, certificatiProdotto, certificatiAzienda);
+        super(id, nome, email, password, numeroTelefono, indirizzo, NomeUtente, partitaIva, listaProdotti, certificatiProdotto, certificatiAzienda);
         this.listaPacchetti = listaPacchetti;
     }
 

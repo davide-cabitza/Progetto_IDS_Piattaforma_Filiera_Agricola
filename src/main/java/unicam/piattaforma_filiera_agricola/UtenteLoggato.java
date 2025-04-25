@@ -10,11 +10,13 @@ public abstract class UtenteLoggato {
     private int numeroTelefono;
     private String indirizzo;
     private String NomeUtente;
+    private String password;
 
-    public UtenteLoggato(int id,String nome,String email, int numeroTelefono,String indirizzo,String NomeUtente) {
+    public UtenteLoggato(int id,String nome,String email, String password, int numeroTelefono,String indirizzo,String NomeUtente) {
     this.id=id;
     this.nome=nome;
     this.email=email;
+    this.password=password;
     this.numeroTelefono=numeroTelefono;
     this.indirizzo=indirizzo;
     this.NomeUtente=NomeUtente;
@@ -44,5 +46,7 @@ public abstract class UtenteLoggato {
         return NomeUtente;
     }
 
-
+    public String getPassword() {
+        return password;
+    }
 }

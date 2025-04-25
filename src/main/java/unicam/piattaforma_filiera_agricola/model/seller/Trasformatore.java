@@ -9,10 +9,10 @@ public class Trasformatore extends Venditore implements ISeller {
 
     public String processoTrasformazione;
 
-    public Trasformatore(int id, String nome, String email, int numeroTelefono, String indirizzo, String NomeUtente, String partitaIva,
-                         List<Prodotto> listaProdotti, String certificatiProdotto, String certificatiAzienda, String processoTrasformazione) {
+    public Trasformatore(int id, String nome, String email, String password, int numeroTelefono, String indirizzo, String NomeUtente, String partitaIva,
+                         List<Prodotto> listaProdotti, List<String> certificatiProdotto, List<String> certificatiAzienda, String processoTrasformazione) {
 
-        super(id, nome, email, numeroTelefono, indirizzo, NomeUtente, partitaIva, listaProdotti, certificatiProdotto, certificatiAzienda);
+        super(id, nome, email, password, numeroTelefono, indirizzo, NomeUtente, partitaIva, listaProdotti, certificatiProdotto, certificatiAzienda);
         this.processoTrasformazione = processoTrasformazione;
     }
 

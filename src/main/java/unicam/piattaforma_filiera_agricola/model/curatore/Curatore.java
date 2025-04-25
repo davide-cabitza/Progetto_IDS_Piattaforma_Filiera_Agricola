@@ -10,19 +10,15 @@ import java.util.List;
 
 public class Curatore extends UtenteLoggato implements IValidate {
 
-
     private List<Prodotto> listaProdottiVerificati;
     private static List<Evento> marketplaceEventi = new ArrayList<>(); // Lista globale eventi approvati
     private HandlerPubblicazione handlerPubblicazione;
 
 
-    public Curatore(int id, String nome, String email, int numeroTelefono, String indirizzo, String NomeUtente) {
-        super(id, nome, email, numeroTelefono, indirizzo, NomeUtente);
+    public Curatore(int id, String nome, String email, String password, int numeroTelefono, String indirizzo, String NomeUtente) {
+        super(id, nome, email, password, numeroTelefono, indirizzo, NomeUtente);
         this.listaProdottiVerificati = new ArrayList<>();
     }
-
-
-
 
     public List<Prodotto> getProdottiVerificati() {
         return listaProdottiVerificati;
@@ -40,10 +36,12 @@ public class Curatore extends UtenteLoggato implements IValidate {
 
     }
 
+
     @Override
     public void approvaEvento(Evento e) {
         handlerPubblicazione.approvaEvento(e);
     }
+
 
     @Override
     public void rifiutaProdotto(Prodotto p) {
@@ -51,8 +49,11 @@ public class Curatore extends UtenteLoggato implements IValidate {
 
     }
 
+
     @Override
     public void rifiutaEvento(Evento e) {
         handlerPubblicazione.rifiutaEvento(e);
     }
+
+
 }

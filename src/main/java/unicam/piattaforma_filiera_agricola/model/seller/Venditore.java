@@ -10,13 +10,13 @@ public abstract class Venditore extends UtenteLoggato {
 
     protected String partitaIva;
     protected List<Prodotto> listaProdotti;
-    protected String certificatiProdotto;
-    protected String certificatiAzienda;
+    protected List<String> certificatiProdotto;
+    protected List<String> certificatiAzienda;
 
 
-    public Venditore(int id, String nome, String email, int numeroTelefono,
-                 String indirizzo, String NomeUtente, String partitaIva, List<Prodotto> listaProdotti, String certificatiProdotto, String certificatiAzienda)  {
-        super(id,nome,email,numeroTelefono,indirizzo,NomeUtente);
+    public Venditore(int id, String nome, String email, String password, int numeroTelefono,
+                 String indirizzo, String NomeUtente, String partitaIva, List<Prodotto> listaProdotti, List<String> certificatiProdotto, List<String> certificatiAzienda)  {
+        super(id,nome,email, password, numeroTelefono,indirizzo,NomeUtente);
         this.partitaIva=partitaIva;
         this.listaProdotti=listaProdotti;
         this.certificatiProdotto=certificatiProdotto;
