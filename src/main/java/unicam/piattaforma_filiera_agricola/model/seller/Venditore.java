@@ -77,19 +77,19 @@ public abstract class Venditore extends UtenteLoggato {
     }
 
 
-    public String getCertificatiAzienda() {
+    public List<String> getCertificatiAzienda() {
         return certificatiAzienda;
     }
 
-    public void setCertificatiAzienda(String certificatiAzienda) {
+    public void setCertificatiAzienda(List<String> certificatiAzienda) {
         this.certificatiAzienda=certificatiAzienda;
     }
 
-    public String getCertificatiProdotto() {
+    public List<String> getCertificatiProdotto() {
         return certificatiProdotto;
     }
 
-    public void setCertificatiProdotto(String certificatiProdotto) {
+    public void setCertificatiProdotto(List<String> certificatiProdotto) {
         this.certificatiProdotto = certificatiProdotto;
     }
 }

@@ -29,31 +29,16 @@ public class Curatore extends UtenteLoggato implements IValidate {
         return marketplaceEventi;
     }
 
-
     @Override
     public void approvaProdotto(Prodotto p) {
         handlerPubblicazione.approvaProdotto(p);
 
     }
 
-
     @Override
-    public void approvaEvento(Evento e) {
-        handlerPubblicazione.approvaEvento(e);
-    }
-
-
-    @Override
-    public void rifiutaProdotto(Prodotto p) {
-        handlerPubblicazione.approvaProdotto(p);
+    public void rifiutaProdotto(Prodotto p, String nota) {
+        handlerPubblicazione.rifiutaProdotto(p, nota);
 
     }
-
-
-    @Override
-    public void rifiutaEvento(Evento e) {
-        handlerPubblicazione.rifiutaEvento(e);
-    }
-
 
 }

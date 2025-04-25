@@ -7,9 +7,6 @@ public interface IValidate {
 
     public void approvaProdotto(Prodotto p);
 
-    public void approvaEvento(Evento e);
+    public void rifiutaProdotto(Prodotto p, String nota);
 
-    public void rifiutaProdotto(Prodotto p);
-
-    public void rifiutaEvento(Evento e);
 }
