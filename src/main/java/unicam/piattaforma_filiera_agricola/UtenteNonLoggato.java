@@ -1,6 +1,11 @@
 package unicam.piattaforma_filiera_agricola;
 
+import unicam.piattaforma_filiera_agricola.model.curatore.Curatore;
+import unicam.piattaforma_filiera_agricola.model.event.AnimatoreFiliera;
 import unicam.piattaforma_filiera_agricola.model.product.Prodotto;
+import unicam.piattaforma_filiera_agricola.model.seller.Distributore;
+import unicam.piattaforma_filiera_agricola.model.seller.Produttore;
+import unicam.piattaforma_filiera_agricola.model.seller.Trasformatore;
 
 import java.util.Map;
 import java.util.HashMap;
@@ -12,7 +17,7 @@ public class UtenteNonLoggato implements IRegister, IAccess {
 
     // Metodo per registrare un nuovo utente
     @Override
-    public String register(String email, String password, String tipoUtente) {
+    public String register(int id, String nome, String email, String password, int numeroTelefono, String indirizzo, String NomeUtente, UtenteLoggato tipoUtente) {
         // Verifica se l'utente è già registrato
         if (utentiRegistrati.containsKey(email)) {
             return "Utente già registrato.";
@@ -20,17 +25,29 @@ public class UtenteNonLoggato implements IRegister, IAccess {
 
         UtenteLoggato nuovoUtente = null;
         switch (tipoUtente) {
-            case "Venditore":
-                nuovoUtente = new Venditore(email, password);
+            case "Acquirente":
+                nuovoUtente = new Acquirente(email, password);
                 break;
-            case "AnimatoreDellaFiliera":
-                nuovoUtente = new AnimatoreDellaFiliera(email, password);
+            case "Produttore":
+                nuovoUtente = new Produttore(email, password);
+                break;
+            case "Trasformatore":
+                nuovoUtente = new Trasformatore(email, password);
+                break;
+            case "Distributore":
+                nuovoUtente = new Distributore(email, password);
+                break;
+            case "AnimatoreFiliera":
+                nuovoUtente = new AnimatoreFiliera(email, password);
                 break;
             case "Curatore":
                 nuovoUtente = new Curatore(email, password);
                 break;
+            case "GestorePiattaforma":
+                nuovoUtente = new GestorePiattaforma(email, password);
+                break;
             default:
-                return "Tipo di utente non valido.";
+                return "'Tipo di Utente' inserito non è valido.";
         }
 
         // Aggiungi l'utente al "database"
