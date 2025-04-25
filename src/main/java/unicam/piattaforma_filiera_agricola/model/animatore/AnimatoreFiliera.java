@@ -1,4 +1,4 @@
-package unicam.piattaforma_filiera_agricola.model.event;
+package unicam.piattaforma_filiera_agricola.model.animatore;
 
 import unicam.piattaforma_filiera_agricola.UtenteLoggato;
 import unicam.piattaforma_filiera_agricola.model.seller.Venditore;
@@ -16,7 +16,6 @@ public class AnimatoreFiliera extends UtenteLoggato implements IPromote{
         super(id, nome, email, password, numeroTelefono, indirizzo, NomeUtente);
         this.venditoriGestiti = new ArrayList<>();
         this.eventiOrganizzati = new ArrayList<>();
-
     }
 
 

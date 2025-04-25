@@ -1,8 +1,7 @@
 package unicam.piattaforma_filiera_agricola;
 
 import unicam.piattaforma_filiera_agricola.model.curatore.Curatore;
-import unicam.piattaforma_filiera_agricola.model.event.AnimatoreFiliera;
-import unicam.piattaforma_filiera_agricola.model.product.Prodotto;
+import unicam.piattaforma_filiera_agricola.model.animatore.AnimatoreFiliera;
 import unicam.piattaforma_filiera_agricola.model.seller.Distributore;
 import unicam.piattaforma_filiera_agricola.model.seller.Produttore;
 import unicam.piattaforma_filiera_agricola.model.seller.Trasformatore;

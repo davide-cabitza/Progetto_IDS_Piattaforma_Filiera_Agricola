@@ -1,4 +1,4 @@
-package unicam.piattaforma_filiera_agricola.model.event;
+package unicam.piattaforma_filiera_agricola.model.animatore;
 
 import unicam.piattaforma_filiera_agricola.model.seller.Venditore;
 

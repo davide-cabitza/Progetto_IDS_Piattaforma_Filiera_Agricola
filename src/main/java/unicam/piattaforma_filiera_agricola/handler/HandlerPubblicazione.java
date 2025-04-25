@@ -1,6 +1,7 @@
 package unicam.piattaforma_filiera_agricola.handler;
 
-import unicam.piattaforma_filiera_agricola.model.event.Evento;
+import unicam.piattaforma_filiera_agricola.Marketplace;
+import unicam.piattaforma_filiera_agricola.model.animatore.Evento;
 import unicam.piattaforma_filiera_agricola.model.curatore.IValidate;
 import unicam.piattaforma_filiera_agricola.model.product.Prodotto;
 
@@ -10,7 +11,6 @@ import java.util.List;
 public class HandlerPubblicazione implements IValidate {
 
     private List<Prodotto> prodottiVerificati = new ArrayList<>();
-    private List<Evento> eventiVerificati = new ArrayList<>();
     private HandlerNotifica handlerNotifica;
 
     public HandlerPubblicazione(HandlerNotifica handlerNotifiche) {
@@ -21,7 +21,8 @@ public class HandlerPubblicazione implements IValidate {
     public void approvaProdotto(Prodotto p) {
         prodottiVerificati.add(p);
         System.out.println("Prodotto approvato: " + p.getNomeProdotto());
-        handlerNotifica.inviaNotifica(p.getId_venditore(), "Il tuo prodotto '" + p.getNomeProdotto() + "' è stato approvato!");
+        handlerNotifica.inviaNotifica(p.getId_venditore(), "Il tuo prodotto '" + p.getNomeProdotto() + "' è stato ap" + "provato!");
+
     }
 
     @Override

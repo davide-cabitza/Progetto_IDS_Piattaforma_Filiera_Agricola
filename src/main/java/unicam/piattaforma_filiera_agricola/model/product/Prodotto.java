@@ -3,8 +3,7 @@ package unicam.piattaforma_filiera_agricola.model.product;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.persistence.*;
-import org.springframework.context.annotation.EnableMBeanExport;
-import unicam.piattaforma_filiera_agricola.Acquirente;
+
 import java.util.Date;
 
 @JsonTypeInfo(
@@ -13,7 +12,7 @@ import java.util.Date;
         property = "tipo"
 )
 @JsonSubTypes({
-        @JsonSubTypes.Type(value = ProdottoProduttore.class, name = "produttore"),
+        @JsonSubTypes.Type(value = ProdottoGrezzo.class, name = "produttore"),
         @JsonSubTypes.Type(value = ProdottoTrasformatore.class, name = "trasformatore"),
         @JsonSubTypes.Type(value = ProdottoDistributore.class, name = "distributore")
 })
@@ -27,7 +26,6 @@ public class Prodotto {
     private String nomeProdotto;
     private double costo;
     private String descrizione;
-
     private String certificati;
     private int quantitativo;
     private int id_venditore;
@@ -44,7 +42,6 @@ public class Prodotto {
         this.dataInserimento = dataInserimento;
     }
 
-public Prodotto() {}
 
     public int getId() {
         return id;
