@@ -23,35 +23,34 @@ import java.util.Date;
 public class Prodotto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private int id;
     private String nomeProdotto;
     private double costo;
     private String descrizione;
 
     private String certificati;
     private int quantitativo;
-    private String categoria;
     private int id_venditore;
     private Date dataInserimento;
 
-    public Prodotto(String nomeProdotto, String descrizione, String certificati, double costo, int quantitativo, String categoria,int id_venditore, Date dataInserimento) {
+    public Prodotto(int id, String nomeProdotto, String descrizione, String certificati, double costo, int quantitativo,int id_venditore, Date dataInserimento) {
+        this.id = id;
         this.nomeProdotto = nomeProdotto;
         this.costo = costo;
         this.descrizione = descrizione;
         this.certificati = certificati;
         this.quantitativo = quantitativo;
-        this.categoria = categoria;
         this.id_venditore = id_venditore;
         this.dataInserimento = dataInserimento;
     }
 
 public Prodotto() {}
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -95,13 +94,6 @@ public Prodotto() {}
         this.quantitativo = quantitativo;
     }
 
-    public String getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
-    }
 
     public int getId_venditore() {
         return id_venditore;
