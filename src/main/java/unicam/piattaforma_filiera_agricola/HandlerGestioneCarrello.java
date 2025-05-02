@@ -1,30 +1,50 @@
 package unicam.piattaforma_filiera_agricola;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class HandlerGestioneCarrello {
 
 
-    public void aggiungiProdottoAlCarrello(Acquirente acquirente, Prodotto prodotto) {
-        acquirente.getCarrello().aggiungiProdotto(prodotto);
-        System.out.println("Prodotto aggiunto: " + prodotto.getNomeProdotto());
+    private final Carrello carrello;
+
+    public HandlerGestioneCarrello(Carrello carrello) {
+        this.carrello = carrello;
     }
 
-    public void rimuoviProdottoDalCarrello(Acquirente acquirente, Prodotto prodotto) {
-        acquirente.getCarrello().rimuoviProdotto(prodotto);
-        System.out.println("Prodotto rimosso: " + prodotto.getNomeProdotto());
+    public Carrello getCarrello() {
+        return carrello;
     }
 
-    public void aggiungiPacchettoAlCarrello(Acquirente acquirente, PacchettoProdotti pacchetto) {
-        acquirente.getCarrello().aggiungiPacchetto(pacchetto);
-        System.out.println("Pacchetto aggiunto.");
+    public void aggiungiProdotto(Prodotto prodotto, int quantita) {
+        RigaCarrello esistente = carrello.getRighe().stream()
+                .filter(r -> r.getProdotto().equals(prodotto) && r.getStato() == StatoProdottoCarrello.ATTIVO)
+                .findFirst()
+                .orElse(null);
+        if (esistente != null) {
+            esistente.setQuantita(esistente.getQuantita() + quantita);
+        } else {
+            carrello.addRiga(new RigaCarrello(prodotto, quantita));
+        }
     }
 
-    public void rimuoviPacchettoDalCarrello(Acquirente acquirente, PacchettoProdotti pacchetto) {
-        acquirente.getCarrello().rimuoviPacchetto(pacchetto);
-        System.out.println("Pacchetto rimosso.");
+    public void rimuoviProdotto(Prodotto prodotto) {
+        carrello.getRighe().stream()
+                .filter(r -> r.getProdotto().equals(prodotto) && r.getStato() == StatoProdottoCarrello.ATTIVO)
+                .findFirst()
+                .ifPresent(r -> {
+                    r.marcaRimosso();
+                    carrello.removeRiga(r);
+                });
     }
 
-    public void svuotaCarrello(Acquirente acquirente) {
-        acquirente.getCarrello().svuotaCarrello();
-        System.out.println("Carrello svuotato.");
+    public List<RigaCarrello> getContenutoCarrello() {
+        return carrello.getRighe().stream()
+                .filter(r -> r.getStato() == StatoProdottoCarrello.ATTIVO)
+                .collect(Collectors.toList());
+    }
+
+    public void svuotaCarrello() {
+        carrello.svuota();
     }
 }

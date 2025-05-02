@@ -6,49 +6,71 @@ import java.util.List;
 public class AnimatoreFiliera extends UtenteLoggato {
 
 
-    private List<Venditore> venditoriGestiti;
-    private List<Evento> eventiOrganizzati;
+    private final AnimatoreHandler animatoreHandler;
 
-    public AnimatoreFiliera(int id, String nome, String email, int numeroTelefono, String indirizzo, String NomeUtente) {
-        super(id, nome, email, numeroTelefono, indirizzo, NomeUtente);
-        this.venditoriGestiti = new ArrayList<>();
-        this.eventiOrganizzati = new ArrayList<>();
-
+    public AnimatoreFiliera(String id, String nome, String cognome, String email) {
+        super(id, nome, cognome, email, Ruolo.ANIMATORE_FILIERA);
+        this.animatoreHandler = new AnimatoreHandler(this);
     }
 
-    public void aggiungiVenditore(Venditore venditore) {
-        venditoriGestiti.add(venditore);
-        System.out.println("Venditore " + venditore.getNome() + " aggiunto alla gestione.");
+    // Getter per il handler dell'animatore
+    public AnimatoreHandler getAnimatoreHandler() {
+        return animatoreHandler;
     }
 
-    public void rimuoviVenditore(Venditore venditore) {
-        venditoriGestiti.remove(venditore);
-        System.out.println("Venditore " + venditore.getNome() + " rimosso dalla gestione.");
+    /**
+     * Crea un nuovo evento delegando ad AnimatoreHandler.
+     */
+    public Evento creaEvento(LocalDate dataInizio,
+                             LocalDate dataFine,
+                             String localita,
+                             int maxPartecipanti,
+                             String nome,
+                             String descrizione) {
+        return animatoreHandler.creaEvento(dataInizio, dataFine, localita, maxPartecipanti, nome, descrizione);
     }
 
-    public List<Venditore> getVenditoriGestiti() {
-        return venditoriGestiti;
+    /**
+     * Modifica un evento esistente.
+     */
+    public Evento modificaEvento(Evento evento,
+                                 LocalDate dataInizio,
+                                 LocalDate dataFine,
+                                 String localita,
+                                 int maxPartecipanti,
+                                 String nome,
+                                 String descrizione) {
+        return animatoreHandler.modificaEvento(evento, dataInizio, dataFine, localita, maxPartecipanti, nome, descrizione);
     }
 
-    public void organizzaEvento(Evento evento) {
-        eventiOrganizzati.add(evento);
-        System.out.println("Evento \"" + evento.getNomeEvento() + "\" organizzato con successo.");
+    /**
+     * Elimina un singolo evento specificato.
+     */
+    public void eliminaEvento(Evento evento) {
+        animatoreHandler.eliminaEvento(evento);
     }
 
-    public void rimuoviEvento(Evento evento) {
-        eventiOrganizzati.remove(evento);
-        System.out.println("Evento \"" + evento.getNomeEvento() + "\" rimosso.");
+    /**
+     * Invita un Venditore a partecipare a un evento.
+     */
+    public void invitaVenditore(Venditore venditore, Evento evento) {
+        animatoreHandler.inviaInvitoVenditore(venditore, evento);
     }
 
-    public List<Evento> getEventiOrganizzati() {
-        return eventiOrganizzati;
+    /**
+     * Restituisce la lista degli eventi creati dall'AnimatoreFiliera.
+     */
+    public List<Evento> visualizzaEventiCreati() {
+        return animatoreHandler.getEventiCreati();
     }
 
-    public void visualizzaEventi() {
-        System.out.println("Eventi organizzati:");
-        for (Evento evento : eventiOrganizzati) {
-            System.out.println("- " + evento.getNomeEvento() + " | Data: " + evento.getData());
-        }
+    /**
+     * Elimina il profilo dell'AnimatoreFiliera insieme a tutti gli eventi creati.
+     */
+    public void eliminaProfilo() {
+        animatoreHandler.eliminaTuttiEventi();
+        AccountService.deleteAccount(getId());
     }
+}
 
 }

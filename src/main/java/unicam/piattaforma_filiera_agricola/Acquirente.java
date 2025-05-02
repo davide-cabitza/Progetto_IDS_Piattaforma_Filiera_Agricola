@@ -3,93 +3,48 @@ package unicam.piattaforma_filiera_agricola;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Acquirente extends UtenteLoggato implements IBuy{
+public class Acquirente extends UtenteLoggato{
 
-    private List<PacchettoProdotti> pacchettiCarrello;
-    private String indirizzoSpedizioni;
-    private Carrello carrello;
-    private HandlerGestioneCarrello handlerGestioneCarrelloCarrello;
+    private final HandlerGestioneCarrello carrelloHandler;
+    private final OrdineHandler ordineHandler;
 
-
-
-    public Acquirente(int id, String nome, String email, int numeroTelefono, String indirizzo, String NomeUtente, String indirizzoSpedizioni) {
-        super(id, nome, email, numeroTelefono, indirizzo, NomeUtente);
-        this.indirizzoSpedizioni = indirizzoSpedizioni;
-        this.pacchettiCarrello = new ArrayList<>();
-        this.carrello= new Carrello();
-        this.handlerGestioneCarrelloCarrello = new HandlerGestioneCarrello();
+    public Acquirente(String id, String nome, String cognome, String email) {
+        super(id, nome, cognome, email, Ruolo.ACQUIRENTE);
+        this.carrelloHandler = new HandlerGestioneCarrello(new Carrello(this));
+        this.ordineHandler = new OrdineHandler(this.carrelloHandler.getCarrello());
     }
 
-
-    @Override
-    public void acquista(Prodotto p,PacchettoProdotti pa) {
-        if (carrello.getProdotti().contains(p)) {
-            System.out.println("Acquisto completato: " + p.getNomeProdotto());
-            carrello.getProdotti().remove(p);
-        } else {
-            System.out.println("Il prodotto non è nel carrello.");
-        } if (carrello.getPacchetti().contains(pa)){
-            System.out.println("Acquisto completato: " + pa.getNomePacchetto());
-            carrello.getPacchetti().remove(pa);
-        }else {
-            System.out.println("Il pacchetto non è nel carrello.");
-        }
+    // Getter per il handler del carrello
+    public HandlerGestioneCarrello getCarrelloHandler() {
+        return carrelloHandler;
     }
 
-    @Override
-    public void aggiungiProdottoAlCarrello(Prodotto prodotto) {
-        handlerGestioneCarrelloCarrello.aggiungiProdottoAlCarrello(this, prodotto);
+    // Metodi relativi al carrello delegati al handler
+    public void aggiungiAlCarrello(Prodotto prodotto, int quantita) {
+        carrelloHandler.aggiungiProdotto(prodotto, quantita);
     }
 
-    public void rimuoviProdottoDalCarrello(Prodotto prodotto) {
-        handlerGestioneCarrelloCarrello.rimuoviProdottoDalCarrello(this, prodotto);
+    public void rimuoviDalCarrello(Prodotto prodotto) {
+        carrelloHandler.rimuoviProdotto(prodotto);
     }
 
-    @Override
-    public void aggiungiPacchettoAlCarrello(PacchettoProdotti pacchetto) {
-        handlerGestioneCarrelloCarrello.aggiungiPacchettoAlCarrello(this, pacchetto);
+    // Metodo per visualizzare il contenuto del carrello
+    public List<RigaCarrello> visualizzaCarrello() {
+        return carrelloHandler.getContenutoCarrello();
     }
 
-    public void rimuoviPacchettoDalCarrello(PacchettoProdotti pacchetto) {
-        handlerGestioneCarrelloCarrello.rimuoviPacchettoDalCarrello(this, pacchetto);
+    // Metodo di ricerca prodotti
+    public List<Prodotto> cercaProdotti(String query) {
+        return ServizioProdotti.findByName(query);
     }
 
-    public void visualizzaCarrello() {
-        System.out.println("Prodotti nel carrello:");
-
-        if (carrello.getProdotti().isEmpty() && carrello.getPacchetti().isEmpty()) {
-            System.out.println("Il carrello è vuoto.");
-            return;
-        }
-
-        for (Prodotto p : carrello.getProdotti()) {
-            System.out.println("- " + p.getNomeProdotto() + " | Prezzo: " + p.getCosto() + "€");
-        }
-
-        for (PacchettoProdotti pacchetto : carrello.getPacchetti()) {
-            System.out.println("- Pacchetto con " + pacchetto.getProdotti().size() + " prodotti | Prezzo: " + pacchetto.getCosto() + "€");
-
-            for (Prodotto p : pacchetto.getProdotti()) {
-                System.out.println("  * " + p.getNomeProdotto() + " | Prezzo: " + p.getCosto() + "€");
-            }
-        }
+    // Metodo per acquistare i prodotti nel carrello
+    public Ordine acquistaProdotti() {
+        Ordine ordine = ordineHandler.creaOrdine();
+        ordineHandler.processaPagamento(ordine);
+        ordineHandler.confermaOrdine(ordine);
+        carrelloHandler.svuotaCarrello();
+        return ordine;
     }
-
-    public String getIndirizzoSpedizioni() {
-        return indirizzoSpedizioni;
-    }
-
-    public void setIndirizzoSpedizioni(String indirizzoSpedizioni) {
-        this.indirizzoSpedizioni = indirizzoSpedizioni;
-    }
-
-    public void svuotaCarrello() {
-        carrello.getProdotti().clear();
-        carrello.getPacchetti().clear();
-    }
-
-    public Carrello getCarrello() { return carrello; }
-
-
 
 }

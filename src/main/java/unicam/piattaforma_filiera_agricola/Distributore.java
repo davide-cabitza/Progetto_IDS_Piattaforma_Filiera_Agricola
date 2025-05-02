@@ -1,45 +1,74 @@
 package unicam.piattaforma_filiera_agricola;
 
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
-public class Distributore extends Venditore implements ISeller{
+public class Distributore extends Venditore {
+    private final List<Pacchetto> pacchetti;
 
-    private List<PacchettoProdotti> listaPacchetti;
-
-
-
-    public Distributore(int id, String nome, String email, int numeroTelefono, String indirizzo, String NomeUtente, String partitaIva,
-                        List<Prodotto> listaProdotti, String certificatiProdotto, String certificatiAzienda, List<PacchettoProdotti> listaPacchetti) {
-
-        super(id, nome, email, numeroTelefono, indirizzo, NomeUtente, partitaIva, listaProdotti, certificatiProdotto, certificatiAzienda);
-        this.listaPacchetti = listaPacchetti;
+    public Distributore(String id, String nome, String cognome, String email) {
+        super(id, nome, cognome, email, Ruolo.DISTRIBUTORE);
+        this.pacchetti = new ArrayList<>();
     }
 
-
-    @Override
-    public Prodotto creaProdotto(int id, String nome, String descrizione, String certificatiProdotto, Float costo, int quantitativo, String categoriaProdotto, int idVenditore, Date dataInserimento) {
-        return null;
+    /**
+     * Restituisce la lista dei pacchetti creati dal distributore.
+     */
+    public List<Pacchetto> getPacchetti() {
+        return Collections.unmodifiableList(pacchetti);
     }
 
-
-    public void aggiungiProdottoAlPacchetto(PacchettoProdotti pacchetto, Prodotto prodotto) {
-        pacchetto.aggiungiProdotto(prodotto);
+    /**
+     * Crea un nuovo pacchetto di prodotti.
+     */
+    public Pacchetto creaPacchetto(String nome, List<Prodotto> prodotti, double prezzoTotale) {
+        String idPacchetto = UUID.randomUUID().toString();
+        Pacchetto pacchetto = new Pacchetto(idPacchetto, nome, prodotti, prezzoTotale, this);
+        pacchetti.add(pacchetto);
+        return pacchetto;
     }
 
-    // Metodo per ottenere la lista di pacchetti creati dal distributore
-    public List<PacchettoProdotti> getListaPacchetti() {
-        return listaPacchetti;
+    /**
+     * Modifica un pacchetto esistente.
+     */
+    public void modificaPacchetto(Pacchetto pacchetto, String nuovoNome, double nuovoPrezzo) {
+        if (!pacchetti.contains(pacchetto)) {
+            throw new IllegalArgumentException("Pacchetto non gestito da questo distributore");
+        }
+        pacchetto.setNome(nuovoNome);
+        pacchetto.setPrezzoTotale(nuovoPrezzo);
     }
 
-
-    @Override
-    public void caricaProdotto(Prodotto p) {
-
+    /**
+     * Elimina un pacchetto esistente.
+     */
+    public void eliminaPacchetto(Pacchetto pacchetto) {
+        if (!pacchetti.remove(pacchetto)) {
+            throw new IllegalArgumentException("Pacchetto non trovato");
+        }
     }
 
-    @Override
-    public void modifyProdotto(Prodotto p) {
-
+    /**
+     * Invia una richiesta di pubblicazione del pacchetto al Curatore.
+     */
+    public void inviaRichiestaPubblicazione(Pacchetto pacchetto) {
+        if (!pacchetti.contains(pacchetto)) {
+            throw new IllegalArgumentException("Pacchetto non gestito da questo distributore");
+        }
+        String idRichiesta = UUID.randomUUID().toString();
+        RichiestaPubblicazione richiesta = new RichiestaPubblicazione(
+                idRichiesta, this, pacchetto, LocalDateTime.now()
+        );
+        CuratoreService.inoltraRichiesta(richiesta);
     }
+
+    /**
+     * Elimina il profilo del Distributore insieme a tutti i pacchetti creati.
+     */
+    public void eliminaProfilo() {
+        for (Pacchetto p : new ArrayList<>(pacchetti)) {
+            eliminaPacchetto(p);
+        }
+        AccountService.deleteAccount(getId());
+    }
+
 }
