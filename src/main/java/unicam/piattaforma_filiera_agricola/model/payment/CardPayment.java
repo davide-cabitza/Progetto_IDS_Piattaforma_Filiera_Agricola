@@ -1,4 +1,4 @@
-package unicam.piattaforma_filiera_agricola.payment;
+package unicam.piattaforma_filiera_agricola.model.payment;
 
 public class CardPayment implements IPaymentMethod {
 

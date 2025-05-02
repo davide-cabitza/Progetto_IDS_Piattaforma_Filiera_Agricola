@@ -1,7 +1,5 @@
 package unicam.piattaforma_filiera_agricola.handler;
 
-import unicam.piattaforma_filiera_agricola.Marketplace;
-import unicam.piattaforma_filiera_agricola.model.animatore.Evento;
 import unicam.piattaforma_filiera_agricola.model.curatore.IValidate;
 import unicam.piattaforma_filiera_agricola.model.product.Prodotto;
 
