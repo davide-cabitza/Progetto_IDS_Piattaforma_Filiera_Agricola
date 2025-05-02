@@ -1,7 +1,7 @@
 package unicam.piattaforma_filiera_agricola.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import unicam.piattaforma_filiera_agricola.Acquirente;
+import unicam.piattaforma_filiera_agricola.model.Acquirente;
 
 public interface AcquirenteRepository extends JpaRepository<Acquirente, Long> {
 }
