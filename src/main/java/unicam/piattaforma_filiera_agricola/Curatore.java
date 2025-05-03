@@ -1,10 +1,13 @@
 package unicam.piattaforma_filiera_agricola;
 
+import unicam.piattaforma_filiera_agricola.model.UtenteLoggato;
+import unicam.piattaforma_filiera_agricola.model.curatore.IValidate;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Curatore extends UtenteLoggato implements IValidate{
+public class Curatore extends UtenteLoggato implements IValidate {
 
 
     private final List<RichiestaPubblicazione> richiesteInAttesa;
@@ -39,7 +42,8 @@ public class Curatore extends UtenteLoggato implements IValidate{
 
     /**
      * Rifiuta una richiesta di pubblicazione.
-     * @param richiesta  la richiesta da rifiutare
+     *
+     * @param richiesta   la richiesta da rifiutare
      * @param motivazione spiegazione del rifiuto
      */
     public void rifiutaRichiesta(RichiestaPubblicazione richiesta, String motivazione) {
@@ -61,3 +65,4 @@ public class Curatore extends UtenteLoggato implements IValidate{
         }
         AccountService.deleteAccount(getId());
     }
+}

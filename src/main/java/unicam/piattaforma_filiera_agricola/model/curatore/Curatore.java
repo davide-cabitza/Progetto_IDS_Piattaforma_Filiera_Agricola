@@ -1,7 +1,7 @@
 package unicam.piattaforma_filiera_agricola.model.curatore;
 
 import unicam.piattaforma_filiera_agricola.model.animatore.Evento;
-import unicam.piattaforma_filiera_agricola.model.UtenteLoggato;
+import unicam.piattaforma_filiera_agricola.UtenteLoggato;
 import unicam.piattaforma_filiera_agricola.handler.HandlerPubblicazione;
 import unicam.piattaforma_filiera_agricola.model.product.Prodotto;
 

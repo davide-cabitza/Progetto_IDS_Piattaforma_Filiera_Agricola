@@ -1,4 +1,6 @@
-package unicam.piattaforma_filiera_agricola.model;
+package unicam.piattaforma_filiera_agricola;
+
+import java.util.Date;
 
 public abstract class UtenteLoggato {
 

@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class HandlerAnimatore {
-    private final AnimatoreFiliera animatore;
+    private final unicam.piattaforma_filiera_agricola.AnimatoreFiliera animatore;
     private final List<Evento> eventiCreati;
 
     public HandlerAnimatore(AnimatoreFiliera animatore) {
