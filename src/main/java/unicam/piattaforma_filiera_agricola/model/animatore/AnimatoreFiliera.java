@@ -1,5 +1,6 @@
 package unicam.piattaforma_filiera_agricola.model.animatore;
 
+import unicam.piattaforma_filiera_agricola.UtenteLoggato;
 import unicam.piattaforma_filiera_agricola.handler.HandlerAnimatore;
 
 import java.time.LocalDate;
@@ -20,24 +21,8 @@ public class AnimatoreFiliera extends UtenteLoggato {
     private final List<PartecipazioneEvento> partecipanti;
     private final List<Invitation> inviti;
 
-    public Evento(String idEvento,
-                  LocalDate dataInizio,
-                  LocalDate dataFine,
-                  String localita,
-                  int maxPartecipanti,
-                  String nome,
-                  String descrizione,
-                  AnimatoreFiliera creatore) {
-        this.idEvento = idEvento;
-        this.dataInizio = dataInizio;
-        this.dataFine = dataFine;
-        this.localita = localita;
-        this.maxPartecipanti = maxPartecipanti;
-        this.nome = nome;
-        this.descrizione = descrizione;
-        this.creatore = creatore;
-        this.partecipanti = new ArrayList<>();
-        this.inviti = new ArrayList<>();
+    public AnimatoreFiliera(int id, String nome, String email, String password, int numeroTelefono, String indirizzo, String NomeUtente) {
+        super(id, nome, email, password, numeroTelefono, indirizzo, NomeUtente);
     }
 
     // Getter e setter

@@ -1,5 +1,10 @@
-package unicam.piattaforma_filiera_agricola;
+package unicam.piattaforma_filiera_agricola.model.seller;
 
+import unicam.piattaforma_filiera_agricola.model.product.Pacchetto;
+import unicam.piattaforma_filiera_agricola.model.product.Prodotto;
+import unicam.piattaforma_filiera_agricola.model.seller.Venditore;
+
+import java.time.LocalDateTime;
 import java.util.*;
 
 public class Distributore extends Venditore {
@@ -71,4 +76,8 @@ public class Distributore extends Venditore {
         AccountService.deleteAccount(getId());
     }
 
+    @Override
+    public Prodotto creaProdotto(int id, String nome, String descrizione, String certificatiProdotto, Float costo, int quantitativo, String categoriaProdotto, int idVenditore, Date dataInserimento) {
+        return null;
+    }
 }

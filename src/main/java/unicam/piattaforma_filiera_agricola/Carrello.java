@@ -1,13 +1,8 @@
 package unicam.piattaforma_filiera_agricola;
 
-import unicam.piattaforma_filiera_agricola.model.product.PacchettoProdotti;
-import unicam.piattaforma_filiera_agricola.model.product.Prodotto;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-enum StatoProdottoCarrello { ATTIVO, RIMOSSO }
 
 public class Carrello {
     private final UtenteLoggato proprietario;

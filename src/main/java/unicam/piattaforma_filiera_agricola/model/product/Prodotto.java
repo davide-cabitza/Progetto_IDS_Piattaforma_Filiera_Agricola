@@ -42,6 +42,10 @@ public class Prodotto {
         this.dataInserimento = dataInserimento;
     }
 
+    public Prodotto() {
+
+    }
+
 
     public int getId() {
         return id;

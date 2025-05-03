@@ -4,9 +4,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import unicam.piattaforma_filiera_agricola.model.animatore.AnimatoreFiliera;
+import unicam.piattaforma_filiera_agricola.model.animatore.Evento;
+import unicam.piattaforma_filiera_agricola.model.animatore.Invitation;
+import unicam.piattaforma_filiera_agricola.model.seller.Venditore;
 
 public class HandlerAnimatore {
-    private final unicam.piattaforma_filiera_agricola.AnimatoreFiliera animatore;
+    private final AnimatoreFiliera animatore;
     private final List<Evento> eventiCreati;
 
     public HandlerAnimatore(AnimatoreFiliera animatore) {
