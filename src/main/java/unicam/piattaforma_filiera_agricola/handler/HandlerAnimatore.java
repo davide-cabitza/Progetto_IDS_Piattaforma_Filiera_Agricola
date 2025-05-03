@@ -1,4 +1,4 @@
-package unicam.piattaforma_filiera_agricola;
+package unicam.piattaforma_filiera_agricola.handler;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

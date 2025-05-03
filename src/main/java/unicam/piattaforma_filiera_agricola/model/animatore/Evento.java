@@ -1,55 +1,86 @@
 package unicam.piattaforma_filiera_agricola.model.animatore;
 
+import unicam.piattaforma_filiera_agricola.model.UtenteLoggato;
 import unicam.piattaforma_filiera_agricola.model.seller.Venditore;
 
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDate;
+import java.util.*;
 
 public class Evento {
-    private int id;
-    private String nomeEvento;
-    private String tipologia;
+    private final String idEvento;
+    private LocalDate dataInizio;
+    private LocalDate dataFine;
+    private String localita;
+    private int maxPartecipanti;
+    private String nome;
     private String descrizione;
-    private Date data;
-    private String link;
-    private String luogoEvento;
-    private AnimatoreFiliera creatore;
-    private List<Venditore> venditoriInvitati;
+    private final AnimatoreFiliera creatore;
+    private final List<PartecipazioneEvento> partecipanti;
+    private final List<Invitation> inviti;
 
-
-    public Evento(int id, String nomeEvento, String tipologia, String descrizione, Date data, String link, String luogoEvento,AnimatoreFiliera creatore) {
-        this.id = id;
-        this.nomeEvento = nomeEvento;
-        this.tipologia = tipologia;
+    public Evento(String idEvento,
+                  LocalDate dataInizio,
+                  LocalDate dataFine,
+                  String localita,
+                  int maxPartecipanti,
+                  String nome,
+                  String descrizione,
+                  AnimatoreFiliera creatore) {
+        this.idEvento = idEvento;
+        this.dataInizio = dataInizio;
+        this.dataFine = dataFine;
+        this.localita = localita;
+        this.maxPartecipanti = maxPartecipanti;
+        this.nome = nome;
         this.descrizione = descrizione;
-        this.data = data;
-        this.link = link;
-        this.luogoEvento = luogoEvento;
         this.creatore = creatore;
+        this.partecipanti = new ArrayList<>();
+        this.inviti = new ArrayList<>();
     }
 
-    public int getId() {
-        return id;
+    // Getter e setter
+    public String getIdEvento() {
+        return idEvento;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public LocalDate getDataInizio() {
+        return dataInizio;
     }
 
-    public String getTipologia() {
-        return tipologia;
+    public void setDataInizio(LocalDate dataInizio) {
+        this.dataInizio = dataInizio;
     }
 
-    public void setTipologia(String tipologia) {
-        this.tipologia = tipologia;
+    public LocalDate getDataFine() {
+        return dataFine;
     }
 
-    public String getNomeEvento() {
-        return nomeEvento;
+    public void setDataFine(LocalDate dataFine) {
+        this.dataFine = dataFine;
     }
 
-    public void setNomeEvento(String nomeEvento) {
-        this.nomeEvento = nomeEvento;
+    public String getLocalita() {
+        return localita;
+    }
+
+    public void setLocalita(String localita) {
+        this.localita = localita;
+    }
+
+    public int getMaxPartecipanti() {
+        return maxPartecipanti;
+    }
+
+    public void setMaxPartecipanti(int maxPartecipanti) {
+        this.maxPartecipanti = maxPartecipanti;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getDescrizione() {
@@ -60,45 +91,36 @@ public class Evento {
         this.descrizione = descrizione;
     }
 
-    public Date getData() {
-        return data;
-    }
-
-    public void setData(Date data) {
-        this.data = data;
-    }
-
-    public String getLink() {
-        return link;
-    }
-
-    public void setLink(String link) {
-        this.link = link;
-    }
-
-    public String getLuogoEvento() {
-        return luogoEvento;
-    }
-
-    public void setLuogoEvento(String luogoEvento) {
-        this.luogoEvento = luogoEvento;
-    }
-
-    public List<Venditore> getVenditoriInvitati() {
-        return venditoriInvitati;
-    }
-
-    public void aggiungiInvitato(Venditore venditore) {
-        if (!venditoriInvitati.contains(venditore)) {
-            venditoriInvitati.add(venditore);
-            System.out.println("Venditore " + venditore.getNome() + " invitato all'evento: " + nomeEvento);
-        } else {
-            System.out.println("Il venditore " + venditore.getNome() + " è già stato invitato.");
-        }
-    }
-
-
     public AnimatoreFiliera getCreatore() {
         return creatore;
+    }
+
+    public List<PartecipazioneEvento> getPartecipanti() {
+        return Collections.unmodifiableList(partecipanti);
+    }
+
+    public List<Invitation> getInviti() {
+        return Collections.unmodifiableList(inviti);
+    }
+
+    /**
+     * Aggiunge una partecipazione all'evento.
+     */
+    public void aggiungiPartecipante(UtenteLoggato partecipante) {
+        if (partecipanti.size() >= maxPartecipanti) {
+            throw new IllegalStateException("Numero massimo di partecipanti raggiunto");
+        }
+        String idPart = UUID.randomUUID().toString();
+        PartecipazioneEvento pe = new PartecipazioneEvento(idPart, this, partecipante, LocalDateTime.now());
+        partecipanti.add(pe);
+    }
+
+    /**
+     * Aggiunge un invito all'evento.
+     */
+    public void aggiungiInvito(Invitatore mittente, Venditore destinatario) {
+        String idInv = UUID.randomUUID().toString();
+        Invitation invito = new Invitation(idInv, mittente, destinatario, this, LocalDateTime.now());
+        inviti.add(invito);
     }
 }

@@ -1,76 +1,110 @@
-package unicam.piattaforma_filiera_agricola;
+package unicam.piattaforma_filiera_agricola.model.animatore;
 
+import unicam.piattaforma_filiera_agricola.handler.HandlerAnimatore;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class AnimatoreFiliera extends UtenteLoggato {
 
 
-    private final AnimatoreHandler animatoreHandler;
+    private final String idEvento;
+    private LocalDate dataInizio;
+    private LocalDate dataFine;
+    private String localita;
+    private int maxPartecipanti;
+    private String nome;
+    private String descrizione;
+    private final AnimatoreFiliera creatore;
+    private final List<PartecipazioneEvento> partecipanti;
+    private final List<Invitation> inviti;
 
-    public AnimatoreFiliera(String id, String nome, String cognome, String email) {
-        super(id, nome, cognome, email, Ruolo.ANIMATORE_FILIERA);
-        this.animatoreHandler = new AnimatoreHandler(this);
+    public Evento(String idEvento,
+                  LocalDate dataInizio,
+                  LocalDate dataFine,
+                  String localita,
+                  int maxPartecipanti,
+                  String nome,
+                  String descrizione,
+                  AnimatoreFiliera creatore) {
+        this.idEvento = idEvento;
+        this.dataInizio = dataInizio;
+        this.dataFine = dataFine;
+        this.localita = localita;
+        this.maxPartecipanti = maxPartecipanti;
+        this.nome = nome;
+        this.descrizione = descrizione;
+        this.creatore = creatore;
+        this.partecipanti = new ArrayList<>();
+        this.inviti = new ArrayList<>();
     }
 
-    // Getter per il handler dell'animatore
-    public AnimatoreHandler getAnimatoreHandler() {
-        return animatoreHandler;
+    // Getter e setter
+    public String getIdEvento() {
+        return idEvento;
+    }
+    public LocalDate getDataInizio() {
+        return dataInizio;
+    }
+    public void setDataInizio(LocalDate dataInizio) {
+        this.dataInizio = dataInizio;
+    }
+    public LocalDate getDataFine() {
+        return dataFine;
+    }
+    public void setDataFine(LocalDate dataFine) {
+        this.dataFine = dataFine;
+    }
+    public String getLocalita() {
+        return localita;
+    }
+    public void setLocalita(String localita) {
+        this.localita = localita;
+    }
+    public int getMaxPartecipanti() {
+        return maxPartecipanti;
+    }
+    public void setMaxPartecipanti(int maxPartecipanti) {
+        this.maxPartecipanti = maxPartecipanti;
+    }
+    public String getNome() {
+        return nome;
+    }
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+    public String getDescrizione() {
+        return descrizione;
+    }
+    public void setDescrizione(String descrizione) {
+        this.descrizione = descrizione;
+    }
+    public AnimatoreFiliera getCreatore() {
+        return creatore;
+    }
+    public List<PartecipazioneEvento> getPartecipanti() {
+        return Collections.unmodifiableList(partecipanti);
+    }
+    public List<Invitation> getInviti() {
+        return Collections.unmodifiableList(inviti);
     }
 
     /**
-     * Crea un nuovo evento delegando ad AnimatoreHandler.
+     * Aggiunge una partecipazione all'evento.
      */
-    public Evento creaEvento(LocalDate dataInizio,
-                             LocalDate dataFine,
-                             String localita,
-                             int maxPartecipanti,
-                             String nome,
-                             String descrizione) {
-        return animatoreHandler.creaEvento(dataInizio, dataFine, localita, maxPartecipanti, nome, descrizione);
+    public void aggiungiPartecipante(PartecipazioneEvento pe) {
+        if (partecipanti.size() >= maxPartecipanti) {
+            throw new IllegalStateException("Numero massimo di partecipanti raggiunto");
+        }
+        partecipanti.add(pe);
     }
 
     /**
-     * Modifica un evento esistente.
+     * Aggiunge un invito all'evento.
      */
-    public Evento modificaEvento(Evento evento,
-                                 LocalDate dataInizio,
-                                 LocalDate dataFine,
-                                 String localita,
-                                 int maxPartecipanti,
-                                 String nome,
-                                 String descrizione) {
-        return animatoreHandler.modificaEvento(evento, dataInizio, dataFine, localita, maxPartecipanti, nome, descrizione);
-    }
-
-    /**
-     * Elimina un singolo evento specificato.
-     */
-    public void eliminaEvento(Evento evento) {
-        animatoreHandler.eliminaEvento(evento);
-    }
-
-    /**
-     * Invita un Venditore a partecipare a un evento.
-     */
-    public void invitaVenditore(Venditore venditore, Evento evento) {
-        animatoreHandler.inviaInvitoVenditore(venditore, evento);
-    }
-
-    /**
-     * Restituisce la lista degli eventi creati dall'AnimatoreFiliera.
-     */
-    public List<Evento> visualizzaEventiCreati() {
-        return animatoreHandler.getEventiCreati();
-    }
-
-    /**
-     * Elimina il profilo dell'AnimatoreFiliera insieme a tutti gli eventi creati.
-     */
-    public void eliminaProfilo() {
-        animatoreHandler.eliminaTuttiEventi();
-        AccountService.deleteAccount(getId());
+    public void aggiungiInvito(Invitation invito) {
+        inviti.add(invito);
     }
 }
 
-}
