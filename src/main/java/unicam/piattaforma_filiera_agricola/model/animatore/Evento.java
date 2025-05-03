@@ -1,9 +1,10 @@
 package unicam.piattaforma_filiera_agricola.model.animatore;
 
-import unicam.piattaforma_filiera_agricola.model.UtenteLoggato;
+import unicam.piattaforma_filiera_agricola.UtenteLoggato;
 import unicam.piattaforma_filiera_agricola.model.seller.Venditore;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.*;
 
 public class Evento {
@@ -39,69 +40,22 @@ public class Evento {
     }
 
     // Getter e setter
-    public String getIdEvento() {
-        return idEvento;
-    }
-
-    public LocalDate getDataInizio() {
-        return dataInizio;
-    }
-
-    public void setDataInizio(LocalDate dataInizio) {
-        this.dataInizio = dataInizio;
-    }
-
-    public LocalDate getDataFine() {
-        return dataFine;
-    }
-
-    public void setDataFine(LocalDate dataFine) {
-        this.dataFine = dataFine;
-    }
-
-    public String getLocalita() {
-        return localita;
-    }
-
-    public void setLocalita(String localita) {
-        this.localita = localita;
-    }
-
-    public int getMaxPartecipanti() {
-        return maxPartecipanti;
-    }
-
-    public void setMaxPartecipanti(int maxPartecipanti) {
-        this.maxPartecipanti = maxPartecipanti;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getDescrizione() {
-        return descrizione;
-    }
-
-    public void setDescrizione(String descrizione) {
-        this.descrizione = descrizione;
-    }
-
-    public AnimatoreFiliera getCreatore() {
-        return creatore;
-    }
-
-    public List<PartecipazioneEvento> getPartecipanti() {
-        return Collections.unmodifiableList(partecipanti);
-    }
-
-    public List<Invitation> getInviti() {
-        return Collections.unmodifiableList(inviti);
-    }
+    public String getIdEvento() { return idEvento; }
+    public LocalDate getDataInizio() { return dataInizio; }
+    public void setDataInizio(LocalDate dataInizio) { this.dataInizio = dataInizio; }
+    public LocalDate getDataFine() { return dataFine; }
+    public void setDataFine(LocalDate dataFine) { this.dataFine = dataFine; }
+    public String getLocalita() { return localita; }
+    public void setLocalita(String localita) { this.localita = localita; }
+    public int getMaxPartecipanti() { return maxPartecipanti; }
+    public void setMaxPartecipanti(int maxPartecipanti) { this.maxPartecipanti = maxPartecipanti; }
+    public String getNome() { return nome; }
+    public void setNome(String nome) { this.nome = nome; }
+    public String getDescrizione() { return descrizione; }
+    public void setDescrizione(String descrizione) { this.descrizione = descrizione; }
+    public AnimatoreFiliera getCreatore() { return creatore; }
+    public List<PartecipazioneEvento> getPartecipanti() { return Collections.unmodifiableList(partecipanti); }
+    public List<Invitation> getInviti() { return Collections.unmodifiableList(inviti); }
 
     /**
      * Aggiunge una partecipazione all'evento.
@@ -118,7 +72,7 @@ public class Evento {
     /**
      * Aggiunge un invito all'evento.
      */
-    public void aggiungiInvito(Invitatore mittente, Venditore destinatario) {
+    public void aggiungiInvito(AnimatoreFiliera mittente, Venditore destinatario) {
         String idInv = UUID.randomUUID().toString();
         Invitation invito = new Invitation(idInv, mittente, destinatario, this, LocalDateTime.now());
         inviti.add(invito);
