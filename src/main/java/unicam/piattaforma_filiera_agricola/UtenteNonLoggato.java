@@ -1,4 +1,4 @@
-package unicam.piattaforma_filiera_agricola.model;
+package unicam.piattaforma_filiera_agricola;
 
 import unicam.piattaforma_filiera_agricola.model.curatore.Curatore;
 import unicam.piattaforma_filiera_agricola.model.animatore.AnimatoreFiliera;

@@ -1,4 +1,4 @@
-package unicam.piattaforma_filiera_agricola.model.payment;
+package unicam.piattaforma_filiera_agricola.payment;
 
 import unicam.piattaforma_filiera_agricola.model.product.Prodotto;
 
