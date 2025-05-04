@@ -1,82 +1,58 @@
 package unicam.piattaforma_filiera_agricola.model.curatore;
 
-import unicam.piattaforma_filiera_agricola.model.animatore.Evento;
 import unicam.piattaforma_filiera_agricola.model.seller.UtenteLoggato;
-import unicam.piattaforma_filiera_agricola.handler.HandlerPubblicazione;
-import unicam.piattaforma_filiera_agricola.RichiestaPubblicazione;
-import unicam.piattaforma_filiera_agricola.StatoRichiesta;
-import unicam.piattaforma_filiera_agricola.UtenteLoggato;
-import unicam.piattaforma_filiera_agricola.model.product.Prodotto;
+import unicam.piattaforma_filiera_agricola.handler.HandlerApprovazioneRichieste;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-public class Curatore extends UtenteLoggato implements IValidate {
+/**
+ * Rappresenta un Curatore che supervisiona le richieste di pubblicazione.
+ */
+public class Curatore extends UtenteLoggato {
 
-    private final List<RichiestaPubblicazione> richiesteInAttesa;
+    private final HandlerApprovazioneRichieste handler;
 
-    public Curatore(String id, String nome, String cognome, String email) {
+    public Curatore(String id,
+                    String nome,
+                    String cognome,
+                    String email) {
         super(id, nome, cognome, email, Ruolo.CURATORE);
-        this.richiesteInAttesa = new ArrayList<>();
-    }
-
-    // Getter per le richieste di pubblicazione in attesa
-    public List<RichiestaPubblicazione> getRichiesteInAttesa() {
-        return Collections.unmodifiableList(richiesteInAttesa);
+        this.handler = new HandlerApprovazioneRichieste(this);
     }
 
     /**
-     * Aggiunge una richiesta di pubblicazione alla lista di quelle da supervisionare.
+     * Restituisce il handler per la supervisione delle richieste.
      */
-    public void aggiungiRichiesta(RichiestaPubblicazione richiesta) {
-        richiesteInAttesa.add(richiesta);
+    public HandlerApprovazioneRichieste getHandler() {
+        return handler;
     }
 
     /**
      * Approva una richiesta di pubblicazione.
      */
-    public void approvaRichiesta(RichiestaPubblicazione richiesta) {
-        if (!richiesteInAttesa.remove(richiesta)) {
-            throw new IllegalArgumentException("Richiesta non trovata tra quelle in attesa");
-        }
-        richiesta.setStato(StatoRichiesta.APPROVATA);
-        // Logica di pubblicazione del contenuto
+    public void approvaRichiesta(RichiestaPubblicazione req) {
+        handler.approvaReq(req);
     }
 
     /**
-     * Rifiuta una richiesta di pubblicazione.
-     *
-     * @param richiesta   la richiesta da rifiutare
-     * @param motivazione spiegazione del rifiuto
+     * Rifiuta una richiesta di pubblicazione, specificando la motivazione.
      */
-    public void rifiutaRichiesta(RichiestaPubblicazione richiesta, String motivazione) {
-        if (!richiesteInAttesa.remove(richiesta)) {
-            throw new IllegalArgumentException("Richiesta non trovata tra quelle in attesa");
-        }
-        richiesta.setStato(StatoRichiesta.RIFIUTATA);
-        richiesta.setMotivazioneRifiuto(motivazione);
-        // Eventuale notifica al richiedente
+    public void rifiutaRichiesta(RichiestaPubblicazione req, String motivazione) {
+        handler.rifiutaReq(req, motivazione);
     }
 
     /**
-     * Elimina il profilo del Curatore e pulisce le richieste pendenti.
+     * Recupera la lista delle richieste in attesa.
+     */
+    public List<RichiestaPubblicazione> getRichiesteInAttesa() {
+        return handler.getRichiesteInAttesa();
+    }
+
+    /**
+     * Elimina il profilo del curatore e gestisce eventuali richieste pendenti.
      */
     public void eliminaProfilo() {
-        // Rifiuta tutte le richieste in attesa
-        for (RichiestaPubblicazione req : new ArrayList<>(richiesteInAttesa)) {
-            rifiutaRichiesta(req, "Profilo Curatore eliminato");
-        }
+        handler.eliminaProfilo();
         AccountService.deleteAccount(getId());
-    }
-
-    @Override
-    public void approvaProdotto(Prodotto p) {
-
-    }
-
-    @Override
-    public void rifiutaProdotto(Prodotto p, String nota) {
-
     }
 }
