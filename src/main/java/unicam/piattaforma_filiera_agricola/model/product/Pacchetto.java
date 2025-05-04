@@ -1,10 +1,13 @@
-package unicam.piattaforma_filiera_agricola;
+package unicam.piattaforma_filiera_agricola.model.product;
+
+import unicam.piattaforma_filiera_agricola.Distributore;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Pacchetto {
+
     private final String idPacchetto;
     private String nome;
     private final List<Prodotto> prodotti;

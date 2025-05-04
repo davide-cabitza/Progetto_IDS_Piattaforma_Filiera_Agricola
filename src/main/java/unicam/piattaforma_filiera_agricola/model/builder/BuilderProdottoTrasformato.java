@@ -1,17 +1,17 @@
-package unicam.piattaforma_filiera_agricola.builder;
+package unicam.piattaforma_filiera_agricola.model.builder;
 
-import unicam.piattaforma_filiera_agricola.model.product.ProdottoGrezzo;
+import unicam.piattaforma_filiera_agricola.model.product.ProdottoTrasformatore;
 
 import java.util.Date;
 
-public class BuilderProdottoGrezzo implements Builder{
+public class BuilderProdottoTrasformato implements Builder{
 
-    private ProdottoGrezzo risultato;
+    private ProdottoTrasformatore risultato;
 
     private int id;
     private String nomeProdotto;
     private String descrizione;
-    private String processoProduttivo;
+    private String processoTrasformazione;
     private String certificati;
     private double costo;
     private int quantitativo;
@@ -21,7 +21,7 @@ public class BuilderProdottoGrezzo implements Builder{
 
     @Override
     public void reset(){
-        risultato = new ProdottoGrezzo(id, nomeProdotto, descrizione, processoProduttivo, certificati, costo, quantitativo, id_venditore, dataInserimento);
+        risultato = new ProdottoTrasformatore(id, nomeProdotto, descrizione, processoTrasformazione, certificati, costo, quantitativo, id_venditore, dataInserimento);
     }
 
     @Override
@@ -35,8 +35,8 @@ public class BuilderProdottoGrezzo implements Builder{
     }
 
     @Override
-    public void BuildProcesso(String processoProduttivo){
-        this.processoProduttivo = processoProduttivo;
+    public void BuildProcesso(String processoTrasformazione){
+        this.processoTrasformazione = processoTrasformazione;
     }
 
     @Override
@@ -60,7 +60,7 @@ public class BuilderProdottoGrezzo implements Builder{
         this.dataInserimento = dataInserimento;
     }
 
-    public ProdottoGrezzo getRisultato() {
+    public ProdottoTrasformatore getRisultato() {
         return this.risultato;
     }
 }

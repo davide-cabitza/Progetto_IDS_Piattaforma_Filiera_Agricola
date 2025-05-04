@@ -1,6 +1,7 @@
 package unicam.piattaforma_filiera_agricola;
 
 import unicam.piattaforma_filiera_agricola.model.seller.UtenteLoggato;
+import unicam.piattaforma_filiera_agricola.model.product.Prodotto;
 
 import java.time.LocalDateTime;
 

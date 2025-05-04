@@ -1,7 +1,9 @@
 package unicam.piattaforma_filiera_agricola.handler;
 
-import unicam.piattaforma_filiera_agricola.model.Acquirente;
-import unicam.piattaforma_filiera_agricola.model.product.PacchettoProdotti;
+import unicam.piattaforma_filiera_agricola.Acquirente;
+import unicam.piattaforma_filiera_agricola.Carrello;
+import unicam.piattaforma_filiera_agricola.RigaCarrello;
+import unicam.piattaforma_filiera_agricola.StatoProdottoCarrello;
 import unicam.piattaforma_filiera_agricola.model.product.Prodotto;
 
 import java.util.List;

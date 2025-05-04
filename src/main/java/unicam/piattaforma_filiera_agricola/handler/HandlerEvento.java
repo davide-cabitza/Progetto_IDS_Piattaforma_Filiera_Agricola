@@ -17,6 +17,12 @@ import java.util.UUID;
  * Comprende creazione, modifica, eliminazione e invio inviti.
  */
 public class HandlerEvento {
+import unicam.piattaforma_filiera_agricola.model.animatore.AnimatoreFiliera;
+import unicam.piattaforma_filiera_agricola.model.animatore.Evento;
+import unicam.piattaforma_filiera_agricola.model.animatore.Invitation;
+import unicam.piattaforma_filiera_agricola.model.seller.Venditore;
+
+public class HandlerAnimatore {
     private final AnimatoreFiliera animatore;
     private final List<Evento> eventiCreati;
 
