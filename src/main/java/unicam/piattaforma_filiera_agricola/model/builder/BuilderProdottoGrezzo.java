@@ -1,27 +1,34 @@
 package unicam.piattaforma_filiera_agricola.model.builder;
 
+import jakarta.persistence.*;
+import unicam.piattaforma_filiera_agricola.Indirizzo;
 import unicam.piattaforma_filiera_agricola.model.product.ProdottoGrezzo;
 
 import java.util.Date;
 
-public class BuilderProdottoGrezzo implements Builder{
+public class BuilderProdottoGrezzo implements IBuilder{
 
     private ProdottoGrezzo risultato;
 
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
     private String nomeProdotto;
     private String descrizione;
-    private String processoProduttivo;
     private String certificati;
     private double costo;
     private int quantitativo;
     private int id_venditore;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dataInserimento;
+    @Embedded
+    private Indirizzo location;
+    private String processoProduttivo;
 
 
     @Override
     public void reset(){
-        risultato = new ProdottoGrezzo(id, nomeProdotto, descrizione, processoProduttivo, certificati, costo, quantitativo, id_venditore, dataInserimento);
+        risultato = new ProdottoGrezzo(nomeProdotto, descrizione, certificati, costo, quantitativo, id_venditore, location, processoProduttivo);
     }
 
     @Override
