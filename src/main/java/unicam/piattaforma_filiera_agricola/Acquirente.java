@@ -1,13 +1,12 @@
 package unicam.piattaforma_filiera_agricola;
 
 import unicam.piattaforma_filiera_agricola.handler.HandlerGestioneCarrello;
-import unicam.piattaforma_filiera_agricola.model.product.PacchettoProdotti;
 import unicam.piattaforma_filiera_agricola.model.product.Prodotto;
+import unicam.piattaforma_filiera_agricola.model.seller.UtenteLoggato;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class Acquirente extends UtenteLoggato{
+public class Acquirente extends UtenteLoggato {
 
     private final HandlerGestioneCarrello carrelloHandler;
     private final OrdineHandler ordineHandler;

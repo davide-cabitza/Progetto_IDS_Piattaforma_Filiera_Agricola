@@ -1,15 +1,26 @@
 package unicam.piattaforma_filiera_agricola.handler;
 
+import unicam.piattaforma_filiera_agricola.model.animatore.AnimatoreFiliera;
+import unicam.piattaforma_filiera_agricola.model.animatore.Evento;
+import unicam.piattaforma_filiera_agricola.model.seller.Venditore;
+import unicam.piattaforma_filiera_agricola.model.animatore.Invitation;
+
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 
-public class HandlerAnimatore {
-    private final unicam.piattaforma_filiera_agricola.AnimatoreFiliera animatore;
+/**
+ * Handler centrale per la gestione degli eventi per l'Animatore della filiera.
+ * Comprende creazione, modifica, eliminazione e invio inviti.
+ */
+public class HandlerEvento {
+    private final AnimatoreFiliera animatore;
     private final List<Evento> eventiCreati;
 
-    public HandlerAnimatore(AnimatoreFiliera animatore) {
+    public HandlerEvento(AnimatoreFiliera animatore) {
         this.animatore = animatore;
         this.eventiCreati = new ArrayList<>();
     }
@@ -23,14 +34,24 @@ public class HandlerAnimatore {
                              int maxPartecipanti,
                              String nome,
                              String descrizione) {
-        Evento evento = new Evento(dataInizio, dataFine, localita, maxPartecipanti, nome, descrizione, animatore);
+        String idEvento = UUID.randomUUID().toString();
+        Evento evento = new Evento(
+                idEvento,
+                dataInizio,
+                dataFine,
+                localita,
+                maxPartecipanti,
+                nome,
+                descrizione,
+                animatore
+        );
         eventiCreati.add(evento);
         // Logica di persistenza, notifiche, ecc. può essere aggiunta qui
         return evento;
     }
 
     /**
-     * Modifica un evento esistente con i nuovi dati forniti.
+     * Modifica i dati di un evento esistente.
      */
     public Evento modificaEvento(Evento evento,
                                  LocalDate dataInizio,
@@ -64,30 +85,36 @@ public class HandlerAnimatore {
     }
 
     /**
-     * Restituisce la lista degli eventi creati.
+     * Elimina tutti gli eventi creati dall'animatore.
+     */
+    public void eliminaTuttiEventi() {
+        for (Evento e : new ArrayList<>(eventiCreati)) {
+            eliminaEvento(e);
+        }
+    }
+
+    /**
+     * Restituisce la lista immutabile degli eventi creati.
      */
     public List<Evento> getEventiCreati() {
         return Collections.unmodifiableList(eventiCreati);
     }
 
     /**
-     * Invita un venditore a partecipare ad un evento.
+     * Invia un invito a un Venditore a partecipare a un evento.
      */
     public void inviaInvitoVenditore(Venditore venditore, Evento evento) {
         if (!eventiCreati.contains(evento)) {
             throw new IllegalArgumentException("Evento non gestito da questo animatore");
         }
-        Invitation invito = new Invitation(animatore, venditore, evento);
-        // Logica di invio invito (email, notifica..) va qui
-        venditore.getEventiInvitati().add(invito);
-    }
-
-    /**
-     * Elimina tutti gli eventi creati dall'animatore.
-     */
-    public void eliminaTuttiEventi() {
-        for(Evento e : new ArrayList<>(eventiCreati)) {
-            eliminaEvento(e);
-        }
+        Invitation invito = new Invitation(
+                UUID.randomUUID().toString(),
+                animatore,
+                venditore,
+                evento,
+                LocalDateTime.now()
+        );
+        evento.aggiungiInvito(animatore, venditore);
+        venditore.getInviti().add(invito);
     }
 }

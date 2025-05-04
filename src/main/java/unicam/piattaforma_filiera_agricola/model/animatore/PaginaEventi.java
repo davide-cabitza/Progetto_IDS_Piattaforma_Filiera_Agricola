@@ -15,7 +15,7 @@ public class PaginaEventi {
     public List<Evento> cercaEvento(String evento) {
         List<Evento> risultati = new ArrayList<>();
         for (Evento e : this.listaEventi) {
-            if (e.getNomeEvento().equalsIgnoreCase(evento)) {
+            if (e.getNome().equalsIgnoreCase(evento)) {
                 risultati.add(e);
             }
         }
