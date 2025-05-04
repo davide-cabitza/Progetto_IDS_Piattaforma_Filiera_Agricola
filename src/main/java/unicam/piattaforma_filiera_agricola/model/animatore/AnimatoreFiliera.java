@@ -1,25 +1,31 @@
 package unicam.piattaforma_filiera_agricola.model.animatore;
 
 import unicam.piattaforma_filiera_agricola.model.seller.UtenteLoggato;
-import unicam.piattaforma_filiera_agricola.UtenteLoggato;
-import unicam.piattaforma_filiera_agricola.handler.HandlerAnimatore;
+import unicam.piattaforma_filiera_agricola.handler.HandlerEvento;
+import unicam.piattaforma_filiera_agricola.model.seller.Venditore;
 
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * Rappresenta un animatore della filiera che può gestire eventi.
+ */
 public class AnimatoreFiliera extends UtenteLoggato {
 
+    private final HandlerEvento eventoHandler;
 
-    private final HandleCreazioneEvento eventoHandler;
-
-    public AnimatoreFiliera(String id, String nome, String cognome, String email) {
+    public AnimatoreFiliera(String id,
+                            String nome,
+                            String cognome,
+                            String email) {
         super(id, nome, cognome, email, Ruolo.ANIMATORE_FILIERA);
-        this.eventoHandler = new HandleCreazioneEvento(this);
-    public AnimatoreFiliera(int id, String nome, String email, String password, int numeroTelefono, String indirizzo, String NomeUtente) {
-        super(id, nome, email, password, numeroTelefono, indirizzo, NomeUtente);
+        this.eventoHandler = new HandlerEvento(this);
     }
 
-    public HandleCreazioneEvento getEventoHandler() {
+    /**
+     * Restituisce il handler per la gestione degli eventi.
+     */
+    public HandlerEvento getEventoHandler() {
         return eventoHandler;
     }
 
@@ -32,7 +38,9 @@ public class AnimatoreFiliera extends UtenteLoggato {
                              int maxPartecipanti,
                              String nome,
                              String descrizione) {
-        return eventoHandler.creaEvento(dataInizio, dataFine, localita, maxPartecipanti, nome, descrizione);
+        return eventoHandler.creaEvento(
+                dataInizio, dataFine, localita, maxPartecipanti, nome, descrizione
+        );
     }
 
     /**
@@ -45,7 +53,9 @@ public class AnimatoreFiliera extends UtenteLoggato {
                                  int maxPartecipanti,
                                  String nome,
                                  String descrizione) {
-        return eventoHandler.modificaEvento(evento, dataInizio, dataFine, localita, maxPartecipanti, nome, descrizione);
+        return eventoHandler.modificaEvento(
+                evento, dataInizio, dataFine, localita, maxPartecipanti, nome, descrizione
+        );
     }
 
     /**
@@ -56,10 +66,17 @@ public class AnimatoreFiliera extends UtenteLoggato {
     }
 
     /**
-     * Recupera la lista degli eventi creati.
+     * Restituisce la lista degli eventi creati.
      */
     public List<Evento> visualizzaEventiCreati() {
         return eventoHandler.getEventiCreati();
+    }
+
+    /**
+     * Invia un invito a un venditore per un evento.
+     */
+    public void inviaInvitoVenditore(Venditore venditore, Evento evento) {
+        eventoHandler.inviaInvitoVenditore(venditore, evento);
     }
 
     /**
@@ -70,4 +87,3 @@ public class AnimatoreFiliera extends UtenteLoggato {
         AccountService.deleteAccount(getId());
     }
 }
-
