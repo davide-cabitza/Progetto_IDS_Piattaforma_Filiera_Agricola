@@ -2,7 +2,7 @@ package unicam.piattaforma_filiera_agricola.model.builder;
 
 import java.util.Date;
 
-public interface Builder {
+public interface IBuilder {
 
     public void reset();
 

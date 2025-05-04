@@ -38,7 +38,7 @@ public abstract class Venditore extends UtenteLoggato {
                                           String categoriaProdotto, int idVenditore, Date dataInserimento);
 
     @Override
-    public int getId() {
+    public long getId() {
         return super.getId();
     }
 

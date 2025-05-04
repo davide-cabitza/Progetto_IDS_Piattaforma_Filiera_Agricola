@@ -3,9 +3,11 @@ package unicam.piattaforma_filiera_agricola.model.product;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.persistence.*;
+import unicam.piattaforma_filiera_agricola.Indirizzo;
 
 import java.util.Date;
 
+/*
 @JsonTypeInfo(
         use = JsonTypeInfo.Id.NAME,
         include = JsonTypeInfo.As.PROPERTY,
@@ -19,27 +21,31 @@ import java.util.Date;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "tipo_prodotto", discriminatorType = DiscriminatorType.STRING)
+
+ */
 public class Prodotto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
     private String nomeProdotto;
-    private double costo;
     private String descrizione;
     private String certificati;
+    private double costo;
     private int quantitativo;
     private int id_venditore;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dataInserimento;
+    @Embedded
+    private Indirizzo location;
 
-    public Prodotto(int id, String nomeProdotto, String descrizione, String certificati, double costo, int quantitativo,int id_venditore, Date dataInserimento) {
-        this.id = id;
+    public Prodotto(String nomeProdotto, String descrizione, String certificati, double costo, int quantitativo, int id_venditore, Indirizzo location) {
         this.nomeProdotto = nomeProdotto;
         this.costo = costo;
         this.descrizione = descrizione;
         this.certificati = certificati;
         this.quantitativo = quantitativo;
         this.id_venditore = id_venditore;
-        this.dataInserimento = dataInserimento;
+        this.location = location;
     }
 
     public Prodotto() {
@@ -47,11 +53,11 @@ public class Prodotto {
     }
 
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -112,5 +118,11 @@ public class Prodotto {
         this.dataInserimento = dataInserimento;
     }
 
+    public Indirizzo getLocation() {
+        return location;
+    }
 
+    public void setLocation(Indirizzo location) {
+        this.location = location;
+    }
 }

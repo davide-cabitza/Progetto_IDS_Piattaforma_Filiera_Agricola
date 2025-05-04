@@ -1,27 +1,35 @@
 package unicam.piattaforma_filiera_agricola.model.builder;
 
-import unicam.piattaforma_filiera_agricola.model.product.ProdottoTrasformatore;
+import jakarta.persistence.*;
+import jakarta.persistence.TemporalType;
+import unicam.piattaforma_filiera_agricola.Indirizzo;
+import unicam.piattaforma_filiera_agricola.model.product.ProdottoTrasformato;
 
 import java.util.Date;
 
-public class BuilderProdottoTrasformato implements Builder{
+public class BuilderProdottoTrasformato implements IBuilder{
 
-    private ProdottoTrasformatore risultato;
+    private ProdottoTrasformato risultato;
 
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
     private String nomeProdotto;
     private String descrizione;
-    private String processoTrasformazione;
     private String certificati;
     private double costo;
     private int quantitativo;
     private int id_venditore;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dataInserimento;
+    @Embedded
+    private Indirizzo location;
+    private String processoTrasformazione;
 
 
     @Override
     public void reset(){
-        risultato = new ProdottoTrasformatore(id, nomeProdotto, descrizione, processoTrasformazione, certificati, costo, quantitativo, id_venditore, dataInserimento);
+        risultato = new ProdottoTrasformato(nomeProdotto, descrizione, certificati, costo, quantitativo, id_venditore, location, processoTrasformazione);
     }
 
     @Override
@@ -57,10 +65,9 @@ public class BuilderProdottoTrasformato implements Builder{
 
     @Override
     public void BuildDataInserimento(Date dataInserimento) {
-        this.dataInserimento = dataInserimento;
     }
 
-    public ProdottoTrasformatore getRisultato() {
+    public ProdottoTrasformato getRisultato() {
         return this.risultato;
     }
 }

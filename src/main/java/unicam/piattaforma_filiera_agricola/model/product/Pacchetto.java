@@ -1,6 +1,6 @@
 package unicam.piattaforma_filiera_agricola.model.product;
 
-import unicam.piattaforma_filiera_agricola.Distributore;
+import unicam.piattaforma_filiera_agricola.model.seller.Distributore;
 
 import java.util.ArrayList;
 import java.util.Collections;
