@@ -14,9 +14,9 @@ public abstract class Venditore extends UtenteLoggato {
     protected List<String> certificatiAzienda;
 
 
-    public Venditore(int id, String nome, String email, String password, int numeroTelefono, Ruolo ruolo,
-                 String indirizzo, String NomeUtente, String partitaIva, List<Prodotto> listaProdotti, List<String> certificatiProdotto, List<String> certificatiAzienda)  {
-        super(id,nome,email, password, numeroTelefono, ruolo);
+    public Venditore(int id, String nomeUtente, String nome, String email, String password, int numeroTelefono, Ruolo ruolo,
+                 String indirizzo, String partitaIva, List<Prodotto> listaProdotti, List<String> certificatiProdotto, List<String> certificatiAzienda)  {
+        super(id, nomeUtente, nome, email, password, numeroTelefono, indirizzo, ruolo);
         this.partitaIva=partitaIva;
         this.listaProdotti=listaProdotti;
         this.certificatiProdotto=certificatiProdotto;

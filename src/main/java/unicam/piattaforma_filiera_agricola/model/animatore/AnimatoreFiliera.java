@@ -15,10 +15,10 @@ public class AnimatoreFiliera extends UtenteLoggato {
 
     private final HandlerEvento eventoHandler;
 
-    public AnimatoreFiliera(int id,
+    public AnimatoreFiliera(int id, String nomeUtente,
                             String nome,
-                            String email, String password, int cellNumber, Ruolo ruolo) {
-        super(id, nome, email, password, cellNumber, Ruolo.ANIMATORE_FILIERA);
+                            String email, String password, int cellNumber, String indirizzo, Ruolo ruolo) {
+        super(id, nomeUtente, nome, email, password, cellNumber, indirizzo, Ruolo.ANIMATORE_FILIERA);
         this.eventoHandler = new HandlerEvento(this);
     }
 

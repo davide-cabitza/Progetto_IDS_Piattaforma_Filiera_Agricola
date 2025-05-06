@@ -13,10 +13,10 @@ public class Curatore extends UtenteLoggato {
 
     private final HandlerApprovazioneRichieste handler;
 
-    public Curatore(int id,
+    public Curatore(int id, String nomeUtente,
                     String nome,
-                    String email, String password, int cellNumber, Ruolo ruolo) {
-        super(id, nome, email, password, cellNumber, Ruolo.CURATORE);
+                    String email, String password, int cellNumber, String indirizzo, Ruolo ruolo) {
+        super(id, nomeUtente, nome, email, password, cellNumber, indirizzo, Ruolo.CURATORE);
         this.handler = new HandlerApprovazioneRichieste(this);
     }
 

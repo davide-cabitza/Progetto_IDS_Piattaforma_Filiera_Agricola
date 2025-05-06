@@ -10,18 +10,24 @@ public abstract class UtenteLoggato {
     private String password;
     private int numeroTelefono;
     private final Ruolo ruolo;
+    private String indirizzo;
+    private String nomeUtente;
 
     public UtenteLoggato(int id,
+                         String nomeUtente,
                          String nome,
                          String email,
                          String password,
                          int numeroTelefono,
+                         String indirizzo,
                          Ruolo ruolo) {
         this.id = id;
+        this.nomeUtente = nomeUtente;
         this.nome = nome;
         this.email = email;
         this.password = password;
         this.numeroTelefono = numeroTelefono;
+        this.indirizzo = indirizzo;
         this.ruolo = ruolo;
     }
 

@@ -9,10 +9,11 @@ public class Distributore extends Venditore implements ISeller {
 
     public String processoDistribuzione;
 
-    public Distributore(int id, String nome, String email, String password, int numeroTelefono, Ruolo ruolo, String indirizzo, String NomeUtente, String partitaIva,
+    public Distributore(int id, String nomeUtente, String nome, String email, String password, int numeroTelefono, Ruolo ruolo, String indirizzo, String NomeUtente, String partitaIva,
                       List<Prodotto> listaProdotti, List<String> certificatiProdotto, List<String> certificatiAzienda, String processoColtivazione) {
 
-        super(id, nome, email, password, numeroTelefono, ruolo, indirizzo, NomeUtente, partitaIva, listaProdotti, certificatiProdotto, certificatiAzienda);
+        super(id, nomeUtente, nome, email, password, numeroTelefono, ruolo,
+                indirizzo, partitaIva, listaProdotti, certificatiProdotto, certificatiAzienda);
         this.processoDistribuzione = processoColtivazione;
     }
 
