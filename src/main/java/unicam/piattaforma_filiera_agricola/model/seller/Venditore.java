@@ -24,18 +24,8 @@ public abstract class Venditore extends UtenteLoggato {
     }
 
 
-    public void caricaProdotto(int id, String nome, String descrizione,
-                               String certificatiProdotto, Float costo, int quantitativo,
-                               String categoriaProdotto, int idVenditore, Date dataInserimento) {
-        Prodotto prodotto = creaProdotto(
-                id, nome, descrizione, certificatiProdotto, costo, quantitativo,
-                categoriaProdotto, idVenditore, dataInserimento);
-    }
 
-
-    public abstract Prodotto creaProdotto(int id, String nome, String descrizione,
-                                          String certificatiProdotto, Float costo, int quantitativo,
-                                          String categoriaProdotto, int idVenditore, Date dataInserimento);
+    public abstract Prodotto creaProdotto();
 
     @Override
     public int getId() {

@@ -2,6 +2,7 @@ package unicam.piattaforma_filiera_agricola.model.curatore;
 
 import unicam.piattaforma_filiera_agricola.UtenteLoggato;
 import unicam.piattaforma_filiera_agricola.handler.HandlerApprovazioneRichieste;
+import unicam.piattaforma_filiera_agricola.model.seller.Ruolo;
 
 import java.util.List;
 
@@ -12,11 +13,10 @@ public class Curatore extends UtenteLoggato {
 
     private final HandlerApprovazioneRichieste handler;
 
-    public Curatore(String id,
+    public Curatore(int id,
                     String nome,
-                    String cognome,
-                    String email) {
-        super(id, nome, cognome, email, Ruolo.CURATORE);
+                    String email, String password, int cellNumber, Ruolo ruolo) {
+        super(id, nome, email, password, cellNumber, Ruolo.CURATORE);
         this.handler = new HandlerApprovazioneRichieste(this);
     }
 

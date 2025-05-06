@@ -9,10 +9,11 @@ public class Trasformatore extends Venditore implements ISeller {
 
     public String processoTrasformazione;
 
-    public Trasformatore(int id, String nome, String email, String password, int numeroTelefono, String indirizzo, String NomeUtente, String partitaIva,
+    public Trasformatore(int id, String nome, String email, String password, int numeroTelefono, Ruolo ruolo, String indirizzo, String NomeUtente, String partitaIva,
                          List<Prodotto> listaProdotti, List<String> certificatiProdotto, List<String> certificatiAzienda, String processoTrasformazione) {
 
-        super(id, nome, email, password, numeroTelefono, indirizzo, NomeUtente, partitaIva, listaProdotti, certificatiProdotto, certificatiAzienda);
+        super(id, nome, email, password, numeroTelefono, ruolo,
+                indirizzo, NomeUtente, partitaIva, listaProdotti, certificatiProdotto, certificatiAzienda);
         this.processoTrasformazione = processoTrasformazione;
     }
 
@@ -26,7 +27,7 @@ public class Trasformatore extends Venditore implements ISeller {
     }
 
     @Override
-    public Prodotto creaProdotto(int id, String nome, String descrizione, String certificatiProdotto, Float costo, int quantitativo, String categoriaProdotto, int idVenditore, Date dataInserimento) {
+    public Prodotto creaProdotto() {
         return null;
     }
 

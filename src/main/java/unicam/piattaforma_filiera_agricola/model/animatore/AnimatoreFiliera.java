@@ -2,6 +2,7 @@ package unicam.piattaforma_filiera_agricola.model.animatore;
 
 import unicam.piattaforma_filiera_agricola.UtenteLoggato;
 import unicam.piattaforma_filiera_agricola.handler.HandlerEvento;
+import unicam.piattaforma_filiera_agricola.model.seller.Ruolo;
 import unicam.piattaforma_filiera_agricola.model.seller.Venditore;
 
 import java.time.LocalDate;
@@ -14,11 +15,10 @@ public class AnimatoreFiliera extends UtenteLoggato {
 
     private final HandlerEvento eventoHandler;
 
-    public AnimatoreFiliera(String id,
+    public AnimatoreFiliera(int id,
                             String nome,
-                            String cognome,
-                            String email) {
-        super(id, nome, cognome, email, Ruolo.ANIMATORE_FILIERA);
+                            String email, String password, int cellNumber, Ruolo ruolo) {
+        super(id, nome, email, password, cellNumber, Ruolo.ANIMATORE_FILIERA);
         this.eventoHandler = new HandlerEvento(this);
     }
 
