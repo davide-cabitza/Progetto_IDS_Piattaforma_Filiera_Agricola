@@ -1,11 +1,11 @@
 package unicam.piattaforma_filiera_agricola;
 
-import unicam.piattaforma_filiera_agricola.model.seller.UtenteLoggato;
+import unicam.piattaforma_filiera_agricola.model.seller.Ruolo;
 
 public class GestorePiattaforma extends UtenteLoggato {
 
 
-    public GestorePiattaforma(int id, String nome, String email, String password, int numeroTelefono, String indirizzo, String NomeUtente) {
-        super(id, nome, email, password, numeroTelefono, indirizzo, NomeUtente);
+    public GestorePiattaforma(int id, String nome, String email, String password, int numeroTelefono, Ruolo ruolo, String indirizzo, String nomeUtente) {
+        super(id, nome, email, password, numeroTelefono, ruolo, indirizzo, nomeUtente);
     }
 }

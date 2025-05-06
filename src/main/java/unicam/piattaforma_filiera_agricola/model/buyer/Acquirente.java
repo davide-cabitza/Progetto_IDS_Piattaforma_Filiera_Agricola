@@ -4,9 +4,11 @@ import unicam.piattaforma_filiera_agricola.handler.HandlerCarrello;
 import unicam.piattaforma_filiera_agricola.handler.HandlerOrdine;
 import unicam.piattaforma_filiera_agricola.service.OSMService;
 import unicam.piattaforma_filiera_agricola.model.product.Prodotto;
+
 import unicam.piattaforma_filiera_agricola.model.product.ProdottoService;
 import unicam.piattaforma_filiera_agricola.model.seller.AccountService;
 import unicam.piattaforma_filiera_agricola.model.seller.UtenteLoggato;
+import unicam.piattaforma_filiera_agricola.UtenteLoggato;
 import unicam.piattaforma_filiera_agricola.model.seller.Ruolo;
 
 import java.util.List;
@@ -22,11 +24,10 @@ public class Acquirente extends UtenteLoggato {
     private final HandlerOrdine ordineHandler;
     private final OSMService osmService;
 
-    public Acquirente(String id,
+    public Acquirente(int id,
                       String nome,
-                      String cognome,
-                      String email) {
-        super(id, nome, cognome, email, Ruolo.ACQUIRENTE);
+                      String email, String password, int numeroTelefono, Ruolo ruolo) {
+        super(id, nome, email, password, numeroTelefono, Ruolo.ACQUIRENTE);
         this.carrello = new Carrello(this);
         this.carrelloHandler = new HandlerCarrello(carrello);
         this.ordineHandler = new HandlerOrdine();
