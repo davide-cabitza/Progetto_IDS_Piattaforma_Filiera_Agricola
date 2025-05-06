@@ -1,26 +1,31 @@
-package unicam.piattaforma_filiera_agricola.model.seller;
+package unicam.piattaforma_filiera_agricola;
+
+import unicam.piattaforma_filiera_agricola.model.seller.Ruolo;
 
 public abstract class UtenteLoggato {
 
-    private final String id;
+    private final int id;
     private String nome;
-    private String cognome;
     private String email;
+    private String password;
+    private int numeroTelefono;
     private final Ruolo ruolo;
 
-    public UtenteLoggato(String id,
+    public UtenteLoggato(int id,
                          String nome,
-                         String cognome,
                          String email,
+                         String password,
+                         int numeroTelefono,
                          Ruolo ruolo) {
         this.id = id;
         this.nome = nome;
-        this.cognome = cognome;
         this.email = email;
+        this.password = password;
+        this.numeroTelefono = numeroTelefono;
         this.ruolo = ruolo;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
@@ -32,14 +37,6 @@ public abstract class UtenteLoggato {
         this.nome = nome;
     }
 
-    public String getCognome() {
-        return cognome;
-    }
-
-    public void setCognome(String cognome) {
-        this.cognome = cognome;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -47,6 +44,12 @@ public abstract class UtenteLoggato {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public void setPassword(String password) {this.password = password;}
+
+    public int getNumeroTelefono(){return this.numeroTelefono;}
+
+    public void setNumeroTelefono(int number){this.numeroTelefono=number;}
 
     public Ruolo getRuolo() {
         return ruolo;

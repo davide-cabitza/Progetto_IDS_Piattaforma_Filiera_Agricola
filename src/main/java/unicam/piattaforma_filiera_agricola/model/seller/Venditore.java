@@ -14,9 +14,9 @@ public abstract class Venditore extends UtenteLoggato {
     protected List<String> certificatiAzienda;
 
 
-    public Venditore(int id, String nome, String email, String password, int numeroTelefono,
+    public Venditore(int id, String nome, String email, String password, int numeroTelefono, Ruolo ruolo,
                  String indirizzo, String NomeUtente, String partitaIva, List<Prodotto> listaProdotti, List<String> certificatiProdotto, List<String> certificatiAzienda)  {
-        super(id,nome,email, password, numeroTelefono,indirizzo,NomeUtente);
+        super(id,nome,email, password, numeroTelefono, ruolo);
         this.partitaIva=partitaIva;
         this.listaProdotti=listaProdotti;
         this.certificatiProdotto=certificatiProdotto;
@@ -38,7 +38,7 @@ public abstract class Venditore extends UtenteLoggato {
                                           String categoriaProdotto, int idVenditore, Date dataInserimento);
 
     @Override
-    public long getId() {
+    public int getId() {
         return super.getId();
     }
 
@@ -55,16 +55,6 @@ public abstract class Venditore extends UtenteLoggato {
     @Override
     public String getEmail() {
         return super.getEmail();
-    }
-
-    @Override
-    public String getIndirizzo() {
-        return super.getIndirizzo();
-    }
-
-    @Override
-    public String getNomeUtente() {
-        return super.getNomeUtente();
     }
 
 

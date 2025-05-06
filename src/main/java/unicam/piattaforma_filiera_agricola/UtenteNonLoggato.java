@@ -6,7 +6,6 @@ import unicam.piattaforma_filiera_agricola.model.animatore.AnimatoreFiliera;
 import unicam.piattaforma_filiera_agricola.model.seller.Distributore;
 import unicam.piattaforma_filiera_agricola.model.seller.Produttore;
 import unicam.piattaforma_filiera_agricola.model.seller.Trasformatore;
-import unicam.piattaforma_filiera_agricola.model.seller.UtenteLoggato;
 
 import java.util.Map;
 import java.util.HashMap;

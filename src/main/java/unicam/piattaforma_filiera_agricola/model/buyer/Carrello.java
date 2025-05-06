@@ -1,6 +1,6 @@
 package unicam.piattaforma_filiera_agricola.model.buyer;
 
-import unicam.piattaforma_filiera_agricola.model.seller.UtenteLoggato;
+import unicam.piattaforma_filiera_agricola.UtenteLoggato;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
