@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import unicam.piattaforma_filiera_agricola.Indirizzo;
 
 import java.util.Date;
+import java.util.List;
 
 /*
 @JsonTypeInfo(
@@ -77,11 +78,11 @@ public class Prodotto {
         this.descrizione = descrizione;
     }
 
-    public String getCertificati() {
+    public List<String> getCertificati() {
         return certificati;
     }
 
-    public void setCertificati(String certificati) {
+    public void setCertificati(List<String> certificati) {
         this.certificati = certificati;
     }
 

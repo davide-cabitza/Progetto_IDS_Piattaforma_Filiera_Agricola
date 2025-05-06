@@ -1,73 +1,62 @@
 package unicam.piattaforma_filiera_agricola.model.seller;
 
+import unicam.piattaforma_filiera_agricola.handler.HandlerProdotto;
 import unicam.piattaforma_filiera_agricola.model.product.Prodotto;
-
+import unicam.piattaforma_filiera_agricola.model.seller.AccountService;
+import unicam.piattaforma_filiera_agricola.handler.HandlerProdotto;
 import java.util.List;
 
-public abstract class Venditore extends UtenteLoggato {
+/**
+ * Rappresenta un Venditore generico (Produttore, Distributore, Trasformatore).
+ */
+public class Venditore extends UtenteLoggato {
+    private final HandlerProdotto prodottoHandler;
 
-    protected String partitaIva;
-    protected List<Prodotto> listaProdotti;
-    protected List<String> certificatiProdotto;
-    protected List<String> certificatiAzienda;
-
-
-    public Venditore(int id, String nomeUtente, String nome, String email, String password, int numeroTelefono, Ruolo ruolo,
-                 String indirizzo, String partitaIva, List<Prodotto> listaProdotti, List<String> certificatiProdotto, List<String> certificatiAzienda)  {
-        super(id, nomeUtente, nome, email, password, numeroTelefono, indirizzo, ruolo);
-        this.partitaIva=partitaIva;
-        this.listaProdotti=listaProdotti;
-        this.certificatiProdotto=certificatiProdotto;
-        this.certificatiAzienda=certificatiAzienda;
+    public Venditore(String id,
+                     String username,
+                     String nome,
+                     String cognome,
+                     String email,
+                     String password,
+                     String cellNumber,
+                     String indirizzo) {
+        super(id, username, nome, cognome, email, password, cellNumber, indirizzo, Ruolo.VENDITORE);
+        this.prodottoHandler = new HandlerProdotto(this);
     }
 
-
-
-    public abstract Prodotto creaProdotto();
-
-    @Override
-    public int getId() {
-        return super.getId();
+    /**
+     * Crea un nuovo prodotto.
+     */
+    public Prodotto creaProdotto(String nome,
+                                 String descrizione,
+                                 double prezzo,
+                                 List<String> certificazioni) {
+        return prodottoHandler.creaProdotto(nome, descrizione, prezzo, certificazioni);
     }
 
-    @Override
-    public String getNome() {
-        return super.getNome();
+    /**
+     * Modifica un prodotto esistente.
+     */
+    public Prodotto modificaProdotto(Prodotto prodotto,
+                                     String nome,
+                                     String descrizione,
+                                     double prezzo,
+                                     List<String> certificazioni) {
+        return prodottoHandler.modificaProdotto(prodotto, nome, descrizione, prezzo, certificazioni);
     }
 
-    @Override
-    public int getNumeroTelefono() {
-        return super.getNumeroTelefono();
+    /**
+     * Elimina un prodotto.
+     */
+    public void eliminaProdotto(Prodotto prodotto) {
+        prodottoHandler.eliminaProdotto(prodotto);
     }
 
-    @Override
-    public String getEmail() {
-        return super.getEmail();
-    }
-
-
-    public List<Prodotto> getListaProdotti() {
-        return listaProdotti;
-    }
-
-    public void setListaProdotti(List<Prodotto> listaProdotti) {
-    this.listaProdotti=listaProdotti;
-    }
-
-
-    public List<String> getCertificatiAzienda() {
-        return certificatiAzienda;
-    }
-
-    public void setCertificatiAzienda(List<String> certificatiAzienda) {
-        this.certificatiAzienda=certificatiAzienda;
-    }
-
-    public List<String> getCertificatiProdotto() {
-        return certificatiProdotto;
-    }
-
-    public void setCertificatiProdotto(List<String> certificatiProdotto) {
-        this.certificatiProdotto = certificatiProdotto;
+    /**
+     * Elimina il profilo del venditore e tutti i suoi prodotti.
+     */
+    public void eliminaProfilo() {
+        prodottoHandler.eliminaTuttiProdotti();
+        AccountService.deleteAccount(getId());
     }
 }
