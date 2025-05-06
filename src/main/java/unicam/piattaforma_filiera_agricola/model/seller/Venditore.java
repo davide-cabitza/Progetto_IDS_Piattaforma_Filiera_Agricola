@@ -1,9 +1,7 @@
 package unicam.piattaforma_filiera_agricola.model.seller;
 
-import unicam.piattaforma_filiera_agricola.UtenteLoggato;
 import unicam.piattaforma_filiera_agricola.model.product.Prodotto;
 
-import java.util.Date;
 import java.util.List;
 
 public abstract class Venditore extends UtenteLoggato {

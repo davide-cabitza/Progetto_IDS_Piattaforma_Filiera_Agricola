@@ -8,7 +8,6 @@ import unicam.piattaforma_filiera_agricola.model.product.Prodotto;
 import unicam.piattaforma_filiera_agricola.model.product.ProdottoService;
 import unicam.piattaforma_filiera_agricola.model.seller.AccountService;
 import unicam.piattaforma_filiera_agricola.model.seller.UtenteLoggato;
-import unicam.piattaforma_filiera_agricola.UtenteLoggato;
 import unicam.piattaforma_filiera_agricola.model.seller.Ruolo;
 
 import java.util.List;

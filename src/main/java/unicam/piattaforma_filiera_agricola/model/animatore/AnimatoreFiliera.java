@@ -1,11 +1,10 @@
 package unicam.piattaforma_filiera_agricola.model.animatore;
 
-import unicam.piattaforma_filiera_agricola.UtenteLoggato;
+import unicam.piattaforma_filiera_agricola.model.seller.UtenteLoggato;
 import unicam.piattaforma_filiera_agricola.handler.HandlerEvento;
 import unicam.piattaforma_filiera_agricola.model.seller.Ruolo;
 import unicam.piattaforma_filiera_agricola.model.seller.Venditore;
 import unicam.piattaforma_filiera_agricola.model.seller.AccountService;
-import unicam.piattaforma_filiera_agricola.model.seller.Ruolo;
 
 import java.time.LocalDate;
 import java.util.List;
