@@ -2,5 +2,6 @@ package unicam.piattaforma_filiera_agricola;
 
 public interface IAccess {
 
-    String access(String email, String password);
+    String access(String email,
+                  String password);
 }
