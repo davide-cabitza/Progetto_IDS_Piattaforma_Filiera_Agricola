@@ -18,7 +18,14 @@ public class UtenteNonLoggato implements IRegister, IAccess {
 
     // Metodo per registrare un nuovo utente
     @Override
-    public String register(int id, String nome, String email, String password, int numeroTelefono, String indirizzo, String NomeUtente, UtenteLoggato tipoUtente) {
+    public String register(int id,
+                           String nome,
+                           String email,
+                           String password,
+                           int numeroTelefono,
+                           String indirizzo,
+                           String NomeUtente,
+                           UtenteLoggato tipoUtente) {
         // Verifica se l'utente è già registrato
         if (utentiRegistrati.containsKey(email)) {
             return "Utente già registrato.";
