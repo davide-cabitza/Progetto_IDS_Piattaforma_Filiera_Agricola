@@ -4,7 +4,8 @@ import unicam.piattaforma_filiera_agricola.handler.HandlerCarrello;
 import unicam.piattaforma_filiera_agricola.handler.HandlerOrdine;
 import unicam.piattaforma_filiera_agricola.service.OSMService;
 import unicam.piattaforma_filiera_agricola.model.product.Prodotto;
-import unicam.piattaforma_filiera_agricola.model.buyer.Ordine;
+import unicam.piattaforma_filiera_agricola.model.product.ProdottoService;
+import unicam.piattaforma_filiera_agricola.model.seller.AccountService;
 import unicam.piattaforma_filiera_agricola.model.seller.UtenteLoggato;
 import unicam.piattaforma_filiera_agricola.model.seller.Ruolo;
 

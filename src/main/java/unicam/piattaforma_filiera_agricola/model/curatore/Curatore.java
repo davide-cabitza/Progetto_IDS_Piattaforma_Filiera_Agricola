@@ -1,8 +1,9 @@
 package unicam.piattaforma_filiera_agricola.model.curatore;
 
 import unicam.piattaforma_filiera_agricola.model.seller.UtenteLoggato;
+import unicam.piattaforma_filiera_agricola.model.seller.Ruolo;
 import unicam.piattaforma_filiera_agricola.handler.HandlerApprovazioneRichieste;
-
+import unicam.piattaforma_filiera_agricola.model.seller.AccountService;
 import java.util.List;
 
 /**

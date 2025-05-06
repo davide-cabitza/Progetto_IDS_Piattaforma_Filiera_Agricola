@@ -30,7 +30,7 @@ public class Prodotto {
     private String nomeProdotto;
     private String descrizione;
     private String certificati;
-    private double costo;
+    private double prezzo;
     private int quantitativo;
     private int id_venditore;
     @Temporal(TemporalType.TIMESTAMP)
@@ -38,9 +38,9 @@ public class Prodotto {
     @Embedded
     private Indirizzo location;
 
-    public Prodotto(String nomeProdotto, String descrizione, String certificati, double costo, int quantitativo, int id_venditore, Indirizzo location) {
+    public Prodotto(String nomeProdotto, String descrizione, String certificati, double prezzo, int quantitativo, int id_venditore, Indirizzo location) {
         this.nomeProdotto = nomeProdotto;
-        this.costo = costo;
+        this.prezzo = prezzo;
         this.descrizione = descrizione;
         this.certificati = certificati;
         this.quantitativo = quantitativo;
@@ -85,12 +85,12 @@ public class Prodotto {
         this.certificati = certificati;
     }
 
-    public double getCosto() {
-        return costo;
+    public double getPrezzo() {
+        return prezzo;
     }
 
-    public void setCosto(double costo) {
-        this.costo = costo;
+    public void setPrezzo(double costo) {
+        this.prezzo = prezzo;
     }
 
     public int getQuantitativo() {
@@ -125,4 +125,6 @@ public class Prodotto {
     public void setLocation(Indirizzo location) {
         this.location = location;
     }
+
+
 }
