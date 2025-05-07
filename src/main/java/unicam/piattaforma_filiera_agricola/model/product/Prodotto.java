@@ -79,11 +79,11 @@ public class Prodotto {
         this.descrizione = descrizione;
     }
 
-    public List<String> getCertificati() {
+    public String getCertificati() {
         return certificati;
     }
 
-    public void setCertificati(List<String> certificati) {
+    public void setCertificati(String certificati) {
         this.certificati = certificati;
     }
 
