@@ -3,6 +3,7 @@ package unicam.piattaforma_filiera_agricola.model.product;
 import unicam.piattaforma_filiera_agricola.Indirizzo;
 
 import java.util.Date;
+import java.util.List;
 
 public class ProdottoGrezzo extends Prodotto {
 

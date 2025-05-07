@@ -5,6 +5,7 @@ import unicam.piattaforma_filiera_agricola.model.builder.BuilderProdottoGrezzo;
 import unicam.piattaforma_filiera_agricola.model.builder.BuilderProdottoTrasformato;
 
 import java.util.Date;
+import java.util.List;
 
 public class ProdottoTrasformato extends Prodotto {
 
