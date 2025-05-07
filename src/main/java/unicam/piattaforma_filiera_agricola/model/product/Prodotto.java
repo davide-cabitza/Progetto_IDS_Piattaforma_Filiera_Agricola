@@ -30,7 +30,7 @@ public class Prodotto {
     private long id;
     private String nomeProdotto;
     private String descrizione;
-    private String certificati;
+    private List<String> certificati;
     private double prezzo;
     private int quantitativo;
     private int id_venditore;
@@ -38,6 +38,7 @@ public class Prodotto {
     private Date dataInserimento;
     @Embedded
     private Indirizzo location;
+    private String processoTrasformazione;
 
     public Prodotto(String nomeProdotto, String descrizione, String certificati, double prezzo, int quantitativo, int id_venditore, Indirizzo location) {
         this.nomeProdotto = nomeProdotto;
@@ -125,6 +126,14 @@ public class Prodotto {
 
     public void setLocation(Indirizzo location) {
         this.location = location;
+    }
+
+    public String getProcessoTrasformazione() {
+        return processoTrasformazione;
+    }
+
+    public void setProcessoTrasformazione(String processoTrasformazione) {
+        this.processoTrasformazione = processoTrasformazione;
     }
 
 

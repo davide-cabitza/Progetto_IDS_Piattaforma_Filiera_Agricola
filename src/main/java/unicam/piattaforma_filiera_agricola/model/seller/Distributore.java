@@ -1,20 +1,32 @@
 package unicam.piattaforma_filiera_agricola.model.seller;
 
+import unicam.piattaforma_filiera_agricola.handler.HandlerPacchetto;
 import unicam.piattaforma_filiera_agricola.model.product.Prodotto;
-
-import java.util.Date;
+import unicam.piattaforma_filiera_agricola.model.product.Pacchetto;
 import java.util.List;
 
-public class Distributore extends Venditore implements ISeller {
+/**
+ * Rappresenta un Distributore (specializzazione di Venditore)
+ * che gestisce un processo di distribuzione dei prodotti
+ * e può creare pacchetti di prodotti.
+ */
+public class Distributore extends Venditore {
 
-    public String processoDistribuzione;
+    private String processoDistribuzione;
+    private final HandlerPacchetto pacchettoHandler;
 
-    public Distributore(int id, String nomeUtente, String nome, String email, String password, int numeroTelefono, Ruolo ruolo, String indirizzo, String NomeUtente, String partitaIva,
-                      List<Prodotto> listaProdotti, List<String> certificatiProdotto, List<String> certificatiAzienda, String processoColtivazione) {
-
-        super(id, nomeUtente, nome, email, password, numeroTelefono, ruolo,
-                indirizzo, partitaIva, listaProdotti, certificatiProdotto, certificatiAzienda);
-        this.processoDistribuzione = processoColtivazione;
+    public Distributore(String id,
+                        String username,
+                        String nome,
+                        String cognome,
+                        String email,
+                        String password,
+                        String cellNumber,
+                        String indirizzo,
+                        String processoDistribuzione) {
+        super(id, username, nome, cognome, email, password, cellNumber, indirizzo);
+        this.processoDistribuzione = processoDistribuzione;
+        this.pacchettoHandler = new HandlerPacchetto(this);
     }
 
     public String getProcessoDistribuzione() {
@@ -25,18 +37,39 @@ public class Distributore extends Venditore implements ISeller {
         this.processoDistribuzione = processoDistribuzione;
     }
 
+    /**
+     * Crea e pubblica un nuovo prodotto delegando a Venditore.
+     */
     @Override
-    public Prodotto creaProdotto() {
-        return null;
+    public Prodotto creaProdotto(String nome,
+                                 String descrizione,
+                                 double prezzo,
+                                 List<String> certificazioni) {
+        return super.creaProdotto(nome, descrizione, prezzo, certificazioni);
     }
 
+    /**
+     * Elimina un prodotto delegando a Venditore.
+     */
     @Override
-    public void caricaProdotto(Prodotto p) {
-
+    public void eliminaProdotto(Prodotto prodotto) {
+        super.eliminaProdotto(prodotto);
     }
 
+    /**
+     * Elimina il profilo e rimuove tutti i prodotti.
+     */
     @Override
-    public void modificaProdotto(Prodotto p) {
+    public void eliminaProfilo() {
+        super.eliminaProfilo();
+    }
 
+    /**
+     * Crea un pacchetto di prodotti delegando a HandlerPacchetto.
+     */
+    public Pacchetto creaPacchetto(String nome,
+                                   List<Prodotto> prodotti,
+                                   double prezzoTotale) {
+        return pacchettoHandler.creaPacchetto(nome, prodotti, prezzoTotale);
     }
 }

@@ -35,10 +35,6 @@ public class Produttore extends Venditore implements ISeller {
 
     }
 
-    @Override
-    public void modificaProdotto(Prodotto p) {
-
-    }
 }
 
 

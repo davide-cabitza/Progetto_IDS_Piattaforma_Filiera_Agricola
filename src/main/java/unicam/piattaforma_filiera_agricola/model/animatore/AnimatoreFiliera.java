@@ -45,21 +45,6 @@ public class AnimatoreFiliera extends UtenteLoggato {
     }
 
     /**
-     * Modifica i dati di un evento esistente.
-     */
-    public Evento modificaEvento(Evento evento,
-                                 LocalDate dataInizio,
-                                 LocalDate dataFine,
-                                 String localita,
-                                 int maxPartecipanti,
-                                 String nome,
-                                 String descrizione) {
-        return eventoHandler.modificaEvento(
-                evento, dataInizio, dataFine, localita, maxPartecipanti, nome, descrizione
-        );
-    }
-
-    /**
      * Elimina un evento specifico.
      */
     public void eliminaEvento(Evento evento) {

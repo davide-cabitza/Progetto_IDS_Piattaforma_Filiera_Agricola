@@ -34,16 +34,6 @@ public class Venditore extends UtenteLoggato {
         return prodottoHandler.creaProdotto(nome, descrizione, prezzo, certificazioni);
     }
 
-    /**
-     * Modifica un prodotto esistente.
-     */
-    public Prodotto modificaProdotto(Prodotto prodotto,
-                                     String nome,
-                                     String descrizione,
-                                     double prezzo,
-                                     List<String> certificazioni) {
-        return prodottoHandler.modificaProdotto(prodotto, nome, descrizione, prezzo, certificazioni);
-    }
 
     /**
      * Elimina un prodotto.
