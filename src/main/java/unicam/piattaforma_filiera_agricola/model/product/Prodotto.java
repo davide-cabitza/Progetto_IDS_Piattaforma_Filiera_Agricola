@@ -30,7 +30,7 @@ public class Prodotto {
     private long id;
     private String nomeProdotto;
     private String descrizione;
-    private List<String> certificati;
+    private String certificati;
     private double prezzo;
     private int quantitativo;
     private int id_venditore;
@@ -40,7 +40,7 @@ public class Prodotto {
     private Indirizzo location;
     private String processoTrasformazione;
 
-    public Prodotto(String nomeProdotto, String descrizione, List<String> certificati, double prezzo, int quantitativo, int id_venditore, Indirizzo location) {
+    public Prodotto(String nomeProdotto, String descrizione, String certificati, double prezzo, int quantitativo, int id_venditore, Indirizzo location) {
         this.nomeProdotto = nomeProdotto;
         this.prezzo = prezzo;
         this.descrizione = descrizione;
