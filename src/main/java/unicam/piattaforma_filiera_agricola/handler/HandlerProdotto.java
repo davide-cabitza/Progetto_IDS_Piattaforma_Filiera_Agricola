@@ -25,7 +25,7 @@ public class HandlerProdotto {
     public Prodotto creaProdotto(String nome,
                                  String descrizione,
                                  double prezzo,
-                                 List<String> certificazioni) {
+                                 String certificazioni) {
         String id = UUID.randomUUID().toString();
         Prodotto p = new Prodotto(id, nome, descrizione, prezzo, certificazioni, venditore);
         prodotti.add(p);
@@ -39,7 +39,7 @@ public class HandlerProdotto {
                                      String nome,
                                      String descrizione,
                                      double prezzo,
-                                     List<String> certificazioni) {
+                                     String certificazioni) {
         if (!prodotti.contains(prodotto)) {
             throw new IllegalArgumentException("Prodotto non gestito da questo venditore");
         }

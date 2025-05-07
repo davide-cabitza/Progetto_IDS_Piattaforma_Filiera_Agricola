@@ -40,7 +40,7 @@ public class Trasformatore extends Venditore {
     public Prodotto creaProdotto(String nome,
                                  String descrizione,
                                  double prezzo,
-                                 List<String> certificazioni) {
+                                 String certificazioni) {
         Prodotto p = super.creaProdotto(nome, descrizione, prezzo, certificazioni);
         p.setProcessoTrasformazione(processoTrasformazione);
         return p;

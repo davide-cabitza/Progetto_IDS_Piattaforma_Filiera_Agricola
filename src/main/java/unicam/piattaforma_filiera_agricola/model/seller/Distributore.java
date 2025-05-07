@@ -44,7 +44,7 @@ public class Distributore extends Venditore {
     public Prodotto creaProdotto(String nome,
                                  String descrizione,
                                  double prezzo,
-                                 List<String> certificazioni) {
+                                 String certificazioni) {
         return super.creaProdotto(nome, descrizione, prezzo, certificazioni);
     }
 

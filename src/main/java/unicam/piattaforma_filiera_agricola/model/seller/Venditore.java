@@ -30,7 +30,7 @@ public class Venditore extends UtenteLoggato {
     public Prodotto creaProdotto(String nome,
                                  String descrizione,
                                  double prezzo,
-                                 List<String> certificazioni) {
+                                 String certificazioni) {
         return prodottoHandler.creaProdotto(nome, descrizione, prezzo, certificazioni);
     }
 

@@ -30,7 +30,7 @@ public class Prodotto {
     private long id;
     private String nomeProdotto;
     private String descrizione;
-    private List<String> certificati;
+    private String certificati;
     private double prezzo;
     private int quantitativo;
     private int id_venditore;
@@ -79,11 +79,11 @@ public class Prodotto {
         this.descrizione = descrizione;
     }
 
-    public List<String> getCertificati() {
+    public String getCertificati() {
         return certificati;
     }
 
-    public void setCertificati(List<String> certificati) {
+    public void setCertificati(String certificati) {
         this.certificati = certificati;
     }
 
