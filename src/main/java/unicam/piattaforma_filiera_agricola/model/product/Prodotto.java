@@ -40,7 +40,7 @@ public class Prodotto {
     private Indirizzo location;
     private String processoTrasformazione;
 
-    public Prodotto(String nomeProdotto, String descrizione, String certificati, double prezzo, int quantitativo, int id_venditore, Indirizzo location) {
+    public Prodotto(String nomeProdotto, String descrizione, List<String> certificati, double prezzo, int quantitativo, int id_venditore, Indirizzo location) {
         this.nomeProdotto = nomeProdotto;
         this.prezzo = prezzo;
         this.descrizione = descrizione;
