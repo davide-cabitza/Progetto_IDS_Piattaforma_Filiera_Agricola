@@ -1,6 +1,7 @@
 package unicam.piattaforma_filiera_agricola.model.seller;
 
-import unicam.piattaforma_filiera_agricola.handler.HandlerPacchetto;
+import unicam.piattaforma_filiera_agricola.Indirizzo;
+import unicam.piattaforma_filiera_agricola.handler.HandlerProdotto;
 import unicam.piattaforma_filiera_agricola.model.product.Prodotto;
 import unicam.piattaforma_filiera_agricola.model.product.Pacchetto;
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.List;
 public class Distributore extends Venditore {
 
     private String processoDistribuzione;
-    private final HandlerPacchetto pacchettoHandler;
+    private final HandlerProdotto pacchettoHandler;
 
     public Distributore(String id,
                         String username,
@@ -26,7 +27,7 @@ public class Distributore extends Venditore {
                         String processoDistribuzione) {
         super(id, username, nome, cognome, email, password, cellNumber, indirizzo);
         this.processoDistribuzione = processoDistribuzione;
-        this.pacchettoHandler = new HandlerPacchetto(this);
+        this.pacchettoHandler = new HandlerProdotto(this);
     }
 
     public String getProcessoDistribuzione() {
@@ -43,9 +44,8 @@ public class Distributore extends Venditore {
     @Override
     public Prodotto creaProdotto(String nome,
                                  String descrizione,
-                                 double prezzo,
-                                 String certificazioni) {
-        return super.creaProdotto(nome, descrizione, prezzo, certificazioni);
+                                 String certificazioni, double prezzo, int quantitativo, int id_venditore, Indirizzo indirizzo) {
+        return super.creaProdotto(nome, descrizione, certificazioni, prezzo, quantitativo, id_venditore, indirizzo);
     }
 
     /**

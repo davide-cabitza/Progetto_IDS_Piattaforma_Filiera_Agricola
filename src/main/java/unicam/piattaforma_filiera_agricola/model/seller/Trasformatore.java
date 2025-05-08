@@ -1,5 +1,6 @@
 package unicam.piattaforma_filiera_agricola.model.seller;
 
+import unicam.piattaforma_filiera_agricola.Indirizzo;
 import unicam.piattaforma_filiera_agricola.model.product.Prodotto;
 import java.util.List;
 
@@ -39,9 +40,8 @@ public class Trasformatore extends Venditore {
     @Override
     public Prodotto creaProdotto(String nome,
                                  String descrizione,
-                                 double prezzo,
-                                 String certificazioni) {
-        Prodotto p = super.creaProdotto(nome, descrizione, prezzo, certificazioni);
+                                 String certificazioni, double prezzo, int quantitativo, int id_venditore, Indirizzo indirizzo) {
+        Prodotto p = super.creaProdotto(nome, descrizione, certificazioni, prezzo, quantitativo, id_venditore, indirizzo);
         p.setProcessoTrasformazione(processoTrasformazione);
         return p;
     }
