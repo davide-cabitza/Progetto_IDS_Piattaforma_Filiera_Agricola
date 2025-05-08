@@ -24,7 +24,7 @@ public class Pagamento {
     public Double calcolaTotale() {
         double sommaCosti = 0;
         for (Prodotto prodotto : prodotti) {
-            sommaCosti = sommaCosti + prodotto.getCosto();
+            sommaCosti = sommaCosti + prodotto.getPrezzo();
         }
         return sommaCosti;
     }

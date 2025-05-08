@@ -17,6 +17,7 @@ public class HandlerOrdine {
     public void processaPagamento(Ordine o) { o.setStato("PAGATO"); }
     public void confermaOrdine(Ordine o) { o.setStato("CONFERMATO"); }
     public void annullaOrdiniPendenti(String idAcq) { /* logica */ }
+    public void accreditaVenditore(String idVenditore, double somma){}
 }
 
 
