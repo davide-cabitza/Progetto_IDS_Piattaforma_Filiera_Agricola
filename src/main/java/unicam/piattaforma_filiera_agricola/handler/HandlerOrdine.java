@@ -1,8 +1,5 @@
 package unicam.piattaforma_filiera_agricola.handler;
 
-import unicam.piattaforma_filiera_agricola.model.buyer.RigaCarrello;
-import unicam.piattaforma_filiera_agricola.model.buyer.Ordine;
-
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;

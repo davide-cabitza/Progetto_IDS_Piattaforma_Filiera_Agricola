@@ -1,56 +1,33 @@
 package unicam.piattaforma_filiera_agricola.model.product;
 
 import unicam.piattaforma_filiera_agricola.model.seller.Distributore;
+import unicam.piattaforma_filiera_agricola.model.seller.Venditore;
+import unicam.piattaforma_filiera_agricola.model.user.Indirizzo;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Pacchetto {
+public class Pacchetto extends Prodotto {
 
-    private final String idPacchetto;
-    private String nome;
-    private final List<Prodotto> prodotti;
-    private double prezzoTotale;
-    private final Distributore creatore;
+    private List<Prodotto> pacchetto;
 
-    public Pacchetto(String idPacchetto,
-                     String nome,
-                     List<Prodotto> prodotti,
-                     double prezzoTotale,
-                     Distributore creatore) {
-        this.idPacchetto = idPacchetto;
-        this.nome = nome;
-        this.prodotti = new ArrayList<>(prodotti);
-        this.prezzoTotale = prezzoTotale;
-        this.creatore = creatore;
+    public Pacchetto(String nome, double costo, String descrizione, Indirizzo indirizzo, Venditore venditore, List<Prodotto> pacchetto)
+    {
+        super(nome, costo, descrizione, indirizzo, venditore);
+        if (pacchetto == null) {
+            this.pacchetto = new ArrayList<>();
+        } else {
+            this.pacchetto = pacchetto;
+        }
     }
 
-    public String getIdPacchetto() {
-        return idPacchetto;
+    public void aggiungiProdotto(Prodotto prodotto) {
+        if (prodotto != null) {
+            this.pacchetto.add(prodotto);
+        }
     }
+    public List<Prodotto> getPacchetto() {return this.pacchetto;}
 
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public List<Prodotto> getProdotti() {
-        return Collections.unmodifiableList(prodotti);
-    }
-
-    public double getPrezzoTotale() {
-        return prezzoTotale;
-    }
-
-    public void setPrezzoTotale(double prezzoTotale) {
-        this.prezzoTotale = prezzoTotale;
-    }
-
-    public Distributore getCreatore() {
-        return creatore;
-    }
+    public void setPacchetto(List<Prodotto> pacchetto) {this.pacchetto = pacchetto;}
 }

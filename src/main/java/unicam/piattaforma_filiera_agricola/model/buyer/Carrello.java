@@ -1,25 +1,22 @@
 package unicam.piattaforma_filiera_agricola.model.buyer;
 
-import unicam.piattaforma_filiera_agricola.model.seller.UtenteLoggato;
+import unicam.piattaforma_filiera_agricola.model.product.Prodotto;
+import unicam.piattaforma_filiera_agricola.model.user.UtenteLoggato;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Carrello {
-    private final UtenteLoggato proprietario;
-    private final List<RigaCarrello> righe = new ArrayList<>();
+    private final List<Prodotto> prodotti = new ArrayList<>();
 
-    public Carrello(UtenteLoggato proprietario) {
-        this.proprietario = proprietario;
-    }
-    public UtenteLoggato getProprietario() { return proprietario; }
-    public List<RigaCarrello> getRighe() { return Collections.unmodifiableList(righe); }
-    void addRiga(RigaCarrello riga) { righe.add(riga); }
-    void removeRiga(RigaCarrello riga) { righe.remove(riga); }
-    void svuota() { righe.clear(); }
+    public Carrello() {}
+    public List<Prodotto> getRighe() { return prodotti; }
+    public void aggiungiProdotto(Prodotto prodotto) { if(prodotto != null) prodotti.add(prodotto); }
+    public void rimuoviPrdotto(Long id) { prodotti.removeIf(prodotto -> prodotto.getId() == id);}
+    public void svuota() { this.prodotti.clear(); }
     public double calcolaTotale() {
-        return righe.stream()
-                .mapToDouble(r -> r.getProdotto().getPrezzo() * r.getQuantita())
+        return prodotti.stream()
+                .mapToDouble(Prodotto::getCosto)
                 .sum();
     }
 }

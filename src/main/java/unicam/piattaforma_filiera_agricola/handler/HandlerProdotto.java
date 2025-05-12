@@ -24,10 +24,9 @@ public class HandlerProdotto {
      */
     public Prodotto creaProdotto(String nome,
                                  String descrizione,
-                                 double prezzo,
-                                 String certificazioni) {
+                                 double prezzo) {
         String id = UUID.randomUUID().toString();
-        Prodotto p = new Prodotto(id, nome, descrizione, prezzo, certificazioni, venditore);
+        Prodotto p = new Prodotto(nome,descrizione,prezzo);
         prodotti.add(p);
         return p;
     }

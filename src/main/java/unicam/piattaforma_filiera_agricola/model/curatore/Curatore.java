@@ -1,10 +1,10 @@
 package unicam.piattaforma_filiera_agricola.model.curatore;
 
 
-import unicam.piattaforma_filiera_agricola.model.seller.UtenteLoggato;
+import unicam.piattaforma_filiera_agricola.model.user.Indirizzo;
+import unicam.piattaforma_filiera_agricola.model.user.UtenteLoggato;
 import unicam.piattaforma_filiera_agricola.model.seller.Ruolo;
 import unicam.piattaforma_filiera_agricola.handler.HandlerApprovazioneRichieste;
-import unicam.piattaforma_filiera_agricola.model.seller.AccountService;
 
 import java.util.List;
 
@@ -15,10 +15,15 @@ public class Curatore extends UtenteLoggato {
 
     private final HandlerApprovazioneRichieste handler;
 
-    public Curatore(int id, String nomeUtente,
+    public Curatore(String id,
+                    String username,
                     String nome,
-                    String email, String password, int cellNumber, String indirizzo, Ruolo ruolo) {
-        super(id, nomeUtente, nome, email, password, cellNumber, indirizzo, Ruolo.CURATORE);
+                    String cognome,
+                    String email,
+                    String password,
+                    String cellNumber,
+                    Indirizzo indirizzo) {
+        super(id, username, nome, cognome, email, password, cellNumber, indirizzo, Ruolo.CURATORE);
         this.handler = new HandlerApprovazioneRichieste(this);
     }
 
@@ -50,11 +55,5 @@ public class Curatore extends UtenteLoggato {
         return handler.getRichiesteInAttesa();
     }
 
-    /**
-     * Elimina il profilo del curatore e gestisce eventuali richieste pendenti.
-     */
-    public void eliminaProfilo() {
-        handler.eliminaProfilo();
-        AccountService.deleteAccount(getId());
-    }
+
 }

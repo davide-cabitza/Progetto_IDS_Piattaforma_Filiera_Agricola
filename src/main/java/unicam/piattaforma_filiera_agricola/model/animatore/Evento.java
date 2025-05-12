@@ -1,6 +1,6 @@
 package unicam.piattaforma_filiera_agricola.model.animatore;
 
-import unicam.piattaforma_filiera_agricola.model.seller.UtenteLoggato;
+import unicam.piattaforma_filiera_agricola.model.user.UtenteLoggato;
 import unicam.piattaforma_filiera_agricola.model.seller.Venditore;
 
 import java.time.LocalDate;
@@ -15,9 +15,6 @@ public class Evento {
     private int maxPartecipanti;
     private String nome;
     private String descrizione;
-    private final AnimatoreFiliera creatore;
-    private final List<PartecipazioneEvento> partecipanti;
-    private final List<Invitation> inviti;
 
     public Evento(String idEvento,
                   LocalDate dataInizio,
@@ -25,8 +22,7 @@ public class Evento {
                   String localita,
                   int maxPartecipanti,
                   String nome,
-                  String descrizione,
-                  AnimatoreFiliera creatore) {
+                  String descrizione) {
         this.idEvento = idEvento;
         this.dataInizio = dataInizio;
         this.dataFine = dataFine;
@@ -34,9 +30,6 @@ public class Evento {
         this.maxPartecipanti = maxPartecipanti;
         this.nome = nome;
         this.descrizione = descrizione;
-        this.creatore = creatore;
-        this.partecipanti = new ArrayList<>();
-        this.inviti = new ArrayList<>();
     }
 
     // Getter e setter
@@ -57,24 +50,5 @@ public class Evento {
     public List<PartecipazioneEvento> getPartecipanti() { return Collections.unmodifiableList(partecipanti); }
     public List<Invitation> getInviti() { return Collections.unmodifiableList(inviti); }
 
-    /**
-     * Aggiunge una partecipazione all'evento.
-     */
-    public void aggiungiPartecipante(UtenteLoggato partecipante) {
-        if (partecipanti.size() >= maxPartecipanti) {
-            throw new IllegalStateException("Numero massimo di partecipanti raggiunto");
-        }
-        String idPart = UUID.randomUUID().toString();
-        PartecipazioneEvento pe = new PartecipazioneEvento(idPart, this, partecipante, LocalDateTime.now());
-        partecipanti.add(pe);
-    }
 
-    /**
-     * Aggiunge un invito all'evento.
-     */
-    public void aggiungiInvito(AnimatoreFiliera mittente, Venditore destinatario) {
-        String idInv = UUID.randomUUID().toString();
-        Invitation invito = new Invitation(idInv, mittente, destinatario, this, LocalDateTime.now());
-        inviti.add(invito);
-    }
 }

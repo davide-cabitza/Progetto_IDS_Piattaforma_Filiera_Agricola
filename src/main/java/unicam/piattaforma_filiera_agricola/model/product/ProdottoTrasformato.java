@@ -1,26 +1,22 @@
 package unicam.piattaforma_filiera_agricola.model.product;
 
-import unicam.piattaforma_filiera_agricola.Indirizzo;
-import unicam.piattaforma_filiera_agricola.model.builder.BuilderProdottoGrezzo;
-import unicam.piattaforma_filiera_agricola.model.builder.BuilderProdottoTrasformato;
-
-import java.util.Date;
-import java.util.List;
+import unicam.piattaforma_filiera_agricola.model.seller.Venditore;
+import unicam.piattaforma_filiera_agricola.model.user.Indirizzo;
 
 public class ProdottoTrasformato extends Prodotto {
 
-    private String processoProduttivo;
+    private String processoTrasformazione;
 
-    public ProdottoTrasformato(String nomeProdotto, String descrizione, String certificati, double costo, int quantitativo, int id_venditore, Indirizzo location, String processoProduttivo) {
-        super(nomeProdotto, descrizione, certificati, costo, quantitativo, id_venditore, location);
-        this.processoProduttivo = processoProduttivo;
+    public ProdottoTrasformato(String nomeProdotto, double costo, String descrizione, Indirizzo indirizzo, Venditore venditore, String processoTrasformazione) {
+        super(nomeProdotto, costo, descrizione, indirizzo, venditore);
+        this.processoTrasformazione = processoTrasformazione;
     }
 
-    public String getProcessoProduttivo() {
-        return processoProduttivo;
+    public String getProcessoTrasformazione() {
+        return processoTrasformazione;
     }
 
-    public void setProcessoProduttivo(String processoProduttivo) {
-        this.processoProduttivo = processoProduttivo;
+    public void setProcessoTrasformazione(String processoProduttivo) {
+        this.processoTrasformazione = processoTrasformazione;
     }
 }

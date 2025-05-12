@@ -1,11 +1,16 @@
 package unicam.piattaforma_filiera_agricola.model.seller;
 
+import unicam.piattaforma_filiera_agricola.handler.HandlerProdotto;
 import unicam.piattaforma_filiera_agricola.model.product.Prodotto;
+import unicam.piattaforma_filiera_agricola.model.user.Indirizzo;
+import unicam.piattaforma_filiera_agricola.model.product.ProdottoTrasformato;
+
+import java.util.Date;
 import java.util.List;
 
 /**
- * Rappresenta un Trasformatore (specializzazione di Venditore)
- * che applica un processo di trasformazione ai prodotti.
+ * Rappresenta un Trasformatore, estensione di Venditore,
+ * che applica un processo di trasformazione ai prodotti pubblicati.
  */
 public class Trasformatore extends Venditore {
 
@@ -18,7 +23,7 @@ public class Trasformatore extends Venditore {
                          String email,
                          String password,
                          String cellNumber,
-                         String indirizzo,
+                         Indirizzo indirizzo,
                          String processoTrasformazione) {
         super(id, username, nome, cognome, email, password, cellNumber, indirizzo);
         this.processoTrasformazione = processoTrasformazione;
@@ -33,33 +38,10 @@ public class Trasformatore extends Venditore {
     }
 
     /**
-     * Crea e pubblica un nuovo prodotto delegando a Venditore,
-     * aggiungendo il processo di trasformazione.
+     * Crea e pubblica un nuovo prodotto includendo il processo di trasformazione.
      */
     @Override
-    public Prodotto creaProdotto(String nome,
-                                 String descrizione,
-                                 double prezzo,
-                                 String certificazioni) {
-        Prodotto p = super.creaProdotto(nome, descrizione, prezzo, certificazioni);
-        p.setProcessoTrasformazione(processoTrasformazione);
-        return p;
-    }
-
-
-    /**
-     * Elimina un prodotto delegando a Venditore.
-     */
-    @Override
-    public void eliminaProdotto(Prodotto prodotto) {
-        super.eliminaProdotto(prodotto);
-    }
-
-    /**
-     * Elimina il profilo e rimuove tutti i prodotti.
-     */
-    @Override
-    public void eliminaProfilo() {
-        super.eliminaProfilo();
+    public Prodotto createProduct(String nome, double prezzo, String descrizione) {
+        return new ProdottoTrasformato(nome, prezzo, descrizione, getIndirizzo(), this, processoTrasformazione);
     }
 }

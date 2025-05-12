@@ -1,8 +1,13 @@
-package unicam.piattaforma_filiera_agricola.model.seller;
+package unicam.piattaforma_filiera_agricola.model.user;
+
+import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.Embedded;
+import unicam.piattaforma_filiera_agricola.model.seller.Ruolo;
 
 /**
  * Classe base per tutti gli utenti autenticati nella piattaforma.
  */
+@MappedSuperclass
 public abstract class UtenteLoggato {
     private final String id;
     private String username;
@@ -11,8 +16,14 @@ public abstract class UtenteLoggato {
     private String email;
     private String password;
     private String cellNumber;
-    private String indirizzo;
+
+
+
+    @Embedded
+    private Indirizzo indirizzo;
     private final Ruolo ruolo;
+
+   public UtenteLoggato() {};
 
     public UtenteLoggato(String id,
                          String username,
@@ -21,7 +32,7 @@ public abstract class UtenteLoggato {
                          String email,
                          String password,
                          String cellNumber,
-                         String indirizzo,
+                         Indirizzo indirizzo,
                          Ruolo ruolo) {
         this.id = id;
         this.username = username;
@@ -86,11 +97,11 @@ public abstract class UtenteLoggato {
         this.cellNumber = cellNumber;
     }
 
-    public String getIndirizzo() {
+    public Indirizzo getIndirizzo() {
         return indirizzo;
     }
 
-    public void setIndirizzo(String indirizzo) {
+    public void setIndirizzo(Indirizzo indirizzo) {
         this.indirizzo = indirizzo;
     }
 

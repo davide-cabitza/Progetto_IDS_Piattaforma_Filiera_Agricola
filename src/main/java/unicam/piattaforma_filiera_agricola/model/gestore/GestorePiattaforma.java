@@ -1,7 +1,7 @@
-package unicam.piattaforma_filiera_agricola;
+package unicam.piattaforma_filiera_agricola.model.gestore;
 
 import unicam.piattaforma_filiera_agricola.model.seller.Ruolo;
-import unicam.piattaforma_filiera_agricola.model.seller.UtenteLoggato;
+import unicam.piattaforma_filiera_agricola.model.user.UtenteLoggato;
 
 public class GestorePiattaforma extends UtenteLoggato {
 

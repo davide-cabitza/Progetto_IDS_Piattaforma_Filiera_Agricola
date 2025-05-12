@@ -1,12 +1,13 @@
 package unicam.piattaforma_filiera_agricola.model.animatore;
 
-import unicam.piattaforma_filiera_agricola.model.seller.UtenteLoggato;
+import unicam.piattaforma_filiera_agricola.model.user.Indirizzo;
+import unicam.piattaforma_filiera_agricola.model.user.UtenteLoggato;
 import unicam.piattaforma_filiera_agricola.handler.HandlerEvento;
 import unicam.piattaforma_filiera_agricola.model.seller.Ruolo;
 import unicam.piattaforma_filiera_agricola.model.seller.Venditore;
-import unicam.piattaforma_filiera_agricola.model.seller.AccountService;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,62 +15,38 @@ import java.util.List;
  */
 public class AnimatoreFiliera extends UtenteLoggato {
 
-    private final HandlerEvento eventoHandler;
+    private List<Evento> eventoCreato=new ArrayList<>();
 
-    public AnimatoreFiliera(int id, String nomeUtente,
+    public AnimatoreFiliera(String id, String nomeUtente,
                             String nome,
-                            String email, String password, int cellNumber, String indirizzo, Ruolo ruolo) {
-        super(id, nomeUtente, nome, email, password, cellNumber, indirizzo, Ruolo.ANIMATORE_FILIERA);
-        this.eventoHandler = new HandlerEvento(this);
+                            String cognome,
+                            String email, String password, String cellNumber, Indirizzo indirizzo, Ruolo ruolo) {
+        super(id, nomeUtente,cognome, nome, email, password, cellNumber, indirizzo, Ruolo.ANIMATORE_FILIERA);
     }
 
-    /**
-     * Restituisce il handler per la gestione degli eventi.
-     */
-    public HandlerEvento getEventoHandler() {
-        return eventoHandler;
-    }
 
     /**
      * Crea un nuovo evento.
      */
-    public Evento creaEvento(LocalDate dataInizio,
+    public void creaEvento(String idEvento,
+            LocalDate dataInizio,
                              LocalDate dataFine,
                              String localita,
                              int maxPartecipanti,
                              String nome,
                              String descrizione) {
-        return eventoHandler.creaEvento(
-                dataInizio, dataFine, localita, maxPartecipanti, nome, descrizione
-        );
+        Evento evento= new Evento(idEvento,dataInizio,dataFine,localita,maxPartecipanti, nome,descrizione);
+        this.eventoCreato.add(evento);
     }
 
-    /**
-     * Elimina un evento specifico.
-     */
-    public void eliminaEvento(Evento evento) {
-        eventoHandler.eliminaEvento(evento);
+    public List<Evento> getEventoCreato() {return eventoCreato;}
+    public void setEventoCreato(List<Evento> eventoCreato) {this.eventoCreato=eventoCreato;}
+
+    public void invitaVenditore(Venditore venditore, Evento evento) {
+        // Logica semplificata: notifica al venditore dell'invito
+        System.out.println("Invito inviato a venditore: " + venditore.getUsername()
+                + " per partecipare all'evento '" + evento.getNome() + "'.");
     }
 
-    /**
-     * Restituisce la lista degli eventi creati.
-     */
-    public List<Evento> visualizzaEventiCreati() {
-        return eventoHandler.getEventiCreati();
-    }
 
-    /**
-     * Invia un invito a un venditore per un evento.
-     */
-    public void inviaInvitoVenditore(Venditore venditore, Evento evento) {
-        eventoHandler.inviaInvitoVenditore(venditore, evento);
-    }
-
-    /**
-     * Elimina il profilo utente e tutti gli eventi.
-     */
-    public void eliminaProfilo() {
-        eventoHandler.eliminaTuttiEventi();
-        AccountService.deleteAccount(getId());
-    }
 }

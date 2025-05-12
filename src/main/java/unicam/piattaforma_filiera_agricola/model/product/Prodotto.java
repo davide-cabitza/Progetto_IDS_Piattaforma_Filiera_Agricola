@@ -1,12 +1,10 @@
 package unicam.piattaforma_filiera_agricola.model.product;
 
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.persistence.*;
-import unicam.piattaforma_filiera_agricola.Indirizzo;
+import unicam.piattaforma_filiera_agricola.model.seller.Venditore;
+import unicam.piattaforma_filiera_agricola.model.user.Indirizzo;
 
 import java.util.Date;
-import java.util.List;
 
 /*
 @JsonTypeInfo(
@@ -25,32 +23,25 @@ import java.util.List;
 
  */
 public class Prodotto {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
     private String nomeProdotto;
+    private double costo;
     private String descrizione;
-    private String certificati;
-    private double prezzo;
-    private int quantitativo;
-    private int id_venditore;
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dataInserimento;
-    @Embedded
-    private Indirizzo location;
-    private String processoTrasformazione;
+    private Long id;
+    private Indirizzo indirizzo;
+    private Venditore venditore;
+    private boolean stato;
 
-    public Prodotto(String nomeProdotto, String descrizione, String certificati, double prezzo, int quantitativo, int id_venditore, Indirizzo location) {
+
+    public Prodotto(String nomeProdotto, double costo, String descrizione,Indirizzo indirizzo, Venditore venditore) {
         this.nomeProdotto = nomeProdotto;
-        this.prezzo = prezzo;
+        this.costo = costo;
         this.descrizione = descrizione;
-        this.certificati = certificati;
-        this.quantitativo = quantitativo;
-        this.id_venditore = id_venditore;
-        this.location = location;
+        this.indirizzo = indirizzo;
+        this.stato = false;
+        this.venditore= venditore;
     }
 
-    public Prodotto() {
+    public Prodotto(String nome, String descrizione, double prezzo) {
 
     }
 
@@ -79,62 +70,32 @@ public class Prodotto {
         this.descrizione = descrizione;
     }
 
-    public String getCertificati() {
-        return certificati;
+    public double getCosto() {
+        return costo;
     }
 
-    public void setCertificati(String certificati) {
-        this.certificati = certificati;
+    public Indirizzo getIndirizzo() {return indirizzo;}
+
+    public void setIndirizzo(Indirizzo indirizzo) {this.indirizzo=indirizzo;}
+
+    public boolean isStato() {
+        return stato;
     }
 
-    public double getPrezzo() {
-        return prezzo;
+    public void setStato(boolean stato) {this.stato=stato;}
+
+    public void setCosto(double costo) {
+        this.costo = costo;
     }
 
-    public void setPrezzo(double costo) {
-        this.prezzo = prezzo;
+    public Venditore getVenditore() {
+        return venditore;
     }
 
-    public int getQuantitativo() {
-        return quantitativo;
+    public void setVenditore(Venditore venditore) {
+        this.venditore = venditore;
     }
 
-    public void setQuantitativo(int quantitativo) {
-        this.quantitativo = quantitativo;
-    }
-
-
-    public int getId_venditore() {
-        return id_venditore;
-    }
-
-    public void setId_venditore(int id_venditore) {
-        this.id_venditore = id_venditore;
-    }
-
-    public Date getDataInserimento() {
-        return dataInserimento;
-    }
-
-    public void setDataInserimento(Date dataInserimento) {
-        this.dataInserimento = dataInserimento;
-    }
-
-    public Indirizzo getLocation() {
-        return location;
-    }
-
-    public void setLocation(Indirizzo location) {
-        this.location = location;
-    }
-
-    public String getProcessoTrasformazione() {
-        return processoTrasformazione;
-    }
-
-    public void setProcessoTrasformazione(String processoTrasformazione) {
-        this.processoTrasformazione = processoTrasformazione;
-    }
 
 
 }

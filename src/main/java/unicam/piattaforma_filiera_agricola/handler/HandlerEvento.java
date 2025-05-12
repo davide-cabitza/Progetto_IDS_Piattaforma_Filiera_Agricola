@@ -3,7 +3,6 @@ package unicam.piattaforma_filiera_agricola.handler;
 import unicam.piattaforma_filiera_agricola.model.animatore.AnimatoreFiliera;
 import unicam.piattaforma_filiera_agricola.model.animatore.Evento;
 import unicam.piattaforma_filiera_agricola.model.seller.Venditore;
-import unicam.piattaforma_filiera_agricola.model.animatore.Invitation;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

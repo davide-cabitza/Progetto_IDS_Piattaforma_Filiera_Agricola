@@ -1,19 +1,19 @@
 package unicam.piattaforma_filiera_agricola.model.seller;
 
-import unicam.piattaforma_filiera_agricola.handler.HandlerPacchetto;
-import unicam.piattaforma_filiera_agricola.model.product.Prodotto;
 import unicam.piattaforma_filiera_agricola.model.product.Pacchetto;
+import unicam.piattaforma_filiera_agricola.model.product.Prodotto;
+import unicam.piattaforma_filiera_agricola.model.user.Indirizzo;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
- * Rappresenta un Distributore (specializzazione di Venditore)
- * che gestisce un processo di distribuzione dei prodotti
- * e può creare pacchetti di prodotti.
+ * Rappresenta un Distributore, specializzazione di Venditore
+ * che crea pacchetti di prodotti.
  */
-public class Distributore extends Venditore {
+public class Distributore extends Venditore implements IAssieme {
 
-    private String processoDistribuzione;
-    private final HandlerPacchetto pacchettoHandler;
+    private Pacchetto pacchetto = null;
 
     public Distributore(String id,
                         String username,
@@ -22,54 +22,38 @@ public class Distributore extends Venditore {
                         String email,
                         String password,
                         String cellNumber,
-                        String indirizzo,
-                        String processoDistribuzione) {
+                        Indirizzo indirizzo) {
         super(id, username, nome, cognome, email, password, cellNumber, indirizzo);
-        this.processoDistribuzione = processoDistribuzione;
-        this.pacchettoHandler = new HandlerPacchetto(this);
     }
 
-    public String getProcessoDistribuzione() {
-        return processoDistribuzione;
+    public void assiemeProdotti(String bundleName, double price, String description) {
+        this.pacchetto = new Pacchetto(bundleName, price, description, getIndirizzo(), this, null);
     }
 
-    public void setProcessoDistribuzione(String processoDistribuzione) {
-        this.processoDistribuzione = processoDistribuzione;
+    public void aggiungiProdotto(Prodotto prodotto) {
+        if (this.pacchetto != null && prodotto != null) {
+            this.pacchetto.aggiungiProdotto(prodotto);
+        } else {
+            System.out.println("Errore: nessun pacchetto in corso oppure subProduct nullo.");
+        }
     }
 
-    /**
-     * Crea e pubblica un nuovo prodotto delegando a Venditore.
-     */
+    public Prodotto assiemeFinito() {
+        if (this.pacchetto == null) {
+            System.out.println("Nessun pacchetto in corso.");
+            return null;
+        }
+        Prodotto assiemefinito = this.pacchetto;
+        this.pacchetto = null;
+        return assiemefinito;
+    }
+
     @Override
-    public Prodotto creaProdotto(String nome,
-                                 String descrizione,
-                                 double prezzo,
-                                 String certificazioni) {
-        return super.creaProdotto(nome, descrizione, prezzo, certificazioni);
+    public Prodotto createProduct(String name, double price, String description) {
+        return new Pacchetto(name, price, description,getIndirizzo(), this, null);
     }
 
-    /**
-     * Elimina un prodotto delegando a Venditore.
-     */
-    @Override
-    public void eliminaProdotto(Prodotto prodotto) {
-        super.eliminaProdotto(prodotto);
-    }
 
-    /**
-     * Elimina il profilo e rimuove tutti i prodotti.
-     */
-    @Override
-    public void eliminaProfilo() {
-        super.eliminaProfilo();
-    }
 
-    /**
-     * Crea un pacchetto di prodotti delegando a HandlerPacchetto.
-     */
-    public Pacchetto creaPacchetto(String nome,
-                                   List<Prodotto> prodotti,
-                                   double prezzoTotale) {
-        return pacchettoHandler.creaPacchetto(nome, prodotti, prezzoTotale);
-    }
+
 }

@@ -1,14 +1,10 @@
 package unicam.piattaforma_filiera_agricola.handler;
 
 import unicam.piattaforma_filiera_agricola.model.buyer.Carrello;
-import unicam.piattaforma_filiera_agricola.model.buyer.RigaCarrello;
-import unicam.piattaforma_filiera_agricola.model.buyer.Ordine;
 import unicam.piattaforma_filiera_agricola.model.product.Prodotto;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 public class HandlerCarrello {
     private final Carrello carrello;

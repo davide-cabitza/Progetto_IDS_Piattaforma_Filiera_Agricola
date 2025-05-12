@@ -1,24 +1,22 @@
 package unicam.piattaforma_filiera_agricola.model.product;
 
-import unicam.piattaforma_filiera_agricola.Indirizzo;
-
-import java.util.Date;
-import java.util.List;
+import unicam.piattaforma_filiera_agricola.model.seller.Venditore;
+import unicam.piattaforma_filiera_agricola.model.user.Indirizzo;
 
 public class ProdottoGrezzo extends Prodotto {
 
-    private String processoProduttivo;
+    private String processoDiColtivazione;
 
-    public ProdottoGrezzo(String nomeProdotto, String descrizione, String certificati, double costo, int quantitativo, int id_venditore, Indirizzo location, String processoProduttivo) {
-        super(nomeProdotto, descrizione, certificati, costo, quantitativo, id_venditore, location);
-        this.processoProduttivo = processoProduttivo;
+    public ProdottoGrezzo(String nomeProdotto, double costo, String descrizione, Indirizzo indirizzo, Venditore venditore, String ProcessodiColtivazione) {
+        super(nomeProdotto, costo, descrizione,indirizzo, venditore);
+        this.processoDiColtivazione = processoDiColtivazione;
     }
 
-    public String getProcessoProduttivo() {
-        return processoProduttivo;
+    public String getProcessoDiColtivazione() {
+        return processoDiColtivazione;
     }
 
-    public void setProcessoProduttivo(String processoProduttivo) {
-        this.processoProduttivo = processoProduttivo;
+    public void setProcessoDiColtivazione(String processoDiColtivazione) {
+        this.processoDiColtivazione = processoDiColtivazione;
     }
 }
