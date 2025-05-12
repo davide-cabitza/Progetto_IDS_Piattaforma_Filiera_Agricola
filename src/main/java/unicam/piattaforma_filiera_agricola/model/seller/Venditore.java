@@ -1,5 +1,6 @@
 package unicam.piattaforma_filiera_agricola.model.seller;
 
+import unicam.piattaforma_filiera_agricola.Indirizzo;
 import unicam.piattaforma_filiera_agricola.handler.HandlerProdotto;
 import unicam.piattaforma_filiera_agricola.model.product.Prodotto;
 import unicam.piattaforma_filiera_agricola.model.user.UtenteLoggato;
@@ -32,6 +33,14 @@ public abstract class Venditore extends UtenteLoggato implements IVenditore {
     @Override
     public void loadProduct(String name, double price, String description) {
         Prodotto product = createProduct(name, price, description);
+    }
+    /**
+     * Crea un nuovo prodotto.
+     */
+    public Prodotto creaProdotto(String nome,
+                                 String descrizione,
+                                 String certificazioni, double prezzo, int quantitativo, int id_venditore, Indirizzo indirizzo) {
+        return prodottoHandler.creaProdotto(nome, descrizione, certificazioni, prezzo, quantitativo, id_venditore, indirizzo);
     }
 
 

@@ -1,5 +1,8 @@
 package unicam.piattaforma_filiera_agricola.model.seller;
 
+import unicam.piattaforma_filiera_agricola.Indirizzo;
+import unicam.piattaforma_filiera_agricola.handler.HandlerProdotto;
+import unicam.piattaforma_filiera_agricola.model.product.Prodotto;
 import unicam.piattaforma_filiera_agricola.model.product.Pacchetto;
 import unicam.piattaforma_filiera_agricola.model.product.Prodotto;
 import unicam.piattaforma_filiera_agricola.model.user.Indirizzo;
@@ -14,6 +17,8 @@ import java.util.Map;
 public class Distributore extends Venditore implements IAssieme {
 
     private Pacchetto pacchetto = null;
+    private String processoDistribuzione;
+    private final HandlerProdotto pacchettoHandler;
 
     public Distributore(String id,
                         String username,
@@ -24,6 +29,8 @@ public class Distributore extends Venditore implements IAssieme {
                         String cellNumber,
                         Indirizzo indirizzo) {
         super(id, username, nome, cognome, email, password, cellNumber, indirizzo);
+        this.processoDistribuzione = processoDistribuzione;
+        this.pacchettoHandler = new HandlerProdotto(this);
     }
 
     public void assiemeProdotti(String bundleName, double price, String description) {
@@ -50,10 +57,13 @@ public class Distributore extends Venditore implements IAssieme {
 
     @Override
     public Prodotto createProduct(String name, double price, String description) {
-        return new Pacchetto(name, price, description,getIndirizzo(), this, null);
+        return new Pacchetto(name, price, description, getIndirizzo(), this, null);
+        public Prodotto creaProdotto (String nome,
+                String descrizione,
+                String certificazioni,double prezzo, int quantitativo, int id_venditore, Indirizzo indirizzo){
+            return super.creaProdotto(nome, descrizione, certificazioni, prezzo, quantitativo, id_venditore, indirizzo);
+        }
+
+
     }
-
-
-
-
 }

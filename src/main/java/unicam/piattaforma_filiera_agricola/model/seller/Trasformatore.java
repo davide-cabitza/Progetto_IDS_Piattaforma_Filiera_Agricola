@@ -1,6 +1,7 @@
 package unicam.piattaforma_filiera_agricola.model.seller;
 
 import unicam.piattaforma_filiera_agricola.handler.HandlerProdotto;
+import unicam.piattaforma_filiera_agricola.Indirizzo;
 import unicam.piattaforma_filiera_agricola.model.product.Prodotto;
 import unicam.piattaforma_filiera_agricola.model.user.Indirizzo;
 import unicam.piattaforma_filiera_agricola.model.product.ProdottoTrasformato;
@@ -43,5 +44,28 @@ public class Trasformatore extends Venditore {
     @Override
     public Prodotto createProduct(String nome, double prezzo, String descrizione) {
         return new ProdottoTrasformato(nome, prezzo, descrizione, getIndirizzo(), this, processoTrasformazione);
+    public Prodotto creaProdotto(String nome,
+                                 String descrizione,
+                                 String certificazioni, double prezzo, int quantitativo, int id_venditore, Indirizzo indirizzo) {
+        Prodotto p = super.creaProdotto(nome, descrizione, certificazioni, prezzo, quantitativo, id_venditore, indirizzo);
+        p.setProcessoTrasformazione(processoTrasformazione);
+        return p;
+    }
+
+
+    /**
+     * Elimina un prodotto delegando a Venditore.
+     */
+    @Override
+    public void eliminaProdotto(Prodotto prodotto) {
+        super.eliminaProdotto(prodotto);
+    }
+
+    /**
+     * Elimina il profilo e rimuove tutti i prodotti.
+     */
+    @Override
+    public void eliminaProfilo() {
+        super.eliminaProfilo();
     }
 }

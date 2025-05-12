@@ -23,6 +23,10 @@ import java.util.Date;
 
  */
 public class Prodotto {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private String id;
     private String nomeProdotto;
     private double costo;
     private String descrizione;
@@ -46,11 +50,11 @@ public class Prodotto {
     }
 
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
