@@ -12,9 +12,9 @@ public class Pacchetto extends Prodotto {
 
     private List<Prodotto> pacchetto;
 
-    public Pacchetto(String nome, double costo, String descrizione, Indirizzo indirizzo, Venditore venditore, List<Prodotto> pacchetto)
+    public Pacchetto(String id, String nome, String descrizione, String certificazioni, Indirizzo indirizzo, int id_venditore, List<Prodotto> pacchetto, double costo, int quantita)
     {
-        super(nome, costo, descrizione, indirizzo, venditore);
+        super(id, nome, descrizione, certificazioni, indirizzo, id_venditore, costo, quantita);
         if (pacchetto == null) {
             this.pacchetto = new ArrayList<>();
         } else {

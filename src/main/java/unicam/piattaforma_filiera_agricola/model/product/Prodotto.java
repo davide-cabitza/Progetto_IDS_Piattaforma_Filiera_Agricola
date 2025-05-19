@@ -30,23 +30,22 @@ public class Prodotto {
     private String nomeProdotto;
     private double costo;
     private String descrizione;
-    private Long id;
+    private String certificazioni;
     private Indirizzo indirizzo;
-    private Venditore venditore;
+    private int id_venditore;
     private boolean stato;
+    private int quantita;
 
 
-    public Prodotto(String nomeProdotto, double costo, String descrizione,Indirizzo indirizzo, Venditore venditore) {
+    public Prodotto(String id, String nomeProdotto, String descrizione, String certificazioni, Indirizzo indirizzo, int id_venditore, double costo, int quantita) {
         this.nomeProdotto = nomeProdotto;
         this.costo = costo;
         this.descrizione = descrizione;
+        this.certificazioni = certificazioni;
         this.indirizzo = indirizzo;
         this.stato = false;
-        this.venditore= venditore;
-    }
-
-    public Prodotto(String nome, String descrizione, double prezzo) {
-
+        this.id_venditore = id_venditore;
+        this.quantita = quantita;
     }
 
 
@@ -92,14 +91,17 @@ public class Prodotto {
         this.costo = costo;
     }
 
-    public Venditore getVenditore() {
-        return venditore;
+    public int getIDVenditore() {
+        return id_venditore;
     }
 
-    public void setVenditore(Venditore venditore) {
-        this.venditore = venditore;
+    public void setIDVenditore(int venditore) {
+        this.id_venditore = venditore;
     }
 
+    public int getQuantita(){return quantita;}
+
+    public void setQuantita(int quantity){this.quantita=quantity;}
 
 
 }

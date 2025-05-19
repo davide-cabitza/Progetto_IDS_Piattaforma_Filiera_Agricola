@@ -1,10 +1,11 @@
 package unicam.piattaforma_filiera_agricola.handler;
 
-import unicam.piattaforma_filiera_agricola.Indirizzo;
+
 import unicam.piattaforma_filiera_agricola.model.product.Pacchetto;
 import unicam.piattaforma_filiera_agricola.model.product.Prodotto;
 import unicam.piattaforma_filiera_agricola.model.seller.Distributore;
 import unicam.piattaforma_filiera_agricola.model.seller.Venditore;
+import unicam.piattaforma_filiera_agricola.model.user.Indirizzo;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -29,17 +30,11 @@ public class HandlerProdotto {
     /**
      * Crea un nuovo prodotto e lo aggiunge alla lista del venditore.
      */
-    public Prodotto creaProdotto(String nome,
-                                 String descrizione,
-                                 double prezzo) {
+    public Prodotto creaProdotto(String nomeProdotto, String descrizione, String certificazioni, Indirizzo indirizzo, int id_venditore, double costo, int quantita) {
         String id = UUID.randomUUID().toString();
-        Prodotto p = new Prodotto(nome,descrizione,prezzo);
-        String certificazioni, double prezzo, int quantitativo, int id_venditore, Indirizzo indirizzo) {
-            String id = UUID.randomUUID().toString();
-            Prodotto p = new Prodotto(nome, descrizione, certificazioni, prezzo, quantitativo, id_venditore, indirizzo);
-            p.setId(id);
-            prodotti.add(p);
-            return p;
+        Prodotto p = new Prodotto(id, nomeProdotto, descrizione, certificazioni, indirizzo, venditore, costo, quantita);
+        prodotti.add(p);
+        return p;
         }
 
 
@@ -50,9 +45,9 @@ public class HandlerProdotto {
          * @param prezzoTotale  prezzo complessivo del pacchetto
          * @return pacchetto creato
          */
-        public Pacchetto creaPacchetto(String nome, List<Prodotto> prodotti, double prezzoTotale) {
+        public Pacchetto creaPacchetto(String nome, String descrizione, String certificazioni, Indirizzo indirizzo, int id_venditore, List<Prodotto> prodotti, double prezzoTotale, int quantita) {
             String id = UUID.randomUUID().toString();
-            Pacchetto pacchetto = new Pacchetto(id, nome, prodotti, prezzoTotale, (Distributore) venditore);
+            Pacchetto pacchetto = new Pacchetto(id, nome, descrizione, certificazioni, indirizzo, id_venditore, prodotti, prezzoTotale, quantita);
             pacchetti.add(pacchetto);
             return pacchetto;
         }

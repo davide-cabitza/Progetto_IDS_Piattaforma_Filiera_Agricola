@@ -2,6 +2,7 @@ package unicam.piattaforma_filiera_agricola.model.builder;
 
 import jakarta.persistence.*;
 import jakarta.persistence.TemporalType;
+import unicam.piattaforma_filiera_agricola.model.seller.Venditore;
 import unicam.piattaforma_filiera_agricola.model.user.Indirizzo;
 import unicam.piattaforma_filiera_agricola.model.product.ProdottoTrasformato;
 
@@ -13,13 +14,13 @@ public class BuilderProdottoTrasformato implements IBuilder{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private String id;
     private String nomeProdotto;
     private String descrizione;
     private String certificati;
     private double costo;
     private int quantitativo;
-    private int id_venditore;
+    private Venditore venditore;
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataInserimento;
     @Embedded
@@ -29,7 +30,7 @@ public class BuilderProdottoTrasformato implements IBuilder{
 
     @Override
     public void reset(){
-        risultato = new ProdottoTrasformato(nomeProdotto, descrizione, certificati, costo, quantitativo, id_venditore, location, processoTrasformazione);
+        risultato = new ProdottoTrasformato(id, nomeProdotto, descrizione, certificati, location, venditore, costo, quantitativo, processoTrasformazione);
     }
 
     @Override

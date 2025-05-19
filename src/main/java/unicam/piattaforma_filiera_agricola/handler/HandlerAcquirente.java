@@ -40,7 +40,7 @@ public class HandlerAcquirente {
      * @param productId ID del prodotto da aggiungere.
      * @throws RuntimeException se il prodotto con l'ID specificato non esiste.
      */
-    public void addProduct(Long productId) {
+    public void addProduct(String productId) {
         Prodotto product = prodottoRepository.findById(productId)
                 .orElseThrow(() -> new RuntimeException("Prodotto non trovato con id: " + productId));
         this.shoppingCart.aggiungiProdotto(product);
@@ -51,7 +51,7 @@ public class HandlerAcquirente {
      *
      * @param productId ID del prodotto da rimuovere.
      */
-    public void removeProduct(Long productId) {
+    public void removeProduct(String productId) {
         this.shoppingCart.rimuoviPrdotto(productId);
     }
 
@@ -79,7 +79,7 @@ public class HandlerAcquirente {
     private String generateInvoice(Carrello cart) {
         double total = 0;
         StringBuilder sb = new StringBuilder("Ricevuta:\n");
-        for (Prodotto p : cart.getRighe()) {
+        for (Prodotto p : cart.getProdotti()) {
             sb.append("Prodotto: ").append(p.getNomeProdotto())
                     .append(" - Prezzo: ").append(p.getCosto()).append("\n");
             total += p.getCosto();

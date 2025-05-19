@@ -1,13 +1,11 @@
 package unicam.piattaforma_filiera_agricola.model.seller;
 
-import unicam.piattaforma_filiera_agricola.handler.HandlerProdotto;
-import unicam.piattaforma_filiera_agricola.Indirizzo;
-import unicam.piattaforma_filiera_agricola.model.product.Prodotto;
-import unicam.piattaforma_filiera_agricola.model.user.Indirizzo;
-import unicam.piattaforma_filiera_agricola.model.product.ProdottoTrasformato;
 
-import java.util.Date;
-import java.util.List;
+import unicam.piattaforma_filiera_agricola.model.product.Prodotto;
+import unicam.piattaforma_filiera_agricola.model.product.ProdottoTrasformato;
+import unicam.piattaforma_filiera_agricola.model.user.Indirizzo;
+
+import java.util.UUID;
 
 /**
  * Rappresenta un Trasformatore, estensione di Venditore,
@@ -41,31 +39,11 @@ public class Trasformatore extends Venditore {
     /**
      * Crea e pubblica un nuovo prodotto includendo il processo di trasformazione.
      */
-    @Override
-    public Prodotto createProduct(String nome, double prezzo, String descrizione) {
-        return new ProdottoTrasformato(nome, prezzo, descrizione, getIndirizzo(), this, processoTrasformazione);
-    public Prodotto creaProdotto(String nome,
-                                 String descrizione,
-                                 String certificazioni, double prezzo, int quantitativo, int id_venditore, Indirizzo indirizzo) {
-        Prodotto p = super.creaProdotto(nome, descrizione, certificazioni, prezzo, quantitativo, id_venditore, indirizzo);
-        p.setProcessoTrasformazione(processoTrasformazione);
-        return p;
-    }
 
 
-    /**
-     * Elimina un prodotto delegando a Venditore.
-     */
     @Override
-    public void eliminaProdotto(Prodotto prodotto) {
-        super.eliminaProdotto(prodotto);
-    }
-
-    /**
-     * Elimina il profilo e rimuove tutti i prodotti.
-     */
-    @Override
-    public void eliminaProfilo() {
-        super.eliminaProfilo();
+    public Prodotto createProduct(String name, String description, String certification, double price, int quantity, int id_venditore, Indirizzo adress) {
+        String id = UUID.randomUUID().toString();
+        return new ProdottoTrasformato(id, name, description, certification, adress, id_venditore, price, quantity, processoTrasformazione);
     }
 }
