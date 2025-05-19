@@ -1,4 +1,6 @@
 package unicam.piattaforma_filiera_agricola.repository;
 
-public interface UtenteRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface UtenteRepository{
 }

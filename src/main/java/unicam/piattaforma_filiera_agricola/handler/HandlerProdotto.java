@@ -1,6 +1,6 @@
 package unicam.piattaforma_filiera_agricola.handler;
 
-import unicam.piattaforma_filiera_agricola.Indirizzo;
+import unicam.piattaforma_filiera_agricola.model.user.Indirizzo;
 import unicam.piattaforma_filiera_agricola.model.product.Pacchetto;
 import unicam.piattaforma_filiera_agricola.model.product.Prodotto;
 import unicam.piattaforma_filiera_agricola.model.seller.Distributore;
@@ -32,6 +32,8 @@ public class HandlerProdotto {
     public Prodotto creaProdotto(String nome,
                                  String descrizione,
                                  double prezzo) {
+        /*
+    }
         String id = UUID.randomUUID().toString();
         Prodotto p = new Prodotto(nome,descrizione,prezzo);
                                  String certificazioni, double prezzo, int quantitativo, int id_venditore, Indirizzo indirizzo) {
@@ -40,6 +42,9 @@ public class HandlerProdotto {
         p.setId(id);
         prodotti.add(p);
         return p;
+
+         */
+        return new Prodotto(nome, descrizione, prezzo);
     }
 
 
@@ -50,16 +55,23 @@ public class HandlerProdotto {
      * @param prezzoTotale  prezzo complessivo del pacchetto
      * @return pacchetto creato
      */
+    /*
     public Pacchetto creaPacchetto(String nome, List<Prodotto> prodotti, double prezzoTotale) {
+
         String id = UUID.randomUUID().toString();
         Pacchetto pacchetto = new Pacchetto(id, nome, prodotti, prezzoTotale, (Distributore) venditore);
         pacchetti.add(pacchetto);
         return pacchetto;
+
+
     }
+
+     */
 
     /**
      * Modifica i dati di un prodotto esistente.
      */
+    /*
     public Prodotto modificaProdotto(Prodotto prodotto,
                                      String nome,
                                      String descrizione,
@@ -75,6 +87,8 @@ public class HandlerProdotto {
         return prodotto;
     }
 
+     */
+
 
     /**
      * Modifica il nome e/o prezzo di un pacchetto esistente.
@@ -83,8 +97,11 @@ public class HandlerProdotto {
         if (!pacchetti.contains(pacchetto)) {
             throw new IllegalArgumentException("Pacchetto non gestito da questo distributore");
         }
+        /*
         pacchetto.setNome(nuovoNome);
         pacchetto.setPrezzoTotale(nuovoPrezzo);
+
+         */
     }
 
 

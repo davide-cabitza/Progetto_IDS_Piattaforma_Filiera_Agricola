@@ -1,22 +1,35 @@
 package unicam.piattaforma_filiera_agricola.model.product;
 
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
 import unicam.piattaforma_filiera_agricola.model.seller.Venditore;
 import unicam.piattaforma_filiera_agricola.model.user.Indirizzo;
 
+@Entity
+@DiscriminatorValue("PRODUTTORE")
 public class ProdottoGrezzo extends Prodotto {
 
-    private String processoDiColtivazione;
+    private String processoColtivazione;
 
-    public ProdottoGrezzo(String nomeProdotto, double costo, String descrizione, Indirizzo indirizzo, Venditore venditore, String ProcessodiColtivazione) {
+    public ProdottoGrezzo(String nomeProdotto,
+                          double costo,
+                          String descrizione,
+                          Indirizzo indirizzo,
+                          Venditore venditore,
+                          String processodiColtivazione) {
         super(nomeProdotto, costo, descrizione,indirizzo, venditore);
-        this.processoDiColtivazione = processoDiColtivazione;
+        this.processoColtivazione = processodiColtivazione;
     }
 
-    public String getProcessoDiColtivazione() {
-        return processoDiColtivazione;
+    public ProdottoGrezzo() {
+
     }
 
-    public void setProcessoDiColtivazione(String processoDiColtivazione) {
-        this.processoDiColtivazione = processoDiColtivazione;
+    public String getProcessoColtivazione() {
+        return processoColtivazione;
+    }
+
+    public void setProcessoColtivazione(String processoDiColtivazione) {
+        this.processoColtivazione = processoDiColtivazione;
     }
 }

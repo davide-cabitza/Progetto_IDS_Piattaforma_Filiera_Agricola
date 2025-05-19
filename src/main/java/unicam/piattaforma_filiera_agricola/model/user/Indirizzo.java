@@ -29,4 +29,9 @@ public class Indirizzo {
     public void setNumber(int number) {
         this.number = number;
     }
+
+    @Override
+    public String toString() {
+        return this.address + " " + this.number;
+    }
 }

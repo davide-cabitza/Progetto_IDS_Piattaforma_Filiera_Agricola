@@ -1,6 +1,7 @@
 package unicam.piattaforma_filiera_agricola.model.seller;
 
-import unicam.piattaforma_filiera_agricola.Indirizzo;
+import jakarta.persistence.*;
+import unicam.piattaforma_filiera_agricola.model.user.Indirizzo;
 import unicam.piattaforma_filiera_agricola.handler.HandlerProdotto;
 import unicam.piattaforma_filiera_agricola.model.product.Prodotto;
 import unicam.piattaforma_filiera_agricola.model.product.Pacchetto;
@@ -14,23 +15,19 @@ import java.util.Map;
  * Rappresenta un Distributore, specializzazione di Venditore
  * che crea pacchetti di prodotti.
  */
+@Entity
+@DiscriminatorValue("DISTRIBUTORE")
 public class Distributore extends Venditore implements IAssieme {
 
+    @ManyToOne
     private Pacchetto pacchetto = null;
     private String processoDistribuzione;
-    private final HandlerProdotto pacchettoHandler;
 
-    public Distributore(String id,
-                        String username,
-                        String nome,
-                        String cognome,
-                        String email,
-                        String password,
-                        String cellNumber,
-                        Indirizzo indirizzo) {
-        super(id, username, nome, cognome, email, password, cellNumber, indirizzo);
+    public Distributore() {super();}
+
+    public Distributore(String nome, Indirizzo indirizzo, String processoDistribuzione) {
+        super(nome, indirizzo);
         this.processoDistribuzione = processoDistribuzione;
-        this.pacchettoHandler = new HandlerProdotto(this);
     }
 
     public void assiemeProdotti(String bundleName, double price, String description) {
@@ -56,14 +53,8 @@ public class Distributore extends Venditore implements IAssieme {
     }
 
     @Override
-    public Prodotto createProduct(String name, double price, String description) {
+    public Prodotto createProdotto(String name, double price, String description) {
         return new Pacchetto(name, price, description, getIndirizzo(), this, null);
-        public Prodotto creaProdotto (String nome,
-                String descrizione,
-                String certificazioni,double prezzo, int quantitativo, int id_venditore, Indirizzo indirizzo){
-            return super.creaProdotto(nome, descrizione, certificazioni, prezzo, quantitativo, id_venditore, indirizzo);
-        }
-
 
     }
 }

@@ -9,23 +9,20 @@ import unicam.piattaforma_filiera_agricola.model.seller.Ruolo;
  */
 @MappedSuperclass
 public abstract class UtenteLoggato {
-    private final String id;
+    private Long id;
     private String username;
     private String nome;
     private String cognome;
     private String email;
     private String password;
     private String cellNumber;
-
-
-
     @Embedded
     private Indirizzo indirizzo;
-    private final Ruolo ruolo;
+    private Ruolo ruolo;
 
    public UtenteLoggato() {};
 
-    public UtenteLoggato(String id,
+    public UtenteLoggato(Long id,
                          String username,
                          String nome,
                          String cognome,
@@ -45,7 +42,10 @@ public abstract class UtenteLoggato {
         this.ruolo = ruolo;
     }
 
-    public String getId() {
+    public UtenteLoggato(Long id, String nome, String email, String password, int numeroTelefono, Ruolo ruolo, String indirizzo, String nomeUtente) {
+    }
+
+    public Long getId() {
         return id;
     }
 

@@ -35,12 +35,12 @@ public class PaginaEventi {
 
 
     public void removeEventById(Long id) {
-        eventInPlatform.removeIf(evt -> evt.getId().equals(id));
+        eventInPlatform.removeIf(evt -> evt.getIdEvento().equals(id));
     }
 
     public Evento getEventById(Long id) {
         return eventInPlatform.stream()
-                .filter(evt -> evt.getId().equals(id))
+                .filter(evt -> evt.getIdEvento().equals(id))
                 .findFirst()
                 .orElse(null);
     }

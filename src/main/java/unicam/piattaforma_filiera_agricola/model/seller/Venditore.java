@@ -1,47 +1,65 @@
 package unicam.piattaforma_filiera_agricola.model.seller;
 
-import unicam.piattaforma_filiera_agricola.Indirizzo;
-import unicam.piattaforma_filiera_agricola.handler.HandlerProdotto;
-import unicam.piattaforma_filiera_agricola.model.product.Prodotto;
-import unicam.piattaforma_filiera_agricola.model.user.UtenteLoggato;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import jakarta.persistence.*;
 import unicam.piattaforma_filiera_agricola.model.user.Indirizzo;
-import unicam.piattaforma_filiera_agricola.model.platform.Marketplace;
-
-import java.util.Map;
+import unicam.piattaforma_filiera_agricola.model.product.Prodotto;
 
 /**
  * Classe astratta per tutti i Venditori (Produttore, Distributore, Trasformatore).
  */
-public abstract class Venditore extends UtenteLoggato implements IVenditore {
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.NAME,
+        include = JsonTypeInfo.As.PROPERTY,
+        property = "tipo"
+)
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = Trasformatore.class, name = "trasformatore"),
+        @JsonSubTypes.Type(value = Produttore.class, name = "produttore"),
+        @JsonSubTypes.Type(value = Distributore.class, name = "distributore")
+})
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "tipo_venditore", discriminatorType = DiscriminatorType.STRING)
+public abstract class Venditore implements IVenditore {
 
-    protected final HandlerProdotto prodottoHandler;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String nome;
+    @Embedded
+    private Indirizzo indirizzo;
 
-    public Venditore(String id,
-                     String username,
-                     String nome,
-                     String cognome,
-                     String email,
-                     String password,
-                     String cellNumber,
-                     Indirizzo indirizzo) {
-        super(id, username, nome, cognome, email, password, cellNumber, indirizzo, Ruolo.VENDITORE);
-        this.prodottoHandler = new HandlerProdotto(this);
+    public Venditore(String nome, Indirizzo indirizzo) {
+        this.nome = nome;
+        this.indirizzo = indirizzo;
     }
 
-    public abstract Prodotto createProduct(String name, double price, String description);
+    public Venditore() {}
+
+    public abstract Prodotto createProdotto(String nome, double costo, String descrizione);
 
     @Override
-    public void loadProduct(String name, double price, String description) {
-        Prodotto product = createProduct(name, price, description);
-    }
-    /**
-     * Crea un nuovo prodotto.
-     */
-    public Prodotto creaProdotto(String nome,
-                                 String descrizione,
-                                 String certificazioni, double prezzo, int quantitativo, int id_venditore, Indirizzo indirizzo) {
-        return prodottoHandler.creaProdotto(nome, descrizione, certificazioni, prezzo, quantitativo, id_venditore, indirizzo);
+    public void loadProduct(String nome, double costo, String descrizione) {
+        Prodotto product = createProdotto(nome, costo, descrizione);
     }
 
+    public Long getId() { return this.id; }
 
+    public String getNome() {
+        return this.nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public Indirizzo getIndirizzo() {
+        return this.indirizzo;
+    }
+
+    public void setIndirizzo(Indirizzo indirizzo) {
+        this.indirizzo = indirizzo;
+    }
 }

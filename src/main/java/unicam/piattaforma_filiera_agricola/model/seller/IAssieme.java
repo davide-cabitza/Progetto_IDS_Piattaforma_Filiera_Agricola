@@ -4,6 +4,7 @@ import unicam.piattaforma_filiera_agricola.model.product.Prodotto;
 import java.util.Date;
 
 public interface IAssieme {
+
     void assiemeProdotti(String nomeAssieme, double prezzo, String descrizione);
 
     /**

@@ -3,6 +3,7 @@ package unicam.piattaforma_filiera_agricola.handler;
 import unicam.piattaforma_filiera_agricola.model.animatore.AnimatoreFiliera;
 import unicam.piattaforma_filiera_agricola.model.animatore.Evento;
 import unicam.piattaforma_filiera_agricola.model.seller.Venditore;
+import unicam.piattaforma_filiera_agricola.model.user.Indirizzo;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -27,27 +28,30 @@ public class HandlerEvento {
     /**
      * Crea un nuovo evento e lo aggiunge alla lista degli eventi dell'animatore.
      */
+    /*
     public Evento creaEvento(LocalDate dataInizio,
                              LocalDate dataFine,
                              String localita,
                              int maxPartecipanti,
                              String nome,
                              String descrizione) {
-        String idEvento = UUID.randomUUID().toString();
+        Long idEvento = Long.valueOf(UUID.randomUUID().toString());
         Evento evento = new Evento(
                 idEvento,
                 dataInizio,
                 dataFine,
-                localita,
-                maxPartecipanti,
                 nome,
                 descrizione,
-                animatore
+                maxPartecipanti,
+                localita,
+
         );
         eventiCreati.add(evento);
         // Logica di persistenza, notifiche, ecc. può essere aggiunta qui
         return evento;
     }
+
+     */
 
     /**
      * Modifica i dati di un evento esistente.
@@ -55,7 +59,7 @@ public class HandlerEvento {
     public Evento modificaEvento(Evento evento,
                                  LocalDate dataInizio,
                                  LocalDate dataFine,
-                                 String localita,
+                                 Indirizzo localita,
                                  int maxPartecipanti,
                                  String nome,
                                  String descrizione) {
@@ -106,6 +110,7 @@ public class HandlerEvento {
         if (!eventiCreati.contains(evento)) {
             throw new IllegalArgumentException("Evento non gestito da questo animatore");
         }
+        /*
         Invitation invito = new Invitation(
                 UUID.randomUUID().toString(),
                 animatore,
@@ -115,5 +120,6 @@ public class HandlerEvento {
         );
         evento.aggiungiInvito(animatore, venditore);
         venditore.getInviti().add(invito);
+         */
     }
 }

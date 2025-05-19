@@ -9,6 +9,7 @@ import java.util.List;
 public class HandlerCarrello {
     private final Carrello carrello;
     public HandlerCarrello(Carrello c) { this.carrello = c; }
+    /*
     public void aggiungiProdotto(Prodotto p, int q) {
         for (RigaCarrello r : carrello.getRighe()) {
             if (r.getProdotto().equals(p)) { r.setQuantita(r.getQuantita()+q); return; }
@@ -22,4 +23,6 @@ public class HandlerCarrello {
     }
     public List<RigaCarrello> getContenuto() { return new ArrayList<>(carrello.getRighe()); }
     public void svuotaCarrello() { carrello.svuota(); }
+
+     */
 }

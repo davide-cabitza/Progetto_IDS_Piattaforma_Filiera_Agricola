@@ -1,6 +1,7 @@
 package unicam.piattaforma_filiera_agricola.model.builder;
 
 import jakarta.persistence.*;
+import unicam.piattaforma_filiera_agricola.model.seller.Venditore;
 import unicam.piattaforma_filiera_agricola.model.user.Indirizzo;
 import unicam.piattaforma_filiera_agricola.model.product.ProdottoGrezzo;
 
@@ -24,11 +25,12 @@ public class BuilderProdottoGrezzo implements IBuilder{
     @Embedded
     private Indirizzo location;
     private String processoProduttivo;
+    private Venditore venditore;
 
 
     @Override
     public void reset(){
-        risultato = new ProdottoGrezzo(nomeProdotto, descrizione, certificati, costo, quantitativo, id_venditore, location, processoProduttivo);
+        risultato = new ProdottoGrezzo(nomeProdotto, costo, descrizione, location, venditore, processoProduttivo);
     }
 
     @Override
