@@ -8,21 +8,18 @@ import java.util.List;
 
 public class HandlerCarrello {
     private final Carrello carrello;
-
     public HandlerCarrello(Carrello c) { this.carrello = c; }
-
-    public void aggiungiProdotto(Prodotto p) {
-        for (Prodotto pr : carrello.getProdotti()) {
-            if (pr.equals(p)) {pr.setQuantita(pr.getQuantita() + p.getQuantita()); return; }
+    public void aggiungiProdotto(Prodotto p, int q) {
+        for (RigaCarrello r : carrello.getRighe()) {
+            if (r.getProdotto().equals(p)) { r.setQuantita(r.getQuantita()+q); return; }
         }
-        carrello.aggiungiProdotto(p);
+        carrello.addRiga(new RigaCarrello(p,q));
     }
-
     public void rimuoviProdotto(Prodotto p) {
-        if (carrello.getProdotti().contains(p)) {carrello.rimuoviPrdotto(p.getId());}
+        carrello.getRighe().stream()
+                .filter(r->r.getProdotto().equals(p)).findFirst()
+                .ifPresent(r->carrello.removeRiga(r));
     }
-
-    public List<Prodotto> getContenuto() { return new ArrayList<>(carrello.getProdotti()); }
-
+    public List<RigaCarrello> getContenuto() { return new ArrayList<>(carrello.getRighe()); }
     public void svuotaCarrello() { carrello.svuota(); }
 }

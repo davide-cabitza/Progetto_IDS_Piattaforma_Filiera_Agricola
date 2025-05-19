@@ -7,8 +7,8 @@ public class ProdottoTrasformato extends Prodotto {
 
     private String processoTrasformazione;
 
-    public ProdottoTrasformato(String id, String nomeProdotto, String descrizione, String certificazioni, Indirizzo indirizzo, Venditore venditore, double costo, int quantita, String processoTrasformazione) {
-        super(id, nomeProdotto, descrizione, certificazioni, indirizzo, venditore, costo, quantita);
+    public ProdottoTrasformato(String nomeProdotto, double costo, String descrizione, Indirizzo indirizzo, Venditore venditore, String processoTrasformazione) {
+        super(nomeProdotto, costo, descrizione, indirizzo, venditore);
         this.processoTrasformazione = processoTrasformazione;
     }
 

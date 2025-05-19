@@ -1,6 +1,5 @@
 package unicam.piattaforma_filiera_agricola.model.animatore;
 
-import unicam.piattaforma_filiera_agricola.model.product.Prodotto;
 import unicam.piattaforma_filiera_agricola.model.user.UtenteLoggato;
 import unicam.piattaforma_filiera_agricola.model.seller.Venditore;
 
@@ -10,32 +9,27 @@ import java.util.*;
 
 public class Evento {
     private final String idEvento;
-    private String nome;
     private LocalDate dataInizio;
     private LocalDate dataFine;
     private String localita;
     private int maxPartecipanti;
+    private String nome;
     private String descrizione;
-    private AnimatoreFiliera creatore;
-    private List<Venditore> invitati;
 
     public Evento(String idEvento,
-                  String nomr,
                   LocalDate dataInizio,
                   LocalDate dataFine,
                   String localita,
                   int maxPartecipanti,
-                  String descrizione,
-                  AnimatoreFiliera creatore) {
+                  String nome,
+                  String descrizione) {
         this.idEvento = idEvento;
-        this.nome = nome;
         this.dataInizio = dataInizio;
         this.dataFine = dataFine;
         this.localita = localita;
         this.maxPartecipanti = maxPartecipanti;
+        this.nome = nome;
         this.descrizione = descrizione;
-        this.creatore = creatore;
-        this.invitati = invitati;
     }
 
     // Getter e setter
@@ -53,7 +47,8 @@ public class Evento {
     public String getDescrizione() { return descrizione; }
     public void setDescrizione(String descrizione) { this.descrizione = descrizione; }
     public AnimatoreFiliera getCreatore() { return creatore; }
-    public List<Venditore> getInvitati() { return Collections.unmodifiableList(invitati); }
+    public List<PartecipazioneEvento> getPartecipanti() { return Collections.unmodifiableList(partecipanti); }
+    public List<Invitation> getInviti() { return Collections.unmodifiableList(inviti); }
 
 
 }

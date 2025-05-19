@@ -28,7 +28,7 @@ public class BuilderProdottoGrezzo implements IBuilder{
 
     @Override
     public void reset(){
-        risultato = new ProdottoGrezzo(nomeProdotto, descrizione, certificati, location, id_venditore, costo, quantitativo, processoProduttivo);
+        risultato = new ProdottoGrezzo(nomeProdotto, descrizione, certificati, costo, quantitativo, id_venditore, location, processoProduttivo);
     }
 
     @Override

@@ -1,15 +1,20 @@
 package unicam.piattaforma_filiera_agricola.model.seller;
 
+import unicam.piattaforma_filiera_agricola.Indirizzo;
 import unicam.piattaforma_filiera_agricola.handler.HandlerProdotto;
 import unicam.piattaforma_filiera_agricola.model.product.Prodotto;
 import unicam.piattaforma_filiera_agricola.model.product.Pacchetto;
+import unicam.piattaforma_filiera_agricola.model.product.Prodotto;
 import unicam.piattaforma_filiera_agricola.model.user.Indirizzo;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Rappresenta un Distributore, specializzazione di Venditore
  * che crea pacchetti di prodotti.
  */
-public class Distributore extends Venditore {
+public class Distributore extends Venditore implements IAssieme {
 
     private Pacchetto pacchetto = null;
     private String processoDistribuzione;
@@ -26,6 +31,10 @@ public class Distributore extends Venditore {
         super(id, username, nome, cognome, email, password, cellNumber, indirizzo);
         this.processoDistribuzione = processoDistribuzione;
         this.pacchettoHandler = new HandlerProdotto(this);
+    }
+
+    public void assiemeProdotti(String bundleName, double price, String description) {
+        this.pacchetto = new Pacchetto(bundleName, price, description, getIndirizzo(), this, null);
     }
 
     public void aggiungiProdotto(Prodotto prodotto) {
@@ -47,10 +56,12 @@ public class Distributore extends Venditore {
     }
 
     @Override
-    public Prodotto createProduct(String nome,
-                                  String descrizione,
-                                  String certificazioni, double prezzo, int quantitativo, int id_venditore, Indirizzo indirizzo) {
-            return pacchettoHandler.creaProdotto(nome, descrizione, certificazioni, indirizzo, id_venditore, prezzo, quantitativo);
+    public Prodotto createProduct(String name, double price, String description) {
+        return new Pacchetto(name, price, description, getIndirizzo(), this, null);
+        public Prodotto creaProdotto (String nome,
+                String descrizione,
+                String certificazioni,double prezzo, int quantitativo, int id_venditore, Indirizzo indirizzo){
+            return super.creaProdotto(nome, descrizione, certificazioni, prezzo, quantitativo, id_venditore, indirizzo);
         }
 
 

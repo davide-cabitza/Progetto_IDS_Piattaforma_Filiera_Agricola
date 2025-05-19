@@ -18,6 +18,7 @@ public abstract class UtenteLoggato {
     private String cellNumber;
 
 
+
     @Embedded
     private Indirizzo indirizzo;
     private final Ruolo ruolo;

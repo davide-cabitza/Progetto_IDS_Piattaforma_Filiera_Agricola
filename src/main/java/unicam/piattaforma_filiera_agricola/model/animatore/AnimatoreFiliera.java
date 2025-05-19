@@ -35,7 +35,7 @@ public class AnimatoreFiliera extends UtenteLoggato {
                              int maxPartecipanti,
                              String nome,
                              String descrizione) {
-        Evento evento= new Evento(idEvento, nome, dataInizio,dataFine,localita,maxPartecipanti, nome);
+        Evento evento= new Evento(idEvento,dataInizio,dataFine,localita,maxPartecipanti, nome,descrizione);
         this.eventoCreato.add(evento);
     }
 

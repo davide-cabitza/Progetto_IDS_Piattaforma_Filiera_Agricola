@@ -2,7 +2,6 @@ package unicam.piattaforma_filiera_agricola.handler;
 
 import unicam.piattaforma_filiera_agricola.model.animatore.AnimatoreFiliera;
 import unicam.piattaforma_filiera_agricola.model.animatore.Evento;
-import unicam.piattaforma_filiera_agricola.model.animatore.Invito;
 import unicam.piattaforma_filiera_agricola.model.seller.Venditore;
 
 import java.time.LocalDate;
@@ -37,11 +36,11 @@ public class HandlerEvento {
         String idEvento = UUID.randomUUID().toString();
         Evento evento = new Evento(
                 idEvento,
-                nome,
                 dataInizio,
                 dataFine,
                 localita,
                 maxPartecipanti,
+                nome,
                 descrizione,
                 animatore
         );
@@ -107,12 +106,14 @@ public class HandlerEvento {
         if (!eventiCreati.contains(evento)) {
             throw new IllegalArgumentException("Evento non gestito da questo animatore");
         }
-        Invito invito = new Invito(
+        Invitation invito = new Invitation(
                 UUID.randomUUID().toString(),
                 animatore,
                 venditore,
-                evento);
+                evento,
+                LocalDateTime.now()
+        );
         evento.aggiungiInvito(animatore, venditore);
-        venditore.inviti.add(invito);
+        venditore.getInviti().add(invito);
     }
 }
