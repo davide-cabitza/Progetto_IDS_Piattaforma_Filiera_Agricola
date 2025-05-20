@@ -17,7 +17,7 @@ import unicam.piattaforma_filiera_agricola.model.user.Indirizzo;
 @JsonSubTypes({
         @JsonSubTypes.Type(value = ProdottoGrezzo.class, name = "produttore"),
         @JsonSubTypes.Type(value = ProdottoTrasformato.class, name = "trasformatore"),
-        @JsonSubTypes.Type(value = ProdottoTrasformato.class, name = "distributore"),
+        @JsonSubTypes.Type(value = ProdottoDistributore.class, name = "distributore"),
         @JsonSubTypes.Type(value = Pacchetto.class, name = "pacchetto_distributore")
 })
 

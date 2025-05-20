@@ -2,6 +2,7 @@ package unicam.piattaforma_filiera_agricola.model.animatore;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import unicam.piattaforma_filiera_agricola.handler.HandlerNotifica;
 import unicam.piattaforma_filiera_agricola.model.user.Indirizzo;
 import unicam.piattaforma_filiera_agricola.model.seller.Venditore;
 
@@ -17,12 +18,17 @@ public class AnimatoreFiliera{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
     private String nome;
     @OneToMany(cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Evento> eventoCreato = new ArrayList<>();
 
+
+
+    public AnimatoreFiliera(String nome) {
+        this.nome = nome;
+    }
 
     public AnimatoreFiliera() {
     }
@@ -30,7 +36,7 @@ public class AnimatoreFiliera{
     /**
      * Crea un nuovo evento.
      */
-    public void creaEvento(String nomeEvento, String descrizione, int maxPartecipanti, Indirizzo localita, LocalDate dataFine) {
+    public void creaEvento(String nomeEvento, String descrizione, int maxPartecipanti, Indirizzo localita, LocalDate dataFine, HandlerNotifica notificaService) {
         Evento evento= new Evento(nomeEvento, descrizione, maxPartecipanti, localita, this, dataFine);
         this.eventoCreato.add(evento);
     }
@@ -41,7 +47,7 @@ public class AnimatoreFiliera{
                 + " per partecipare all'evento '" + evento.getNome() + "'.");
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

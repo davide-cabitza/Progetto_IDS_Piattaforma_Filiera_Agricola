@@ -1,15 +1,12 @@
 package unicam.piattaforma_filiera_agricola.model.seller;
 
-import jakarta.persistence.*;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
+import unicam.piattaforma_filiera_agricola.model.product.ProdottoDistributore;
 import unicam.piattaforma_filiera_agricola.model.user.Indirizzo;
-import unicam.piattaforma_filiera_agricola.handler.HandlerProdotto;
 import unicam.piattaforma_filiera_agricola.model.product.Prodotto;
 import unicam.piattaforma_filiera_agricola.model.product.Pacchetto;
-import unicam.piattaforma_filiera_agricola.model.product.Prodotto;
-import unicam.piattaforma_filiera_agricola.model.user.Indirizzo;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Rappresenta un Distributore, specializzazione di Venditore
@@ -17,10 +14,10 @@ import java.util.Map;
  */
 @Entity
 @DiscriminatorValue("DISTRIBUTORE")
-public class Distributore extends Venditore implements IAssieme {
+public class Distributore extends Venditore /*implements IAssieme*/ {
 
-    @ManyToOne
-    private Pacchetto pacchetto = null;
+    //@ManyToOne
+    //private Pacchetto pacchetto = null;
     private String processoDistribuzione;
 
     public Distributore() {super();}
@@ -30,6 +27,13 @@ public class Distributore extends Venditore implements IAssieme {
         this.processoDistribuzione = processoDistribuzione;
     }
 
+    @Override
+    public Prodotto createProdotto(String nome, double costo, String descrizione) {
+        return new ProdottoDistributore(nome, costo, descrizione, getIndirizzo(), this, processoDistribuzione);
+
+    }
+
+    /*
     public void assiemeProdotti(String bundleName, double price, String description) {
         this.pacchetto = new Pacchetto(bundleName, price, description, getIndirizzo(), this, null);
     }
@@ -52,9 +56,21 @@ public class Distributore extends Venditore implements IAssieme {
         return assiemefinito;
     }
 
-    @Override
-    public Prodotto createProdotto(String name, double price, String description) {
-        return new Pacchetto(name, price, description, getIndirizzo(), this, null);
+    public Pacchetto getPacchetto() {
+        return pacchetto;
+    }
 
+    public void setPacchetto(Pacchetto pacchetto) {
+        this.pacchetto = pacchetto;
+    }
+
+     */
+
+    public String getProcessoDistribuzione() {
+        return processoDistribuzione;
+    }
+
+    public void setProcessoDistribuzione(String processoDistribuzione) {
+        this.processoDistribuzione = processoDistribuzione;
     }
 }

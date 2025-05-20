@@ -2,7 +2,6 @@ package unicam.piattaforma_filiera_agricola.model.builder;
 
 import jakarta.persistence.*;
 import jakarta.persistence.TemporalType;
-import unicam.piattaforma_filiera_agricola.model.product.ProdottoGrezzo;
 import unicam.piattaforma_filiera_agricola.model.seller.Venditore;
 import unicam.piattaforma_filiera_agricola.model.user.Indirizzo;
 import unicam.piattaforma_filiera_agricola.model.product.ProdottoTrasformato;

@@ -13,14 +13,14 @@ import java.util.*;
 public class Evento {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idEvento;
     private String nome;
     private String descrizione;
     private int maxPartecipanti;
     @Embedded
     private Indirizzo localita;
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = true)
     @JsonBackReference
     private AnimatoreFiliera creatore;
     private LocalDate dataInizio = LocalDate.now();
