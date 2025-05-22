@@ -2,9 +2,15 @@ package unicam.piattaforma_filiera_agricola.handler;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import unicam.piattaforma_filiera_agricola.model.animatore.AnimatoreFiliera;
+import unicam.piattaforma_filiera_agricola.model.animatore.Evento;
+import unicam.piattaforma_filiera_agricola.model.seller.Venditore;
 import unicam.piattaforma_filiera_agricola.repository.AnimatoreRepository;
+import unicam.piattaforma_filiera_agricola.repository.EventoRepository;
 import unicam.piattaforma_filiera_agricola.repository.UtenteRepository;
+import unicam.piattaforma_filiera_agricola.repository.VenditoreRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,114 +21,48 @@ public class HandlerAnimatore {
 
     private final AnimatoreRepository animatoreRepository;
     private final HandlerNotifica notificaService;
+    private final EventoRepository eventoRepository;
+    private final VenditoreRepository venditoriRepository;
     //private final UtenteRepository utenteRepository;
 
-    /**
-     * Costruttore per inizializzare il repository degli animatori, il servizio di notifiche e il repository degli utenti.
-     *
-     * @param animatoreRepository repository per accedere agli animatori.
-     * @param notificaService servizio per la gestione delle notifiche.
-     * //@param utenteRepository repository per accedere agli utenti.
-     */
     @Autowired
-    public HandlerAnimatore(AnimatoreRepository animatoreRepository, HandlerNotifica notificaService/*, UtenteRepository utenteRepository*/) {
+    public HandlerAnimatore(AnimatoreRepository animatoreRepository, HandlerNotifica notificaService, EventoRepository eventoRepository, VenditoreRepository venditoriRepository/*, UtenteRepository utenteRepository*/) {
         this.animatoreRepository = animatoreRepository;
         this.notificaService = notificaService;
         //this.utenteRepository = utenteRepository;
+        this.eventoRepository = eventoRepository;
+        this.venditoriRepository = venditoriRepository;
     }
 
-    /**
-     * Iscrive un utente alle notifiche di un animatore.
-     *
-     * @param animatoreId ID dell'animatore.
-     * @param utenteId ID dell'utente da iscrivere.
-     * @throws RuntimeException se l'animatore o l'utente non vengono trovati.
-     */
-    /*
-    public void subscribe(Long animatoreId, Long utenteId) {
+    public Evento creaEvento(Long animatoreId, Evento eventoInput) {
         AnimatoreFiliera animatore = animatoreRepository.findById(animatoreId)
                 .orElseThrow(() -> new RuntimeException("Animatore non trovato con id: " + animatoreId));
-        UtenteLoggato utente = utenteRepository.findById(utenteId)
-                .orElseThrow(() -> new RuntimeException("Utente non trovato con id: " + utenteId));
-        animatore.subscribe(utente);
-        animatoreRepository.save(animatore);
+
+        // Recupera gli ID dei venditori dal JSON (servono id in venditoriInvitati)
+        List<Venditore> venditori = new ArrayList<>();
+        if (eventoInput.getVenditoriInvitati() != null && !eventoInput.getVenditoriInvitati().isEmpty()) {
+            List<Long> ids = eventoInput.getVenditoriInvitati()
+                    .stream()
+                    .map(Venditore::getId)
+                    .toList();
+            venditori = venditoriRepository.findAllById(ids);
+        }
+
+        Evento evento = new Evento(
+                eventoInput.getNome(),
+                eventoInput.getDescrizione(),
+                eventoInput.getMaxPartecipanti(),
+                eventoInput.getLuogo(),
+                animatore,
+                eventoInput.getDataFine(),
+                venditori
+        );
+
+        evento = eventoRepository.save(evento);
+        animatore.getEventoCreato().add(evento); // se serve per logica interna
+        animatoreRepository.save(animatore); // salva eventuali modifiche all’animatore (non obbligatorio se non cambia)
+
+        return evento;
     }
 
-     */
-
-    /**
-     * Crea un evento per l'animatore e notifica i subscriber.
-     *
-     * @param animatoreId ID dell'animatore che crea l'evento.
-     * @param eventName Nome dell'evento.
-     * @param description Descrizione dell'evento.
-     * @param maxPeople Numero massimo di partecipanti.
-     * @param place Indirizzo dove si svolgerà l'evento.
-     * @return L'evento creato.
-     * @throws RuntimeException se l'animatore non viene trovato.
-     */
-    /*
-    public Evento createEvent(Long animatoreId, String eventName, String description, int maxPeople, Indirizzo place) {
-        AnimatoreFiliera animatore = animatoreRepository.findById(animatoreId)
-                .orElseThrow(() -> new RuntimeException("Animatore non trovato con id: " + animatoreId));
-        animatore.createEvent(eventName, description, maxPeople, place, notificaService);
-        animatoreRepository.save(animatore);
-        List<Evento> eventi = animatore.getEventsCreated();
-        return eventi.get(eventi.size() - 1);
-    }
-
-     */
-
-    /**
-     * Recupera tutti gli eventi creati da un determinato animatore.
-     *
-     * @param animatoreId ID dell'animatore.
-     * @return Lista di eventi creati dall'animatore.
-     * @throws RuntimeException se l'animatore non viene trovato.
-     */
-    /*
-    public List<Evento> getEventsByAnimatore(Long animatoreId) {
-        AnimatoreFiliera animatore = animatoreRepository.findById(animatoreId)
-                .orElseThrow(() -> new RuntimeException("Animatore non trovato con id: " + animatoreId));
-        return animatore.getEventsCreated();
-    }
-
-     */
-
-    /**
-     * Recupera un evento specifico creato da un animatore.
-     *
-     * @param animatoreId ID dell'animatore.
-     * @param eventId ID dell'evento da recuperare.
-     * @return L'evento corrispondente all'ID specificato.
-     * @throws RuntimeException se l'animatore o l'evento non vengono trovati.
-     */
-    /*
-    public Evento getEventById(Long animatoreId, Long eventId) {
-        AnimatoreFiliera animatore = animatoreRepository.findById(animatoreId)
-                .orElseThrow(() -> new RuntimeException("Animatore non trovato con id: " + animatoreId));
-        return animatore.getEventsCreated().stream()
-                .filter(event -> event.getId().equals(eventId))
-                .findFirst()
-                .orElseThrow(() -> new RuntimeException("Evento non trovato con id: " + eventId));
-    }
-
-     */
-
-    /**
-     * Rimuove un evento creato da un animatore.
-     *
-     * @param animatoreId ID dell'animatore.
-     * @param eventId ID dell'evento da rimuovere.
-     * @throws RuntimeException se l'animatore non viene trovato.
-     */
-    /*
-    public void removeEvent(Long animatoreId, Long eventId) {
-        AnimatoreFiliera animatore = animatoreRepository.findById(animatoreId)
-                .orElseThrow(() -> new RuntimeException("Animatore non trovato con id: " + animatoreId));
-        animatore.getEventsCreated().removeIf(event -> event.getId().equals(eventId));
-        animatoreRepository.save(animatore);
-    }
-
-     */
 }

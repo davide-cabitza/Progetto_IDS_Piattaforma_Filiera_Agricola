@@ -2,6 +2,7 @@ package unicam.piattaforma_filiera_agricola.handler;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import unicam.piattaforma_filiera_agricola.model.product.Pacchetto;
 import unicam.piattaforma_filiera_agricola.model.product.Prodotto;
 import unicam.piattaforma_filiera_agricola.model.seller.Venditore;
 import unicam.piattaforma_filiera_agricola.model.user.Indirizzo;
@@ -47,6 +48,25 @@ public class HandlerVenditore {
         existing.setIndirizzo(updatedProdotto.getIndirizzo());
         return prodottoRepository.save(existing);
     }
+
+    public Pacchetto creaPacchetto(Pacchetto pacchetto) {
+        // Calcola il costo totale solo se la lista non è nulla o vuota
+        if (pacchetto.getPacchetto() != null && !pacchetto.getPacchetto().isEmpty()) {
+            double totale = pacchetto.getPacchetto().stream()
+                    .mapToDouble(Prodotto::getCosto)
+                    .sum();
+            pacchetto.setCosto(totale);
+        } else {
+            // Se vuoi, imposta costo 0 per pacchetti vuoti
+            pacchetto.setCosto(0.0);
+        }
+
+        // Puoi impostare anche lo stato a true di default
+        pacchetto.setStato(true);
+
+        return prodottoRepository.save(pacchetto);
+    }
+
 
     public Optional<Venditore> findVenditoreById(Long id) {
         return venditoreRepository.findById(id);

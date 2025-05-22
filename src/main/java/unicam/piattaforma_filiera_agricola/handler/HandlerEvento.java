@@ -6,11 +6,9 @@ import unicam.piattaforma_filiera_agricola.model.seller.Venditore;
 import unicam.piattaforma_filiera_agricola.model.user.Indirizzo;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * Handler centrale per la gestione degli eventi per l'Animatore della filiera.
@@ -31,7 +29,7 @@ public class HandlerEvento {
     /*
     public Evento creaEvento(LocalDate dataInizio,
                              LocalDate dataFine,
-                             String localita,
+                             String luogo,
                              int maxPartecipanti,
                              String nome,
                              String descrizione) {
@@ -43,7 +41,7 @@ public class HandlerEvento {
                 nome,
                 descrizione,
                 maxPartecipanti,
-                localita,
+                luogo,
 
         );
         eventiCreati.add(evento);
@@ -59,7 +57,7 @@ public class HandlerEvento {
     public Evento modificaEvento(Evento evento,
                                  LocalDate dataInizio,
                                  LocalDate dataFine,
-                                 Indirizzo localita,
+                                 Indirizzo luogo,
                                  int maxPartecipanti,
                                  String nome,
                                  String descrizione) {
@@ -68,7 +66,7 @@ public class HandlerEvento {
         }
         evento.setDataInizio(dataInizio);
         evento.setDataFine(dataFine);
-        evento.setLocalita(localita);
+        evento.setLuogo(luogo);
         evento.setMaxPartecipanti(maxPartecipanti);
         evento.setNome(nome);
         evento.setDescrizione(descrizione);

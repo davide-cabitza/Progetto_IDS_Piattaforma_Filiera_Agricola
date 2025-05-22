@@ -1,13 +1,13 @@
 package unicam.piattaforma_filiera_agricola.model.animatore;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import unicam.piattaforma_filiera_agricola.model.seller.Venditore;
 import unicam.piattaforma_filiera_agricola.model.user.Indirizzo;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Evento {
@@ -19,12 +19,14 @@ public class Evento {
     private String descrizione;
     private int maxPartecipanti;
     @Embedded
-    private Indirizzo localita;
+    private Indirizzo luogo;
     @ManyToOne(optional = true)
     @JsonBackReference
     private AnimatoreFiliera creatore;
     private LocalDate dataInizio = LocalDate.now();
     private LocalDate dataFine;
+    @ManyToMany
+    private List<Venditore> venditoriInvitati = new ArrayList<>();
 
     public Evento() {
 
@@ -33,15 +35,16 @@ public class Evento {
     public Evento(String nome,
                   String descrizione,
                   int maxPartecipanti,
-                  Indirizzo localita,
+                  Indirizzo luogo,
                   AnimatoreFiliera creatore,
-                  LocalDate dataFine) {
+                  LocalDate dataFine, List<Venditore> venditoriInvitati) {
         this.nome = nome;
         this.descrizione = descrizione;
         this.maxPartecipanti = maxPartecipanti;
-        this.localita = localita;
+        this.luogo = luogo;
         this.creatore = creatore;
         this.dataFine = dataFine;
+        this.venditoriInvitati = venditoriInvitati;
     }
 
     // Getter e setter
@@ -57,8 +60,8 @@ public class Evento {
     public int getMaxPartecipanti() { return maxPartecipanti; }
     public void setMaxPartecipanti(int maxPartecipanti) { this.maxPartecipanti = maxPartecipanti; }
 
-    public Indirizzo getLocalita() { return localita; }
-    public void setLocalita(Indirizzo localita) { this.localita = localita; }
+    public Indirizzo getLuogo() { return luogo; }
+    public void setLuogo(Indirizzo luogo) { this.luogo = luogo; }
 
     public AnimatoreFiliera getCreatore() {
         return creatore;
@@ -74,8 +77,11 @@ public class Evento {
     public void setDataFine(LocalDate dataFine) { this.dataFine = dataFine; }
 
 
+    public List<Venditore> getVenditoriInvitati() {
+        return venditoriInvitati;
+    }
 
-
-
-
+    public void setVenditoriInvitati(List<Venditore> venditoriInvitati) {
+        this.venditoriInvitati = venditoriInvitati;
+    }
 }

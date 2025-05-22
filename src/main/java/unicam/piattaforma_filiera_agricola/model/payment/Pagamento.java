@@ -1,57 +1,62 @@
 package unicam.piattaforma_filiera_agricola.model.payment;
-import  unicam.piattaforma_filiera_agricola.model.buyer.Acquirente;
+
+import jakarta.persistence.*;
+import unicam.piattaforma_filiera_agricola.model.buyer.Acquirente;
 import unicam.piattaforma_filiera_agricola.model.buyer.Carrello;
 
-/**
- * Rappresenta un pagamento: associa un acquirente,
- * lo snapshot del carrello e la relativa ricevuta.
- */
+@Entity
 public class Pagamento {
 
-    private final Acquirente payer;
-    private final Carrello productsSnapshot;
-    private final Ricevuta invoice;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    /**
-     * Costruisce un pagamento completo.
-     *
-     * @param payer           l'acquirente che effettua il pagamento
-     * @param productsSnapshot snapshot del carrello con i prodotti acquistati
-     * @param invoice         la ricevuta generata
-     */
-    public Pagamento(Acquirente payer, Carrello productsSnapshot, Ricevuta invoice) {
-        this.payer = payer;
-        this.productsSnapshot = productsSnapshot;
-        this.invoice = invoice;
+    @ManyToOne
+    private Acquirente acquirente;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Carrello carrello;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Ricevuta ricevuta;
+
+    public Pagamento() {}
+
+    public Pagamento(Acquirente acquirente, Carrello carrello, Ricevuta ricevuta) {
+        this.acquirente = acquirente;
+        this.carrello = carrello;
+        this.ricevuta = ricevuta;
     }
 
-    /**
-     * L'acquirente che ha pagato.
-     */
-    public Acquirente getPayer() {
-        return payer;
+    public Long getId() {
+        return id;
     }
 
-    /**
-     * Snapshot del carrello al momento del pagamento.
-     */
-    public Carrello getProductsSnapshot() {
-        return productsSnapshot;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    /**
-     * La ricevuta generata dal pagamento.
-     */
-    public Ricevuta getInvoice() {
-        return invoice;
+    public Acquirente getAcquirente() {
+        return acquirente;
     }
 
-    @Override
-    public String toString() {
-        return "Pagamento{" +
-                "payer=" + payer +
-                ", productsSnapshot=" + productsSnapshot +
-                ", invoice=" + invoice +
-                '}';
+    public void setAcquirente(Acquirente acquirente) {
+        this.acquirente = acquirente;
+    }
+
+    public Carrello getCarrello() {
+        return carrello;
+    }
+
+    public void setCarrello(Carrello carrello) {
+        this.carrello = carrello;
+    }
+
+    public Ricevuta getRicevuta() {
+        return ricevuta;
+    }
+
+    public void setRicevuta(Ricevuta ricevuta) {
+        this.ricevuta = ricevuta;
     }
 }

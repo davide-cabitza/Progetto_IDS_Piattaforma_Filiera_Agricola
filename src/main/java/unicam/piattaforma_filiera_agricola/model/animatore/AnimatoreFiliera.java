@@ -36,8 +36,8 @@ public class AnimatoreFiliera{
     /**
      * Crea un nuovo evento.
      */
-    public void creaEvento(String nomeEvento, String descrizione, int maxPartecipanti, Indirizzo localita, LocalDate dataFine, HandlerNotifica notificaService) {
-        Evento evento= new Evento(nomeEvento, descrizione, maxPartecipanti, localita, this, dataFine);
+    public void creaEvento(String nomeEvento, String descrizione, int maxPartecipanti, Indirizzo luogo, LocalDate dataFine, List<Venditore> invitati ,HandlerNotifica notificaService) {
+        Evento evento= new Evento(nomeEvento, descrizione, maxPartecipanti, luogo, this, dataFine, invitati);
         this.eventoCreato.add(evento);
     }
 

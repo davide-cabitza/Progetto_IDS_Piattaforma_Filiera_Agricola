@@ -1,34 +1,38 @@
-// src/main/java/com/example/filiera_francoletti_belardinelli_raiola/model/payment/Ricevuta.java
 package unicam.piattaforma_filiera_agricola.model.payment;
 
-/**
- * Rappresenta la ricevuta di un pagamento,
- * contenente il testo dettagliato della transazione.
- */
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Ricevuta {
 
-    private final String invoiceText;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
-    /**
-     * Costruisce una ricevuta con il contenuto testuale fornito.
-     *
-     * @param invoiceText testo della ricevuta
-     */
-    public Ricevuta(String invoiceText) {
-        this.invoiceText = invoiceText;
+    private String descrizione;
+
+    public Ricevuta() {}
+
+    public Ricevuta(String descrizione) {
+        this.descrizione = descrizione;
     }
 
-    /**
-     * Restituisce il testo completo della ricevuta.
-     */
-    public String getInvoiceText() {
-        return invoiceText;
+    public Long getId() {
+        return id;
     }
 
-    @Override
-    public String toString() {
-        return "Ricevuta{" +
-                "invoiceText='" + invoiceText + '\'' +
-                '}';
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getDescrizione() {
+        return descrizione;
+    }
+
+    public void setDescrizione(String descrizione) {
+        this.descrizione = descrizione;
     }
 }

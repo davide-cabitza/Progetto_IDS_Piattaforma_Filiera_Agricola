@@ -30,6 +30,7 @@ public class EventoController {
         this.notificaService = notificaService;
     }
 
+    /*
     @PostMapping
     public ResponseEntity<Evento> createEvento(@RequestBody Evento evento) {
         // Verifica che l'evento contenga un creatore (animatore) valido
@@ -39,7 +40,7 @@ public class EventoController {
         AnimatoreFiliera animatore = this.animatoreRepository.findById(evento.getCreatore().getId())
                 .orElseThrow(() -> new RuntimeException("Animatore non trovato con id: " + evento.getCreatore().getId()));
         evento.setCreatore(animatore);
-        animatore.creaEvento(evento.getNome(), evento.getDescrizione(), evento.getMaxPartecipanti(), evento.getLocalita(), evento.getDataFine(), this.notificaService);
+        animatore.creaEvento(evento.getNome(), evento.getDescrizione(), evento.getMaxPartecipanti(), evento.getLuogo(), evento.getDataFine(), this.notificaService);
         this.animatoreRepository.save(animatore);
         List<Evento> eventi = animatore.getEventoCreato();
         Evento savedEvento = eventi.get(eventi.size() - 1);
@@ -47,6 +48,7 @@ public class EventoController {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(savedEvento);
     }
+    */
 
     @GetMapping
     public ResponseEntity<List<Evento>> getAllEventi() {
@@ -68,7 +70,7 @@ public class EventoController {
                     existing.setNome(eventoData.getNome());
                     existing.setDescrizione(eventoData.getDescrizione());
                     existing.setMaxPartecipanti(eventoData.getMaxPartecipanti());
-                    existing.setLocalita(eventoData.getLocalita());
+                    existing.setLuogo(eventoData.getLuogo());
                     // Il campo creator non viene modificato
                     Evento updated = eventoRepository.save(existing);
                     return ResponseEntity.ok(updated);
